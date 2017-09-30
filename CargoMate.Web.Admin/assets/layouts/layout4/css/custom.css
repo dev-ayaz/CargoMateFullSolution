@@ -1,0 +1,36 @@
+/* here you can put your own css to customize and override the theme */
+.sweet-alert {
+    width: 400px !important;
+    /*margin-left: -195px !important;*/
+    padding: 10px 10px 20px !important;
+    z-index: 9999;
+    border-radius: 10px !important;
+}
+
+.sweet-alert .sa-icon.sa-warning .sa-body {
+        width: 5px !important;
+        height: 18px !important;
+    }
+
+    .sweet-alert .sa-icon {
+        width: 50px !important;
+        height: 50px !important;
+        border: 4px solid gray;
+        -webkit-border-radius: 40px;
+        margin: 10px auto !important;
+        padding: 0;
+        position: relative;
+    }
+    .sweet-alert h2 {
+        color: #575757;
+        font-size: 23px !important;
+        text-align: center;
+        font-weight: 600;
+        text-transform: none;
+        position: relative;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        padding: 0 !important;
+        line-height: 10px !important;
+        display: block;
+    }

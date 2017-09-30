@@ -1,0 +1,49 @@
+﻿
+
+
+<div class="page-quick-sidebar-wrapper" data-close-on-body-click="true">
+    <div class="page-quick-sidebar">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab">
+                    Chat Box
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active page-quick-sidebar-chat page-quick-sidebar-content-item-shown" id="quick_sidebar_tab_1">
+
+                <div class="page-quick-sidebar-item">
+                    <div class="page-quick-sidebar-chat-user">
+
+                        <div class="page-quick-sidebar-chat-user-messages" id="ChatBoxMessagesContainer">
+
+                        </div>
+
+
+                        @using (Ajax.BeginForm("AddComment", new { Controller = "Chat", area = "Maintenance" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Chats.Callbacks.InsertSuccess" }, new { id = "ChatForm" }))
+                        {
+                            <div class="page-quick-sidebar-chat-user-form">
+                                <input type="hidden" name="requestId" id="requestId" />
+                                <div class="input-group">
+                                    <input type="text" name="Message" class="form-control" placeholder="Type a message here~.">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn green">
+                                            <i class="icon-paper-clip"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

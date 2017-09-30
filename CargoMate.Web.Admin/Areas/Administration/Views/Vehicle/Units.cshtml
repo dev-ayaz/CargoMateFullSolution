@@ -1,0 +1,300 @@
+﻿@using CargoMate.Web.Admin.Areas.Administration.Models.Vehicle
+@model CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.UnitViewModel
+
+@{
+    ViewBag.Title = "Units";
+}
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        @*<div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="m-heading-1 border-green m-bordered">
+                    <h3>
+                        Vehicle
+                        <small>Vehicle Managment</small>
+                    </h3>
+                </div>
+                <!-- END PAGE TITLE -->
+                <!-- BEGIN PAGE TOOLBAR -->
+                <div class="page-toolbar">
+
+                </div>
+                <!-- END PAGE TOOLBAR -->
+            </div>*@
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs font-purple-soft"></i>
+                            <span class="caption-subject font-purple-soft bold uppercase">Units Configuration</span>
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-cloud-upload"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-wrench"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#VehicleTypesTab" data-toggle="tab" aria-expanded="true"><i class="icon-folder-alt font-yellow"></i>  Weight Units </a>
+                            </li>
+                            <li class="">
+                                <a href="#VehicleConfigurationTab" data-toggle="tab" aria-expanded="false"><i class="icon-folder-alt font-yellow"></i> Length Units</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="VehicleTypesTab">
+                                <div class="portlet light">
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="row">
+                                                <div class="portlet-body">
+                                                    <div class="table-toolbar">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="btn-group">
+                                                                    <a id="btnAddNewWeight" data-toggle="modal" data-target="#modalAddNewWeight" class="btn sbold green">
+                                                                        Add New
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dataTables_wrapper no-footer">
+                                            <div class="row" id="tblWeightList">
+                                                @Html.Partial("Partials/_WeightList", Model.WeightModelList)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="VehicleConfigurationTab">
+                                <div class="portlet light">
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="row">
+                                                <div class="portlet-body">
+                                                    <div class="table-toolbar">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="btn-group">
+                                                                    <a id="btnAddNewVehicleConfiguration" data-toggle="modal" data-target="#modalAddNewVehicleConfigurations" class="btn sbold green">
+                                                                        Add New
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dataTables_wrapper no-footer">
+                                            <div class="row" id="tblLengthList">
+                                                @Html.Partial("Partials/_LengthList", Model.LengthModelList)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@* Add New Vehicle Type Form Modal *@
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalAddNewWeight">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Weight Setup</span>
+                        <span class="caption-helper">Add Weight Units</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("AddWeight", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Weight.callbacks.insertSuccess" }, new { id = "AddWeightForm" }))
+                    {
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body" id="AddVehicleTypeFormContent">
+                                @Html.Partial("partials/_AddWeight", Model.WeightModel)
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" id="btnResponsiblePeronsFormReset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+@* Edit Vehicle Type *@
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalEditWeight">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">VWeight Setup</span>
+                        <span class="caption-helper">Edit Weight Unit</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("UpdateWeight", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Weight.callbacks.updateSuccess" }, new { id = "EditWeightForm" }))
+                    {
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body" id="EditWeightFormContent">
+
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+@* Add New Configuration View Modal *@
+
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalAddNewVehicleConfigurations">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Length Setup</span>
+                        <span class="caption-helper">Add Length Unit</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("AddLength", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Length.callbacks.insertSuccess" }, new { id = "AddLengthForm" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                @Html.Partial("partials/_AddLength", Model.LengthModel)
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" id="btnResponsiblePeronsFormReset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="EditLengthModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Length Setup</span>
+                        <span class="caption-helper">Edit Length Unit</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("UpdateLength", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Length.callbacks.updateSuccess" }, new { id = "UpdateLengthForm" }))
+                    {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-horizontal">
+                        <div class="form-body" id="EditLengthFormContent">
+
+                        </div>
+                        <div class="row" style="margin-top: -20px">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                <button type="reset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+@section Scripts{
+
+    <script src="~/Areas/Administration/Scripts/PageScripts/Weight.js"></script>
+    <script src="~/Areas/Administration/Scripts/PageScripts/Length.js"></script>
+    <script>
+        Weight.initEvents();
+        Length.initEvents();
+    </script>
+}

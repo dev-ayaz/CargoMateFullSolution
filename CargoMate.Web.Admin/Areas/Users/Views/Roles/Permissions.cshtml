@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Permissions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link href="~/assets/global/plugins/jstree/dist/themes/default/style.css" rel="stylesheet" />
+}
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        <div class="page-head">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="m-heading-1 border-green m-bordered">
+                <h3>
+                    Role Permissions
+                    <small>set permissions for role</small>
+                </h3>
+            </div>
+            <!-- END PAGE TITLE -->
+            <!-- BEGIN PAGE TOOLBAR -->
+            <div class="page-toolbar">
+
+            </div>
+            <!-- END PAGE TOOLBAR -->
+        </div>
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light portlet-fit bordered">
+
+                    <div class="portlet-body">
+                        <div class="form">
+                            @using (Ajax.BeginForm("Permissions", "Roles", new AjaxOptions { OnSuccess = "Permissions.callbacks.saveSuccess", OnFailure = "Permissions.callbacks.saveFail", HttpMethod = "POST" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-body">
+                                    <div id="permission-container"></div>
+                                </div>
+                                <div class="form-actions noborder">
+                                    <input type="hidden" name="RoleId" value="@Request.QueryString["roleId"]" />
+                                    <input type="hidden" name="MenuActions" />
+                                    <button type="submit" class="btn blue">Submit</button>
+                                    <a href="@Url.Action("Index", "Roles")" class="btn default">Cancel</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- END TABLE PORTLET-->
+            </div>
+        </div>
+        <!-- END PAGE BASE CONTENT -->
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+@section scripts{
+    <script src="~/assets/global/plugins/jstree/dist/jstree.js"></script>
+    <script src="~/Areas/Users/Scripts/Roles/permissions.js"></script>
+    <script>
+        Permissions.initEvents();
+    </script>
+}
+
+
+

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA3E080B-CB3E-4AD8-99C9-2073A421FED3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CargoMate.DataAccess</RootNamespace>
+    <AssemblyName>CargoMate.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\IBaseUnitOfWork.cs" />
+    <Compile Include="Contracts\IRepository.cs" />
+    <Compile Include="Contracts\IUnitOfWork.cs" />
+    <Compile Include="Contracts\IView.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Migrations\201709220008298_Data Base Created.cs" />
+    <Compile Include="Migrations\201709220008298_Data Base Created.Designer.cs">
+      <DependentUpon>201709220008298_Data Base Created.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709252140307_Driver Tabels Added.cs" />
+    <Compile Include="Migrations\201709252140307_Driver Tabels Added.Designer.cs">
+      <DependentUpon>201709252140307_Driver Tabels Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709272020289_Locality,SubLocality.cs" />
+    <Compile Include="Migrations\201709272020289_Locality,SubLocality.Designer.cs">
+      <DependentUpon>201709272020289_Locality,SubLocality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BasicData\Country.cs" />
+    <Compile Include="Models\BasicData\CustomerStatus.cs" />
+    <Compile Include="Models\BasicData\DriverStatuse.cs" />
+    <Compile Include="Models\BasicData\LengthUnit.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedCountry.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedCustomerStatus.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedDriverStatuse.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedLengthUnits.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedPairType.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedPayLoadType.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedTripType.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedVehicleCapacity.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedVehicleConfiguration.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedVehicleMake.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedVehicleModel.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedVehicleType.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedWeightUnit.cs" />
+    <Compile Include="Models\BasicData\ModelYearCombination.cs" />
+    <Compile Include="Models\BasicData\FareTypes.cs" />
+    <Compile Include="Models\BasicData\PayLoadType.cs" />
+    <Compile Include="Models\BasicData\TripTypes.cs" />
+    <Compile Include="Models\BasicData\VehicleCapacity.cs" />
+    <Compile Include="Models\BasicData\VehicleMake.cs" />
+    <Compile Include="Models\BasicData\VehicleModel.cs" />
+    <Compile Include="Models\BasicData\VehicleType.cs" />
+    <Compile Include="Models\BasicData\VehicleConfiguration.cs" />
+    <Compile Include="Models\BasicData\WeightUnit.cs" />
+    <Compile Include="Models\Customers\Company.cs" />
+    <Compile Include="Models\Customers\Customer.cs" />
+    <Compile Include="Models\Transporters\DriverFareTypes.cs" />
+    <Compile Include="Models\Transporters\DriverLegalDocument.cs" />
+    <Compile Include="Models\Transporters\DriverPersonalInfo.cs" />
+    <Compile Include="Models\Transporters\InsuranceCompany.cs" />
+    <Compile Include="Models\Transporters\Localization\LocalizedInsuranceCompany.cs" />
+    <Compile Include="Models\Transporters\PreferredAddress.cs" />
+    <Compile Include="Models\Users\Action.cs" />
+    <Compile Include="Models\Users\Menu.cs" />
+    <Compile Include="Models\Users\MenuAction.cs" />
+    <Compile Include="Models\Users\Role.cs" />
+    <Compile Include="Models\Users\RolePermission.cs" />
+    <Compile Include="Models\Users\User.cs" />
+    <Compile Include="Models\Users\UserClaim.cs" />
+    <Compile Include="Models\Users\UserLogin.cs" />
+    <Compile Include="Models\Users\UserRole.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\BaseRepository.cs" />
+    <Compile Include="Providers\BaseUnitOfWork.cs" />
+    <Compile Include="Providers\BaseView.cs" />
+    <Compile Include="Providers\CargoMateDbContext.cs" />
+    <Compile Include="Providers\Helpers\IRepositoryProvider.cs" />
+    <Compile Include="Providers\Helpers\RepositoryFactories.cs" />
+    <Compile Include="Providers\Helpers\RepositoryProvider.cs" />
+    <Compile Include="Providers\UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709220008298_Data Base Created.resx">
+      <DependentUpon>201709220008298_Data Base Created.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709252140307_Driver Tabels Added.resx">
+      <DependentUpon>201709252140307_Driver Tabels Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709272020289_Locality,SubLocality.resx">
+      <DependentUpon>201709272020289_Locality,SubLocality.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

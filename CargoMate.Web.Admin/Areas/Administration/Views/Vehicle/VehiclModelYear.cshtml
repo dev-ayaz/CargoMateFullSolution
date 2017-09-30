@@ -1,0 +1,154 @@
+﻿@model CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.VehicleModelYearViewModel
+
+@{
+    ViewBag.Title = "Vehicle Model Years";
+}
+
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        @*<div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="m-heading-1 border-green m-bordered">
+                    <h3>
+                        Vehicle
+                        <small>Vehicle Managment</small>
+                    </h3>
+                </div>
+                <!-- END PAGE TITLE -->
+                <!-- BEGIN PAGE TOOLBAR -->
+                <div class="page-toolbar">
+
+                </div>
+                <!-- END PAGE TOOLBAR -->
+            </div>*@
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="table-toolbar">
+                                <div class="row">
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="btn-group">
+                                                        <a id="btnAddNewVehicleMake" data-toggle="modal" data-target="#modalAddNewVehicleMake" class="btn sbold green">
+                                                            Add New
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dataTables_wrapper no-footer">
+                                <div class="row" id="tblModelYearList">
+                                    @Html.Partial("Partials/_VehicleModelYearsList", Model.VehicleModelYearList)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalAddNewVehicleMake">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Vehicle Model Years</span>
+                        <span class="caption-helper">Add Vehicle Model Years</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("AddVehicelModelYear", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "VehicelModelYear.callbacks.insertSuccess" }, new { id = "AddVehicelModelYearForm"}))
+                    {
+                        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                @Html.Partial("Partials/_AddModelYear", Model.VehicleModelYear)
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalEditVehicleModelYear">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Vehicle Model Years</span>
+                        <span class="caption-helper">Edit Vehicle Model Years</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("UpdateVehiclModelYear", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "VehicelModelYear.callbacks.insertSuccess" }, new {id = "EditVehicleModelYearForm" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body" id="EditVehicleModelYearFormContent">
+                                @Html.Partial("Partials/_AddModelYear", Model.VehicleModelYear)
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+@section Scripts{
+
+    <script src="~/Areas/Administration/Scripts/PageScripts/VehicelModelYear.js"></script>
+    <script>
+        VehicelModelYear.initEvents();
+    </script>
+}

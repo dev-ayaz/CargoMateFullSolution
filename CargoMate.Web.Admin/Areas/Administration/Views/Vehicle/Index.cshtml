@@ -1,0 +1,420 @@
+﻿@using CargoMate.Web.Admin.Areas.Administration.Models.Vehicle
+@model VehicleViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        @*<div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="m-heading-1 border-green m-bordered">
+                    <h3>
+                        Vehicle
+                        <small>Vehicle Managment</small>
+                    </h3>
+                </div>
+                <!-- END PAGE TITLE -->
+                <!-- BEGIN PAGE TOOLBAR -->
+                <div class="page-toolbar">
+
+                </div>
+                <!-- END PAGE TOOLBAR -->
+            </div>*@
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs font-purple-soft"></i>
+                            <span class="caption-subject font-purple-soft bold uppercase">Vehicle Configuration</span>
+                        </div>
+                        <div class="actions">
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-cloud-upload"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-wrench"></i>
+                            </a>
+                            <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                                <i class="icon-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#VehicleTypesTab" data-toggle="tab" aria-expanded="true"><i class="icon-folder-alt font-yellow"></i>  Vehicle Types </a>
+                            </li>
+                            <li class="">
+                                <a href="#VehicleConfigurationTab" data-toggle="tab" aria-expanded="false"><i class="icon-folder-alt font-yellow"></i>  Vehicle Configurations </a>
+                            </li>
+                            <li class="">
+                                <a href="#VehicleCapicityTab" data-toggle="tab" aria-expanded="false"><i class="icon-folder-alt font-yellow"></i>  Vehicle Capicities </a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active in" id="VehicleTypesTab">
+                                <div class="portlet light">
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="row">
+                                                <div class="portlet-body">
+                                                    <div class="table-toolbar">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="btn-group">
+                                                                    <a id="btnAddNewVehicleType" data-toggle="modal" data-target="#modalAddNewVehicleType" class="btn sbold green">
+                                                                        Add New
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dataTables_wrapper no-footer">
+                                            <div class="row" id="tblVehicletypeList">
+                                                @Html.Partial("Partials/_VehicleTypes", Model.VehicleTypesList)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="VehicleConfigurationTab">
+                                <div class="portlet light">
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="row">
+                                                <div class="portlet-body">
+                                                    <div class="table-toolbar">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="btn-group">
+                                                                    <a id="btnAddNewVehicleConfiguration" data-toggle="modal" data-target="#modalAddNewVehicleConfigurations" class="btn sbold green">
+                                                                        Add New
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dataTables_wrapper no-footer">
+                                            <div class="row" id="tblVehicleConfigurationList">
+                                                @Html.Partial("Partials/_VehicleConfigurationList", Model.ConfigurationsList)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="VehicleCapicityTab">
+                                <div class="portlet light">
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="row">
+                                                <div class="portlet-body">
+                                                    <div class="table-toolbar">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="btn-group">
+                                                                    <a id="btnAddNewVehicleCapicity" data-toggle="modal" data-target="#modalAddVehicleCapicity" class="btn sbold green">
+                                                                        Add New
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dataTables_wrapper no-footer">
+                                            <div class="row" id="tblVehicleCapicitiesList">
+                                                @Html.Partial("Partials/_VehicleCapicities", Model.VehicleCapcitiesList)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@* Add New Vehicle Type Form Modal *@
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalAddNewVehicleType">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Vehicle Types</span>
+                        <span class="caption-helper">Add Vehicle Types</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("AddVehicleType", null, new AjaxOptions {HttpMethod="POST",OnSuccess= "VehicleTypes.callbacks.insertSuccess" }, new {id = "AddVehicleTypeForm" }))
+                    {
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body" id="AddVehicleTypeFormContent">
+                                @Html.Partial("partials/_AddVehicleType", new VehicleTypeViewModel())
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-2">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" id="btnResponsiblePeronsFormReset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+@* Edit Vehicle Type *@
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalEditVehicleType">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Vehicle Types</span>
+                        <span class="caption-helper">Edit Vehicle Types</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("UpdateVehicleType", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "VehicleTypes.callbacks.updateSuccess" }, new { id = "EditVehicleTypeForm" }))
+                    {
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body" id="EditVehicleTypeFormContent">
+
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-2">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset"  style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+@* Add New Configuration View Modal *@
+
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalAddNewVehicleConfigurations">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Vehicle Configurations</span>
+                        <span class="caption-helper">Add Vehicle Configurations</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("AddVehicleConfiguration", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "VehicleConfigurations.callbacks.insertSuccess" }, new { id = "AddVehicleConfigurationForm"}))
+                    {
+                        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                @Html.Partial("partials/_AddVehicleConfiguration", Model.ConfigurationViewModel)
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" id="btnResponsiblePeronsFormReset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="EditVehicleConfigurationModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Vehicle Configurations</span>
+                        <span class="caption-helper">Update Vehicle Configurations</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("UpdateVehicleConfiguration", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "VehicleConfigurations.callbacks.updateSuccess" }, new { id = "UpdateVehicleConfigurationForm" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body" id="EditVehicleConfigurationFormContent">
+                                @Html.Partial("partials/_AddVehicleConfiguration", Model.ConfigurationViewModel)
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+@* Add New Capicity View Modal *@
+
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalAddVehicleCapicity">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Vehicle Capicities</span>
+                        <span class="caption-helper">Add Vehicle Capicities</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("AddVehicleCapacity", null, new AjaxOptions {HttpMethod = "POST", OnSuccess = "VehicleCapicities.callbacks.insertSuccess"},
+                        new {id = "AddVehicleCapicityForm"}))
+                    {
+                        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                @Html.Partial("partials/_AddVehicleCapicity", Model.CapicityViewModel)
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" id="btnResponsiblePeronsFormReset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+@* Edit Vehicle Capacity *@
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalEditVehicleCapicity">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Vehicle Capicities</span>
+                        <span class="caption-helper">Edit Vehicle Capicities</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("UpdateVehicleCapacity", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "VehicleCapicities.callbacks.updateSuccess" },
+                    new { id = "EditVehicleCapicityForm" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body" id="EditVehicleCapicityFormContent">
+
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" id="btnResponsiblePeronsFormReset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+@section Scripts{
+
+    <script src="~/Areas/Administration/Scripts/PageScripts/VehicleTypes.js"></script>
+    <script src="~/Areas/Administration/Scripts/PageScripts/VehicleConfigurations.js"></script>
+<script src="~/Areas/Administration/Scripts/PageScripts/VehicleCapicities.js"></script>
+    @*<script src="~/Scripts/CargoMateUtilities/MultiPartFormHandler.js"></script>*@
+    <script>
+        VehicleTypes.initEvents();
+        VehicleConfigurations.initEvents();
+        VehicleCapicities.initEvents();
+    </script>
+}

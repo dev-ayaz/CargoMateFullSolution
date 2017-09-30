@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.PayLoadModel>
+
+@{
+    Layout = null;
+}
+<table class="table">
+    <tr>
+        <th>
+            Code
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeName)
+        </th>
+
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                <img alt="" class="img-circle" src="~/@item.ImageUrl" style="width: 40px;height:40px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-sm green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                        Actions
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="javascript:;" class="PayLoadEdit" data-payloadid="@item.Id">
+                                <i class="fa fa-pencil-square-o yellow"></i> Edit
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="PayLoadDelete" data-payloadid="@item.Id">
+                                <i class="fa fa-times-circle-o red"></i> Delete
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

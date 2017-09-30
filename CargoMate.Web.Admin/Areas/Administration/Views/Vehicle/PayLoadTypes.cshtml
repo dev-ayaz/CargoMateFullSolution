@@ -1,0 +1,152 @@
+﻿@model CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.PayLoadTypesViewModel
+
+@{
+    ViewBag.Title = "PayLoadTypes";
+}
+
+
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        @*<div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="m-heading-1 border-green m-bordered">
+                    <h3>
+                        Vehicle
+                        <small>Vehicle Managment</small>
+                    </h3>
+                </div>
+                <!-- END PAGE TITLE -->
+                <!-- BEGIN PAGE TOOLBAR -->
+                <div class="page-toolbar">
+
+                </div>
+                <!-- END PAGE TOOLBAR -->
+            </div>*@
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="table-toolbar">
+                                <div class="row">
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="btn-group">
+                                                        <a id="btnAddNewPayLoadType" data-toggle="modal" data-target="#modalAddNewPayLoadType" class="btn sbold green">
+                                                            Add New
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dataTables_wrapper no-footer">
+                                <div class="row" id="tblPayLoadTypeList">
+                                    @Html.Partial("Partials/_PayLoadtypeList", Model.PayLoadModelList)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalAddNewPayLoadType">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">PayLoad Types</span>
+                        <span class="caption-helper">Add PayLoad Type</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("AddPayLoadtype", null, null, new { enctype = "multipart/form-data", id = "AddPayLoadtypeForm" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                @Html.Partial("Partials/_AddPayloadType", Model.PayLoadModel)
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalEditPayLoadType">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">PayLoad Types</span>
+                        <span class="caption-helper">Edit PayLoad Type</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("UpdatePayLoadType", null, null, new { enctype = "multipart/form-data", id = "UpdatePayLoadTypeForm" }))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            <div class="form-body" id="EditPayLoadTypeContent">
+                            </div>
+                            <div class="row" style="margin-top: -20px">
+                                <div class="col-sm-12 col-sm-offset-3">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                    <button type="reset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+@section Scripts{
+
+    <script src="~/Areas/Administration/Scripts/PageScripts/PayLoadTypes.js"></script>
+    <script>
+        PayLoadTypes.initEvents();
+    </script>
+}

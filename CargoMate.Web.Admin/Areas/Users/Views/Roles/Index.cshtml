@@ -1,0 +1,170 @@
+﻿@using CargoMate.Web.Admin.Areas.Users.Models
+@model IEnumerable<RoleViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .left-padding {
+        padding-left: 50px;
+    }
+</style>
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="m-heading-1 border-green m-bordered">
+            <h3>
+                User Roles
+                <small>Manage Roles</small>
+            </h3>
+        </div>
+        <!-- END PAGE TITLE -->
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <!-- BEGIN TABS -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs font-purple-soft"></i>
+                        <span class="caption-subject font-purple-soft bold uppercase">User Roles Managment</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i class="icon-cloud-upload"></i>
+                        </a>
+                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i class="icon-wrench"></i>
+                        </a>
+                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i class="icon-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-toolbar">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="btn-group">
+                                    <a data-toggle="modal" data-target="#modalAddNewHouseMeter" class="btn sbold green">
+                                        Add New
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataTables_wrapper no-footer">
+                        <div class="row" id="divRolesList">
+                            @if (Model.Any())
+                            {
+                                @Html.Partial("Partials/_RolesList", Model)
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning">
+                                    <strong>Warning!</strong> No record added yet.
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BEGIN MODALS -->
+    <div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalAddNewHouseMeter">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-equalizer font-red-sunglo"></i>
+                            <span class="caption-subject font-red-sunglo bold uppercase">Roles</span>
+                            <span class="caption-helper">Add New Role</span>
+                        </div>
+                        <div class="actions">
+
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        @using (Ajax.BeginForm("CreateRole", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Roles.Callbacks.InsertSuccess" }, new { id = "RolesForm" }))
+                        {
+                            <div class="form-horizontal">
+                                <div class="form-body" id="DivAddGisLayer">
+                                    @Html.Partial("Partials/_AddRole", new  RoleViewModel())
+                                </div>
+                                <div class="row" >
+                                    <div class="col-sm-8 col-sm-offset-4">
+                                        <button type="submit"   name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px; margin-left:-40px" class="btn green">Save</button>
+                                        <button type="reset"  id="btnResetHouseMeterForm" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red btnReset">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!-- END FORM-->
+                    </div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalEditRole">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-equalizer font-red-sunglo"></i>
+                            <span class="caption-subject font-red-sunglo bold uppercase">Roles</span>
+                            <span class="caption-helper">Edit Role</span>
+                        </div>
+                        <div class="actions">
+
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        @using (Ajax.BeginForm("EditRole", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Roles.Callbacks.UpdateSuccess" }, new { id = "RolesEditForm" }))
+                        {
+                            <div class="form-horizontal">
+                                <div class="form-body" id="DivEditRole">
+
+                                </div>
+                                <div class="row" style="margin-top: -20px">
+                                    <div class="col-sm-9 col-sm-offset-3">
+                                        <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px" class="btn green">Save</button>
+                                        <button type="reset" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!-- END FORM-->
+                    </div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+
+@section scripts{
+
+    
+<script src="~/Areas/Users/Scripts/Roles/Roles.js"></script>
+    <script>
+        Roles.InitEvents();
+    </script>
+}

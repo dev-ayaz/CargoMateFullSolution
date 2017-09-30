@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.VehicleModelYear>
+
+@{
+    Layout = null;
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            Image
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+
+        <th>
+            Action
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            <img alt="" class="img-circle" src="~/@item.ImageUrl" style="width: 40px;height:40px">
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+
+        <td>
+            <div class="btn-group">
+                <button class="btn btn-sm green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    Actions
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="javascript:;" class="VehicleModelEdit" data-modelyearid="@item.Id">
+                            <i class="fa fa-pencil-square-o yellow"></i> Edit
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="DeleteVehicelModelYear" data-modelyearid="@item.Id">
+                            <i class="fa fa-times-circle-o red"></i> Delete
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

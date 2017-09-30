@@ -1,0 +1,84 @@
+﻿@model CargoMate.Web.Admin.Areas.Users.Models.UserViewModel
+
+@Html.HiddenFor(model=>model.UserId)
+<div class="form-group">
+    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.CofirmPassword, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.CofirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.CofirmPassword, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.DropDownListFor(model => model.RoleId, new SelectList(Model.Roles, "Id", "Name"), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.UserImage, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        <div class="col-md-2">
+            <img alt="" id="UserImagePreview" style="width: 50px; height: 50px" class="img-circle" src=@("../../../../SystemImages/UserImages/" + (Model.UserImage != string.Empty ? Model.UserImage : "avatar.png")) />
+        </div>
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.UserImage)
+            @Html.Editor("Imageinput", new { htmlAttributes = new { @class = "form-control", type = "file", id = "Imageinput" } })
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        <label class="mt-checkbox mt-checkbox-outline">
+            @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { } }) IsActive
+            <span></span>
+        </label>           
+        @Html.ValidationMessageFor(model => model.IsActive, "", new {@class = "text-danger"})
+    </div>
+</div>
+

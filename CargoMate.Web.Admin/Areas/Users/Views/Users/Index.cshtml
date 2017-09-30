@@ -1,0 +1,188 @@
+﻿@model CargoMate.Web.Admin.Areas.Users.Models.UserViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <!-- BEGIN PAGE HEAD-->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="m-heading-1 border-green m-bordered">
+            <h3>
+                User Roles
+                <small>Manage Roles</small>
+            </h3>
+        </div>
+        <!-- END PAGE TITLE -->
+    </div>
+    <!-- END PAGE HEAD-->
+    <!-- BEGIN PAGE BASE CONTENT -->
+    <!-- BEGIN TABS -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs font-purple-soft"></i>
+                        <span class="caption-subject font-purple-soft bold uppercase">User Roles Managment</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i class="icon-cloud-upload"></i>
+                        </a>
+                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i class="icon-wrench"></i>
+                        </a>
+                        <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+                            <i class="icon-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-toolbar">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="btn-group">
+                                    <a data-toggle="modal" data-target="#modalAddNewUser" class="btn sbold green">
+                                        Add New
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataTables_wrapper no-footer">
+                        <div class="row" id="divRolesList">
+                                <table class="table table-striped  table-hover table-checkable order-column dataTable no-footer" id="UsersTable">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            S.No
+                                        </th>
+                                        <th>
+                                            Photo
+                                        </th>
+                                        <th>
+                                            First Name
+                                        </th>
+                                        <th>
+                                            Last Name
+                                        </th>
+                                        <th>
+                                            Email Address
+                                        </th>
+                                        <th>
+                                            Phone Number
+                                        </th>
+                                        <th>
+                                            Creation Date
+                                        </th>
+
+                                        <th>
+                                            Role Name
+                                        </th>
+                                        <th>
+                                            IsActive
+                                        </th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody></tbody>
+  
+
+                                </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalAddNewUser">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Users</span>
+                        <span class="caption-helper">Add New User</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("Create", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Users.Callbacks.InsertSuccess" }, new { id = "UserForm" }))
+                    {
+                        <div class="form-horizontal">
+                            <div class="form-body" id="DivAddGisLayer">
+                                @Html.Partial("Partials/_Add", Model)
+                            </div>
+                            <div class="row" >
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <button type="submit"   name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px; margin-left:-40px" class="btn green">Save</button>
+                                    <button type="reset"  id="btnResetUserForm" style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red btnReset">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="modalEditUser">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Users</span>
+                        <span class="caption-helper">Edit User</span>
+                    </div>
+                    <div class="actions">
+
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    @using (Ajax.BeginForm("Edit", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Users.Callbacks.UpdateSuccess" }, new { id = "EditUserForm" }))
+                    {
+                        <div class="form-horizontal">
+                            <div class="form-body" id="DivEditUser">
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-offset-4">
+                                    <button type="submit" name="submitButton" value="save" style="padding-left: 20px; padding-right: 20px; margin-left:-40px" class="btn green">Save</button>
+                                    <button type="reset"  style="padding-left: 20px; padding-right: 20px" data-dismiss="modal" class="btn red btnReset">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+@section scripts{
+    
+    <script src="~/Areas/Users/Scripts/Users/Users.js"></script>
+    <script>
+        Users.domConfigurations.initTable();
+    </script>
+}

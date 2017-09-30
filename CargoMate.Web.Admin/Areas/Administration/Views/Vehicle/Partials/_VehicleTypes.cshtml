@@ -1,0 +1,80 @@
+﻿@model List<CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.VehicleTypeViewModel>
+@{
+    Layout = null;
+}
+@if (Model.Any())
+{
+    <table class="table" id="tblVehicleTypes" role="grid" aria-describedby="sample_1_info">
+        <thead>
+            <tr role="row">
+                <th>
+                    Type Code
+                </th>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Type Name
+                </th>
+                <th>
+                    Descreption
+                </th>
+                <th>
+                    IsEquipment
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var type in Model)
+            {
+                <tr>
+                    <td>
+                        # @Html.DisplayFor(modelItem => type.Id)
+                    </td>
+                    <td>
+                        <img alt="" class="img-circle" src="~/@type.ImageUrl" style="width: 40px;height:40px">
+                    </td>
+                    <td>
+                        @type.Name
+                    </td>
+                    <td>
+                        @type.Descreption
+                    </td>
+                    <td>
+                       <i class="@(type.IsEquipment?"fa fa-2x fa-check-circle font-green":"fa fa-2x fa-times-circle font-red")"></i>    
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-sm green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                Actions
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="javascript:;" class="VehicletypeEdit" data-typeid="@type.Id">
+                                        <i class="fa fa-pencil-square-o yellow"></i> Edit
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;" class="VehicletypeDelete" data-typeid="@type.Id">
+                                        <i class="fa fa-times-circle-o red"></i> Delete
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        <strong>Warning!</strong> No record added yet.
+    </div>
+}
