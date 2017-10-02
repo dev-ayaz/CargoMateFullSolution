@@ -165,7 +165,7 @@ var Users = {
 
                             var imageUrl = row.ImageUrl || "avatar.png";
 
-                            return "<img src='../../../../SystemImages/UserImages/" + imageUrl +"' class='img-circle' style='width:50px;height:50px'/>";
+                            return "<img src='../../../../" + imageUrl +"' class='img-circle' style='width:50px;height:50px'/>";
 
                     },
                     "sortable": false, "autoWidth": false
