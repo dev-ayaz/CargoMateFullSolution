@@ -116,11 +116,11 @@ $('.magnific-gallery').each(function() {
 
 $('.dropdown-menu').on("click",function(e) {e.stopPropagation();});  /* top drodown prevent close*/
 
-$('ul#top_tools li .dropdown').hover(function() {
-  $(this).find('.dropdown-menu').stop(true, true).delay(50).fadeIn(50);
-}, function() {
-  $(this).find('.dropdown-menu').stop(true, true).delay(50).fadeOut(50);
-});
+//$('ul#top_tools li .dropdown').hover(function() {
+//  $(this).find('.dropdown-menu').stop(true, true).delay(50).fadeIn(50);
+//}, function() {
+//  $(this).find('.dropdown-menu').stop(true, true).delay(50).fadeOut(50);
+//});
 
 /* Hamburger icon*/
 var toggles = document.querySelectorAll(".cmn-toggle-switch"); 

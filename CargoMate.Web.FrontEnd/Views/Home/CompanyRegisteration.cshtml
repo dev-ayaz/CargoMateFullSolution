@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Company Registeration";
+}
+
+@section styles{
+
+}
+
+<section id="hero" class="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div id="login" class="login-min-height">
+                    <div class="text-center">
+                        <h3 class="text-left"><i class="icon-building"></i> Company Registration</h3>
+                        <p class="text-left pl-3">*Please provide valid details to get better services.</p>
+                    </div>
+                    <hr />
+                    <form enctype="multipart/form-data">
+                        @* Left column *@
+                        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Name</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="text" class="form-control" placeholder="Your fullname">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Company registeration number</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="number" class="form-control" placeholder="reg-043048384">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Phone</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="number" class=" form-control" placeholder="0559684457">
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Right column *@
+                        <div class="col-xs-12 col-sm-6 float-right-left">
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Company Logo</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="file" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Website URL</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="url" class=" form-control" placeholder="https://google.com">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Country Name</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="text" class=" form-control" placeholder="e.g: Saudi Arabia">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="pass-info" class="clearfix"></div>
+                        <div class="col-xs-12 col-sm-11 text-right px-10">
+                            <button class="btn_1 d-inline-block">Register your company</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

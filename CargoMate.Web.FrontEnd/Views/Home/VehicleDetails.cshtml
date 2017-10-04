@@ -1,0 +1,343 @@
+﻿
+@{
+    ViewBag.Title = "Vehicle Details";
+}
+
+@section styles{
+    <link href="~/Content/admin.css" rel="stylesheet">
+    <style>
+        #login {
+            background-color: #f9f9f9;
+        }
+
+        .tabs nav a:before {
+            color: #0057e7;
+        }
+    </style>
+}
+
+<div class="margin_60 container">
+    <div id="tabs" class="tabs">
+        <nav>
+            <ul>
+                <li><a href="#section-1" class="icon-truck-1"><span>Vehicle Information</span></a></li>
+                <li><a href="#section-2" class="icon-list-1"><span>Vehicle Scan</span></a></li>
+                <li><a href="#section-3" class="icon-road-1"><span>Trip Information</span></a></li>
+                <li><a href="#section-4" class="icon-camera-1"><span>Vehicle Images</span></a></li>
+                <li><a href="#section-5" class="icon-credit-card-4"><span>Insurrance Information</span></a></li>
+            </ul>
+        </nav>
+        <div class="content">
+
+            <section id="section-1">
+                <div id="login" class="login-min-height my-0 py-0">
+                    <div class="text-center">
+                        <h3 class="text-left"><i class="icon-truck-1"></i>Vehicle Information</h3>
+                        <p class="text-left pl-3">*Please provide valid information to get better services.</p>
+                    </div>
+                    <hr />
+                    <form enctype="multipart/form-data">
+                        <!-- Left column -->
+                        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Vehicle Type</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <select class="form-control select2">
+                                        <option value="-1">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Vehicle Configuration</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <select class="form-control select2">
+                                        <option value="-1">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Vehicle Capacity</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <select class="form-control select2">
+                                        <option value="-1">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right column -->
+                        <div class="col-xs-12 col-sm-6 float-right-left">
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Vehicle Make</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <select class="form-control select2">
+                                        <option value="-1">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Vehicle Model</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <select class="form-control select2">
+                                        <option value="-1">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Vehicle Year</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <select class="form-control select2">
+                                        <option value="-1">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="pass-info" class="clearfix"></div>
+                        <div class="col-xs-12 col-sm-11 text-right px-10">
+                            <button class="btn btn-default d-inline-block">Skip </button>
+                            <button class="btn_1 d-inline-block">Continue <i class="icon-angle-double-right rotate-180"></i></button>
+                        </div>
+                    </form>
+
+                </div>
+            </section><!-- End section 1 -->
+
+            <section id="section-2">
+                <div id="login" class="login-min-height my-0 py-0">
+                    <div class="text-center">
+                        <h3 class="text-left"><i class="icon-list-1"></i> Vehicle Scan</h3>
+                        <p class="text-left pl-3">*Please provide valid information to get better services.</p>
+                    </div>
+                    <hr />
+                    <form enctype="multipart/form-data">
+                        @* Left column *@
+                        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Engine Number</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="text" class="form-control" placeholder="049049304">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0"><i class="icon-calendar-7"></i> Registration Expirey</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="text" class="form-control date-pick" placeholder="mm/dd/yyyy">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Registeration Image</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="file" class="form-control">
+                                    <small>*Please take a clean picture from your registeration and upload</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Right column *@
+                        <div class="col-xs-12 col-sm-6 float-right-left">
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Plate Number</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="text" class="form-control" name="picture" placeholder="994384389">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Registeration Number</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="text" class="form-control" placeholder="049049304">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="pass-info" class="clearfix"></div>
+                        <div class="col-xs-12 col-sm-11 text-right px-10">
+                            <button class="btn btn-default d-inline-block">Skip </button>
+                            <button class="btn_1 d-inline-block">Continue <i class="icon-angle-double-right rotate-180"></i></button>
+                        </div>
+                    </form>
+
+                </div>
+            </section><!-- End section 2 -->
+
+            <section id="section-3">
+                <div id="login" class="login-min-height my-0 py-0">
+                    <div class="text-center">
+                        <h3 class="text-left"><i class="icon-list-1"></i> Vehicle Scan</h3>
+                        <p class="text-left pl-3">*Please provide valid information to get better services.</p>
+                    </div>
+                    <hr />
+                    <form enctype="multipart/form-data">
+                        @* Left column *@
+                        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Payload Types</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <select class="form-control select2" multiple>
+                                        <option value="-1">Option 1</option>
+                                        <option value="-1">Option 2</option>
+                                        <option value="-1">Option 3</option>
+                                        <option value="-1">Option 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Right column *@
+                        <div class="col-xs-12 col-sm-6 float-right-left">
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Trip Types</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <select class="form-control select2" multiple>
+                                        <option value="-1">Option 1</option>
+                                        <option value="-1">Option 2</option>
+                                        <option value="-1">Option 3</option>
+                                        <option value="-1">Option 4</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="pass-info" class="clearfix"></div>
+                        <div class="col-xs-12 col-sm-11 text-right px-10">
+                            <button class="btn btn-default d-inline-block">Skip </button>
+                            <button class="btn_1 d-inline-block">Continue <i class="icon-angle-double-right rotate-180"></i></button>
+                        </div>
+                    </form>
+
+                </div>
+            </section><!-- End section 3 -->
+
+            <section id="section-4"><!-- End section 4 -->
+                <div id="login" class="login-min-height my-0 py-0">
+                    <div class="text-center">
+                        <h3 class="text-left"><i class="icon-list-1"></i> Vehicle Images</h3>
+                        <p class="text-left pl-3">*Please provide valid information to get better services.</p>
+                    </div>
+                    <hr />
+                    <form enctype="multipart/form-data">
+                        @* Left column *@
+                        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Back Image</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="file" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0"> Front Image</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="file" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Right column *@
+                        <div class="col-xs-12 col-sm-6 float-right-left">
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0"> Left Image</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="file" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0"> Right Image</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="file" class="form-control">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="pass-info" class="clearfix"></div>
+                        <div class="col-xs-12 col-sm-11 text-right px-10">
+                            <button class="btn btn-default d-inline-block">Skip </button>
+                            <button class="btn_1 d-inline-block">Continue <i class="icon-angle-double-right rotate-180"></i></button>
+                        </div>
+                    </form>
+
+                </div>
+            </section><!-- End section 4 -->
+
+            <section id="section-5">
+                <div id="login" class="login-min-height my-0 py-0">
+                    <div class="text-center">
+                        <h3 class="text-left"><i class="icon-list-1"></i> Insurance Information</h3>
+                        <p class="text-left pl-3">*Please provide valid information to get better services.</p>
+                    </div>
+                    <hr />
+                    <form enctype="multipart/form-data">
+                        @* Left column *@
+                        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Engine Number</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <select class="form-control select2">
+                                        <option value="-1">Option 1</option>
+                                        <option value="-1">Option 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0"> Policy Number</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="text" class="form-control" placeholder="0125948394">
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Right column *@
+                        <div class="col-xs-12 col-sm-6 float-right-left">
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Insurance Amount</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="number" class="form-control" name="picture" placeholder="1999 SAR">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Insurance Expirey</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    <input type="text" class="form-control date-pic" placeholder="mm/dd/yyyy">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="pass-info" class="clearfix"></div>
+                        <div class="col-xs-12 col-sm-11 text-right px-10">
+                            <button class="btn_1 d-inline-block">Save Details</button>
+                        </div>
+                    </form>
+
+                </div>
+            </section><!-- End section 2 -->
+
+        </div><!-- End content -->
+    </div><!-- End tabs -->
+</div><!-- end container -->
+
+@section scripts{
+
+    <script src="~/Scripts/tabs.js"></script>
+    <script>new CBPFWTabs( document.getElementById( 'tabs' ) );</script>
+    <script>
+	$('.wishlist_close_admin').on('click', function(c){
+		$(this).parent().parent().parent().fadeOut('slow', function(c){
+		});
+	});
+    </script>
+
+}

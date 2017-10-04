@@ -26,5 +26,25 @@ namespace CargoMate.Web.FrontEnd.Controllers
 
             return View();
         }
+
+        public ActionResult Register() {
+            return View();
+        }
+
+        public ActionResult AccountDetails() {
+            return View();
+        }
+
+        public ActionResult CompanyRegisteration() {
+            return View();
+        }
+
+        public ActionResult DriverDetails() {
+            return View();
+        }
+
+        public ActionResult VehicleDetails() {
+            return View();
+        }
     }
 }
