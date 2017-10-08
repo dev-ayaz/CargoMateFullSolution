@@ -1,0 +1,155 @@
+﻿@model CargoMate.Web.FrontEnd.Models.LoginViewModel
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div id="logo_home">
+                    <h1><a href="#" title="Cargomate cargo transfer agency">CargoMate</a></h1>
+                </div>
+            </div>
+            <nav class="col-md-9 col-sm-9 col-xs-9">
+                <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                <div class="main-menu">
+                    <div id="header_menu">
+                        <img src="~/images/logo_sticky.png" width="160" height="34" alt="CargoMate" data-retina="true">
+                    </div>
+                    <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
+                    <ul>
+                        <li>
+                            <a href="#">Our Services</a>
+                        </li>
+                        <li>
+                            <a href="#">How it works</a>
+                        </li>
+                        <li>
+                            <a href="#">About us</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact us</a>
+                        </li>
+                    </ul>
+                </div><!-- End main-menu -->
+                <ul id="top_tools" class="main-menu">
+                    <li id="logout_menu" class="hide">
+                        <div class="dropdown dropdown-access">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/images/avatar3.jpg" class="profile_avatar" />
+                                Muhammad Tanzil
+                            </a>
+                            <div class="dropdown-menu px-0">
+                                <div class="row menu-profile-header">
+                                    <div class="col-xs-12">
+                                        <div class="col-xs-12 col-sm-4 px-0">
+                                            <div class="menu-profile-img">
+                                                <img src="~/images/avatar3.jpg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <div class="menu-profile-name">
+                                                <p class="text-left profile-name">Muhammad Tanzil</p>
+                                                <p class="text-left profile-email">mtanzil666@gmail.com</p>
+                                                <br />
+                                                <p class="text-left">
+                                                    <button type="button" class="btn_1">My Account</button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row menu-profile-footer">
+                                    <div class="col-xs-12 text-right">
+                                        <a href="#" name="logout" id="btnlogout" class="button_drop outline">Sign out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End Dropdown access -->
+                    </li>
+                    <li class="login_menu">
+                        <div class="dropdown dropdown-access">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Sign in as member</a>
+                            <div class="dropdown-menu">
+                                @using (Ajax.BeginForm("", "", null, new AjaxOptions { HttpMethod = "POST" }, new { id = "CustomerLoginForm" }))
+                                {
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <a href="javscript:void(0)" id="customerSignInWithFacebook" class="bt_facebook">
+                                                <i class="icon-facebook"></i>Facebook
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <a href="javscript:void(0)" id="customerSignInWithGoogle" class="bt_google">
+                                                <i class="icon-google"></i>Google+
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="login-or">
+                                        <hr class="hr-or">
+                                        <span class="span-or">or</span>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <a id="forgot_pw" href="#">Forgot password?</a>
+                                    <input type="submit" value="Sign in" class="button_drop">
+                                    <a href="@Url.Action("Register", "Customer")" name="Sign_up" id="Sign_up" class="button_drop outline">Sign up</a>
+                                }
+                            </div>
+                        </div><!-- End Dropdown access -->
+                    </li>
+                    <li class="login_menu">
+                        <div class="dropdown dropdown-access">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link_driver">Sign in as driver</a>
+                            <div class="dropdown-menu">
+                                @using (Ajax.BeginForm("", "", null, new AjaxOptions { HttpMethod = "POST" }, new { id = "DriverLoginForm" }))
+                                {
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <a href="javscript:void(0)" id="signInWithFacebook" class="bt_facebook">
+                                                <i class="icon-facebook"></i>Facebook
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                            <a href="javscript:void(0)" id="signInWithGoogle" class="bt_google">
+                                                <i class="icon-google"></i>Google+
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="login-or">
+                                        <hr class="hr-or">
+                                        <span class="span-or">or</span>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <a id="forgot_pw" href="#">Forgot password?</a>
+                                    <input type="submit" value="Sign in" class="button_drop">
+                                    <a href="@Url.Action("Register", "Driver")" name="Sign_up" id="Sign_up" class="button_drop outline">Sign up</a>
+                                }
+                            </div>
+                        </div><!-- End Dropdown access -->
+                    </li>
+                    <li>
+                        <div class="dropdown dropdown-mini">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="lang_link">English</a>
+                            <div class="dropdown-menu">
+                                <ul id="lang_menu">
+                                    <li><a href="#">Arabic</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- End Dropdown access -->
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div><!-- container -->
+</header>

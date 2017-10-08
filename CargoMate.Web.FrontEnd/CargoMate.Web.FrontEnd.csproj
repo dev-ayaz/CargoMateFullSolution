@@ -178,6 +178,11 @@
     <Compile Include="APIs\V1\DriverEndPointController.cs" />
     <Compile Include="APIs\V1\SharedController.cs" />
     <Compile Include="APIs\V1\VehicleEndpointController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
+    <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\CustomerViewModels\CompanyViewModel.cs" />
     <Compile Include="Models\CustomerViewModels\CustomerSearchFilter.cs" />
@@ -246,6 +251,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppScripts\CargoMateUtilities\ajax-interceptor.js" />
+    <Content Include="AppScripts\CargoMateUtilities\CargoMateAlerts.js" />
+    <Content Include="AppScripts\CargoMateUtilities\link-activator.js" />
+    <Content Include="AppScripts\CargoMateUtilities\MultiPartFormHandler.js" />
+    <Content Include="AppScripts\CargoMateUtilities\RequestHandler.js" />
+    <Content Include="AppScripts\Company\Company.js" />
+    <Content Include="AppScripts\Company\MapSetup.js" />
+    <Content Include="AppScripts\Customers\CustomerLogin.js" />
+    <Content Include="AppScripts\Customers\Customers.js" />
+    <Content Include="AppScripts\Customers\Register.js" />
+    <Content Include="AppScripts\Drivers\Driver.js" />
+    <Content Include="AppScripts\Drivers\DriverLogIn.js" />
+    <Content Include="AppScripts\Drivers\Register.js" />
+    <Content Include="AppScripts\FireBase\Configurations.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\animate.css" />
@@ -846,6 +865,18 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.css" />
+    <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.js" />
+    <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.min.css" />
+    <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.min.js" />
+    <Content Include="Scripts\Plugins\InternationalTelephoneInput\css\demo.css" />
+    <Content Include="Scripts\Plugins\InternationalTelephoneInput\css\intlTelInput.css" />
+    <Content Include="Scripts\Plugins\InternationalTelephoneInput\img\flags%402x.png" />
+    <Content Include="Scripts\Plugins\InternationalTelephoneInput\img\flags.png" />
+    <Content Include="Scripts\Plugins\InternationalTelephoneInput\js\intlTelInput.js" />
+    <Content Include="Scripts\Plugins\InternationalTelephoneInput\js\intlTelInput.min.js" />
+    <Content Include="Scripts\Plugins\InternationalTelephoneInput\js\utils.js" />
+    <Content Include="Scripts\Plugins\jquery.placepicker.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -872,12 +903,20 @@
     <Content Include="Views\Home\CompanyRegisteration.cshtml" />
     <Content Include="Views\Home\DriverDetails.cshtml" />
     <Content Include="Views\Home\VehicleDetails.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Customer\Register.cshtml" />
+    <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.min.js.map" />
+    <Content Include="Views\Customer\EditCustomer.cshtml" />
+    <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Driver\Register.cshtml" />
+    <Content Include="Views\Driver\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="SystemImages\CustomerImages\" />
     <Folder Include="SystemImages\DriverImages\" />
     <Folder Include="SystemImages\VehicleImages\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

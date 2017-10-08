@@ -1,0 +1,131 @@
+﻿@model CargoMate.Web.FrontEnd.Models.CustomerViewModels.CustomerFormModel
+
+@{
+    ViewBag.Title = "EditCustomer";
+}
+
+<style>
+    .intl-tel-input.allow-dropdown {
+        width: 100%;
+    }
+</style>
+@section styles{
+    <link href="~/Scripts/Plugins/InternationalTelephoneInput/css/intlTelInput.css" rel="stylesheet" />
+}
+<section id="hero" class="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div id="login" class="login-min-height">
+                    <div class="text-center">
+                        <h3 class="text-left"><i class="icon-user-1"></i> Complete your account</h3>
+                        <p class="text-left pl-3">*Please Complete the missing details to get better services.</p>
+                    </div>
+                    <hr />
+                    @using (Ajax.BeginForm("EditCustomer", "Customer", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "Customers.CallBacks.InsertSuccess" }, new { }))
+                    {
+
+                        @Html.HiddenFor(model => model.Id)
+
+                        @Html.HiddenFor(model => model.CustomerId)
+
+                        @Html.HiddenFor(model => model.Location)
+
+                        @* Left column *@
+                        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Name</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Full Name" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Email</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "Email Address" } })
+                                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Phone</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "+966 xxxxx" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Profile Picture</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    @Html.HiddenFor(model => model.ImageSrc)
+                                    @Html.Editor("ImageUrl", new { htmlAttributes = new { @class = "form-control", type = "file" } })
+                                    @Html.ValidationMessageFor(model => model.ImageSrc, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group hide" id="div-Company">
+                                <label class="col-xs-12 px-0">Select your company!</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    @Html.DropDownListFor(model => model.CompanyId, new SelectList(string.Empty, "Value", "Text"), "Please Select Your Company", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                                    <p style="padding-top: 5px">
+                                        Company not exists! <a href="@Url.Action("Create", "Company")">Click here to add</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        @* Right column *@
+                        <div class="col-xs-12 col-sm-6 float-right-left">
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0"><i class="icon-calendar-7"></i> Date of Birth</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "date-pick form-control", placeholder = "MM/DD/YYYY", data_date_format = "mm/dd/yyyy" } })
+                                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Gender</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Address</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Address" } })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-12 px-0">Part of a company?</label>
+                                <div class="col-xs-12 col-sm-10 px-0">
+                                    @Html.DropDownList("IsCompany",
+                                              new List<SelectListItem>
+                                              { new SelectListItem { Text = "No", Value = "false" },
+                                                      new SelectListItem { Text = "Yes", Value = "true" } },
+                                              new { @class = "form-control", id = "IsCompany" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="pass-info" class="clearfix"></div>
+                        <div class="col-xs-12 col-sm-11 text-right px-10">
+                            <input type="submit" class="btn_1 d-inline-block" value="Update Account Info">
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC88G_-I2GZl8sVDs95qoxcuqBy9_q36nQ&force=lite"></script>
+    <script src="~/Scripts/Plugins/InternationalTelephoneInput/js/intlTelInput.js"></script>
+    <script src="~/Scripts/Plugins/jquery.placepicker.min.js"></script>
+    <script src="~/AppScripts/Customers/Customers.js"></script>
+}
+
+

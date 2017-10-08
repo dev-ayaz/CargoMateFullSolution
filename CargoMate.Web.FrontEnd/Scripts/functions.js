@@ -102,7 +102,7 @@ new WOW().init();
 =============================================== */
 $(function () {
 'use strict';
-$('.video').magnificPopup({type:'iframe'});	/* video modal*/
+//$('.video').magnificPopup({type:'iframe'});	/* video modal*/
 $('.parallax-window').parallax({}); /* Parallax modal*/
 // Image popups
 
