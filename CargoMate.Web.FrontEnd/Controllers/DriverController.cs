@@ -98,5 +98,9 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 Message = "Account Already Exists"
             });
         }
+
+        public ActionResult DriverSignIn() {
+            return View();
+        }
     }
 }

@@ -3,9 +3,9 @@
     selectors: {
         signInWithFacebookButton: "#customerSignInWithFacebook",
         signInWithGoogleButton: "#customerSignInWithGoogle",
-        CustomerLoginForm: "#CustomerLoginForm",
-        EmailAddress: "#CustomerLoginForm input[id=Email]",
-        Password: "#CustomerLoginForm input[id=Password]",
+        CustomerLoginForm: ".CustomerLoginForm",
+        EmailAddress: "input[id=Email]",
+        Password: "input[id=Password]",
         logoutMenu: "#logout_menu",
         loginMenu:".login_menu"
     },
@@ -18,6 +18,20 @@
         }
     },
     callbacks: {
+        loginCustomer: function (form, e) {
+            if ($(form).valid()) {
+                e.preventDefault();
+                firebaseUtilFunc.signInWithEmailAndPassword($(form).find(CustomerLogin.selectors.EmailAddress).val(), $(form).find(CustomerLogin.selectors.Password).val()).then(function (response) {
+                    if (response.IsError) {
+                        CargoMateAlerts.actionAlert("Error", response.result, true);
+                    } else {
+                        CustomerLogin.callbacks.IsCustomerExists(response.result);
+                    }
+                });
+                return true;
+            }
+            return false;
+        },
         registerCustomer: function (user) {
 
 
@@ -77,17 +91,8 @@
         });
 
         $(CustomerLogin.selectors.CustomerLoginForm).submit(function (e) {
-
-            if ($(CustomerLogin.selectors.CustomerLoginForm).valid()) {
-                e.preventDefault();
-                firebaseUtilFunc.signInWithEmailAndPassword($(CustomerLogin.selectors.EmailAddress).val(), $(CustomerLogin.selectors.Password).val()).then(function (response) {
-                    if (response.IsError) {
-                        CargoMateAlerts.actionAlert("Error", response.result, true);
-                    } else {
-                        CustomerLogin.callbacks.IsCustomerExists(response.result);
-                    }
-                });
-            }
+            //changed by tanzil
+            var form = CustomerLogin.callbacks.loginCustomer($(this), e);
             return false;
         });
 

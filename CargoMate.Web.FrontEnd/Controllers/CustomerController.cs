@@ -151,6 +151,8 @@ namespace CargoMate.Web.FrontEnd.Controllers
             return Json(companies, JsonRequestBehavior.AllowGet);
         }
 
-
+        public ActionResult CustomerSignIn() {
+            return View();
+        }
     }
 }

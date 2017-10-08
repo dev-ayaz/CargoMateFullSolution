@@ -910,6 +910,8 @@
     <Content Include="Views\Company\Create.cshtml" />
     <Content Include="Views\Driver\Register.cshtml" />
     <Content Include="Views\Driver\Edit.cshtml" />
+    <Content Include="Views\Customer\CustomerSignIn.cshtml" />
+    <Content Include="Views\Driver\DriverSignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

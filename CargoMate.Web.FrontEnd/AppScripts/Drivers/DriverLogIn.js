@@ -3,9 +3,9 @@
     selectors: {
         signInWithFacebookButton: "#signInWithFacebook",
         signInWithGoogleButton: "#signInWithGoogle",
-        DriverLoginForm: "#DriverLoginForm",
-        EmailAddress: "#DriverLoginForm input[id=Email]",
-        Password: "#DriverLoginForm input[id=Password]"
+        DriverLoginForm: ".DriverLoginForm",
+        EmailAddress: "input[id=Email]",
+        Password: "input[id=Password]"
     },
     services: {
         controller: "Driver",
@@ -16,7 +16,20 @@
         }
     },
     callbacks: {
-
+        loginDriver: function (form, e) {
+            if ($(form).valid()) {
+                e.preventDefault();
+                firebaseUtilFunc.signInWithEmailAndPassword($(form).find(DriverLogin.selectors.EmailAddress).val(), $(form).find(DriverLogin.selectors.Password).val()).then(function (response) {
+                    if (response.IsError) {
+                        CargoMateAlerts.actionAlert("Error", response.result, true);
+                    } else {
+                        CustomerLogin.callbacks.IsDriverExists(response.result);
+                    }
+                });
+                return true;
+            }
+            return false;
+        },
         IsDriverExists: function (user) {
 
 
@@ -77,16 +90,8 @@
 
         $(DriverLogin.selectors.DriverLoginForm).submit(function (e) {
 
-            if ($(DriverLogin.selectors.DriverLoginForm).valid()) {
-                e.preventDefault();
-                firebaseUtilFunc.signInWithEmailAndPassword($(DriverLogin.selectors.EmailAddress).val(), $(DriverLogin.selectors.Password).val()).then(function (response) {
-                    if (response.IsError) {
-                        CargoMateAlerts.actionAlert("Error", response.result, true);
-                    } else {
-                        DriverLogin.callbacks.IsDriverExists(response.result);
-                    }
-                });
-            }
+            //changed by tanzil
+            var form = DriverLogin.callbacks.loginDriver($(this), e);
             return false;
         });
 

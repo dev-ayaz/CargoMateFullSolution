@@ -1,81 +1,81 @@
 ﻿/*Typography and buttons*/
 h2 span, h3 span, h4 span, h5 span, h6 span {
-    color: #0057E7;
+    color: #303092;
 }
 
 a.button_intro, .button_intro {
-    background: #0057E7;
+    background: #303092;
 }
 
     a.button_intro:hover, .button_intro:hover {
-        color: #0057E7 !important;
+        color: #303092 !important;
     }
 
     a.button_intro:hover, .button_intro:hover {
-        color: #0057E7;
+        color: #303092;
     }
 
 a.button_drop, .button_drop {
-    color: #0057E7 !important;
+    color: #303092 !important;
 }
 
     a.button_drop.outilne, .button_drop.outline {
-        color: #0057E7;
+        color: #303092;
     }
 
 a.btn_1, .btn_1 {
     color: #fff;
     text-shadow: 0 1px rgba(0,0,0,0.1);
-    background-color: #4d90fe;
-    background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#4787ed));
-    background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
-    background-image: -moz-linear-gradient(top,#4d90fe,#4787ed);
-    background-image: -ms-linear-gradient(top,#4d90fe,#4787ed);
-    background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
-    background-image: linear-gradient(top,#4d90fe,#4787ed);
+    background-color: #303092;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#303092),to(#3e3e8e));
+    background-image: -webkit-linear-gradient(top,#303092,#3e3e8e);
+    background-image: -moz-linear-gradient(top,#303092,#3e3e8e);
+    background-image: -ms-linear-gradient(top,#303092,#3e3e8e);
+    background-image: -o-linear-gradient(top,#303092,#3e3e8e);
+    background-image: linear-gradient(top,#303092,#3e3e8e);
 }
 
     a.btn_1.white, .btn_1.white {
-        color: #0057E7;
+        color: #303092;
     }
 
     a.btn_1.outline:hover, .btn_1.outiline:hover, input .btn_1.outiline:hover {
-        background: #0057E7;
-        border: 2px solid #0057E7;
+        background: #303092;
+        border: 2px solid #303092;
     }
 
     a.btn_1:hover, .btn_1:hover {
-        background: #004fce;
+        background: #1a1a6f;
     }
 
 a.btn_map {
-    background: #0057E7;
+    background: #303092;
 }
 
 a {
-    color: #0057E7;
+    color: #303092;
 }
 
 #search .btn_1.green {
-    background: #0057E7;
+    background: #303092;
 }
 
 /* Header */
 header#colored.sticky {
-    background-color: #0057E7;
-    border-bottom: 2px solid #0057E7
+    background-color: #303092;
+    border-bottom: 2px solid #303092
 }
 
 .dropdown-cart .dropdown-menu, .dropdown-access .dropdown-menu, .dropdown-search .dropdown-menu {
-    border-top: 2px solid #0057E7;
+    border-top: 2px solid #303092;
 }
 
     .dropdown-cart .dropdown-menu:before, .dropdown-access .dropdown-menu:before, .dropdown-search .dropdown-menu:before {
-        border-bottom-color: #0057E7;
+        border-bottom-color: #303092;
     }
 
 ul#cart_items li strong > a:hover {
-    color: #0057E7;
+    color: #303092;
 }
 
 ul#top_links a {
@@ -83,15 +83,15 @@ ul#top_links a {
 }
 
     ul#top_links a:hover {
-        color: #0057E7;
+        color: #303092;
     }
 
 .dropdown-mini .dropdown-menu {
-    border-top: 2px solid #0057E7;
+    border-top: 2px solid #303092;
 }
 
     .dropdown-mini .dropdown-menu:before {
-        border-bottom-color: #0057E7;
+        border-bottom-color: #303092;
     }
 
     .dropdown-mini .dropdown-menu ul#lang_menu li a {
@@ -99,97 +99,97 @@ ul#top_links a {
     }
 
         .dropdown-mini .dropdown-menu ul#lang_menu li a:hover {
-            color: #0057E7 !important;
+            color: #303092 !important;
         }
 
 /* Content and common */
 #search .nav-tabs > li.active > a,
 #search .nav-tabs > li.active > a:hover,
 #search .nav-tabs > li.active > a:focus {
-    background-color: #0057E7;
+    background-color: #303092;
 }
 
 .cbp_tmtimeline:before {
-    background: #0057E7 !important;
+    background: #303092 !important;
 }
 
 .cbp_tmtimeline > li .cbp_tmicon {
-    color: #0057E7 !important;
-    box-shadow: 0 0 0 3px #0057E7 !important;
+    color: #303092 !important;
+    box-shadow: 0 0 0 3px #303092 !important;
 }
 
 .input-group button:hover, .input-group button:focus {
-    background-color: #0057E7;
-    border-color: #0057E7
+    background-color: #303092;
+    border-color: #303092
 }
 
 .other_tours ul li a:hover {
-    color: #0057E7;
+    color: #303092;
 }
 
 .bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {
-    background: #0057E7;
+    background: #303092;
 }
 
 .form_title h3 strong {
-    background-color: #0057E7;
+    background-color: #303092;
 }
 
 .features-content {
-    background-color: #0057E7;
+    background-color: #303092;
 }
 
 #Img_carousel .sp-selected-thumbnail {
-    border-bottom: 2px solid #0057E7;
+    border-bottom: 2px solid #303092;
 }
 
 
 #directions {
-    background-color: #0057E7;
+    background-color: #303092;
 }
 
 ul.list_ok li:before {
-    color: #0057E7;
+    color: #303092;
 }
 
 ul.list_order li span {
-    background-color: #0057E7;
+    background-color: #303092;
 }
 
 .tooltip-back {
-    background: #0057E7;
+    background: #303092;
 }
 
 .tooltip-content-flip .tooltip-front::after, .tooltip-content-flip .tooltip-back::after {
-    border-top: 10px solid #0057E7;
+    border-top: 10px solid #303092;
 }
 
 .banner h4 {
-    color: #0057E7;
+    color: #303092;
 }
 
 .banner.colored {
-    background: #0057E7 url(../img/banner_bg_colored.png) no-repeat center bottom;
+    background: #303092 url(../img/banner_bg_colored.png) no-repeat center bottom;
 }
 
 /* Menu */
 /*First level styles */
 .main-menu > ul > li:hover > a {
-    color: #0057E7;
+    color: #303092;
 }
 
 .main-menu ul ul:before {
-    border-bottom-color: #0057E7;
+    border-bottom-color: #303092;
 }
 
 /* Submenu */
 .main-menu ul ul,
 .main-menu ul .menu-wrapper {
-    border-top: 2px solid #0057E7;
+    border-top: 2px solid #303092;
 }
 
     .main-menu ul ul li:hover > a {
-        color: #0057E7;
+        color: #303092;
     }
 
 @media only screen and (max-width: 991px) {
@@ -199,7 +199,7 @@ ul.list_order li span {
     a.show-submenu:focus,
     a.show-submenu-mega:hover,
     a.show-submenu-mega:focus {
-        color: #0057E7 !important;
+        color: #303092 !important;
     }
 
     .main-menu ul ul,

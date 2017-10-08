@@ -2,16 +2,24 @@
 <header>
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-3 col-xs-3">
+            <div class="col-md-3 col-sm-4 col-xs-6">
                 <div id="logo_home">
-                    <h1><a href="#" title="Cargomate cargo transfer agency">CargoMate</a></h1>
+                    <h1 class="mt-0">
+                        <a href="@Url.Action("Index", "Home")" title="Cargomate cargo transfer agency">
+                            <span class="logo-txt1 d-inline-block">Cargo</span>
+                            <span class="logo-txt2 d-inline-block">Mate</span>
+                        </a>
+                    </h1>
                 </div>
             </div>
-            <nav class="col-md-9 col-sm-9 col-xs-9">
+            <nav class="col-md-9 col-sm-8 col-xs-6">
                 <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                 <div class="main-menu">
                     <div id="header_menu">
-                        <img src="~/images/logo_sticky.png" width="160" height="34" alt="CargoMate" data-retina="true">
+                        <a href="@Url.Action("Index", "Home")" title="Cargomate cargo transfer agency">
+                            <span class="logo-txt1 d-inline-block">Cargo</span>
+                            <span class="logo-txt2 d-inline-block">Mate</span>
+                        </a>
                     </div>
                     <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
                     <ul>
@@ -27,10 +35,22 @@
                         <li>
                             <a href="#">Contact us</a>
                         </li>
+                        <li class="visible-md visible-sm visible-xs hidden-lg">
+                            <a href="@Url.Action("CustomerSignIn", "Customer")"> <i class="icon-user-1"></i> Sign in as customer</a>
+                        </li>
+                        <li class="visible-md visible-sm visible-xs hidden-lg">
+                            <a href="@Url.Action("DriverSignIn", "Driver")"><i class="icon-truck-1"></i> Sign in as driver</a>
+                        </li>
+                        <li class="hide logout_menu visible-md visible-sm visible-xs hidden-lg">
+                            <a href=""> <i class="icon-logout"></i> Sign Out</a>
+                        </li>
+                        <li class="visible-md visible-sm visible-xs hidden-lg">
+                            <a href="#"><i class="icon-globe"></i> عربى</a>
+                        </li>
                     </ul>
                 </div><!-- End main-menu -->
                 <ul id="top_tools" class="main-menu">
-                    <li id="logout_menu" class="hide">
+                    <li id="logout_menu" class="hide logout_menu">
                         <div class="dropdown dropdown-access">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="~/images/avatar3.jpg" class="profile_avatar" />
@@ -68,7 +88,7 @@
                         <div class="dropdown dropdown-access">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">Sign in as member</a>
                             <div class="dropdown-menu">
-                                @using (Ajax.BeginForm("", "", null, new AjaxOptions { HttpMethod = "POST" }, new { id = "CustomerLoginForm" }))
+                                @using (Ajax.BeginForm("", "", null, new AjaxOptions { HttpMethod = "POST" }, new { @class = "CustomerLoginForm" }))
                                 {
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
@@ -105,7 +125,7 @@
                         <div class="dropdown dropdown-access">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link_driver">Sign in as driver</a>
                             <div class="dropdown-menu">
-                                @using (Ajax.BeginForm("", "", null, new AjaxOptions { HttpMethod = "POST" }, new { id = "DriverLoginForm" }))
+                                @using (Ajax.BeginForm("", "", null, new AjaxOptions { HttpMethod = "POST" }, new { @class = "DriverLoginForm" }))
                                 {
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
