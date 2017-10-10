@@ -27,7 +27,7 @@ namespace CargoMate.DataAccess.Models.Transporters
 
         public DbGeography Location { get; set; }
 
-        public long? DriverPersonalInfoId { get; set; }
+        public string DriverPersonalInfoId { get; set; }
 
         public virtual Country Country { get; set; }
 

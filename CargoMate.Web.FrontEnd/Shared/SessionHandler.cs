@@ -21,5 +21,20 @@ namespace CargoMate.Web.FrontEnd.Shared
             }
             set { HttpContext.Current.Session[SessionKeys.DriverId] = value; }
         }
+
+        public static string CultureCode
+        {
+            get
+            {
+                if (HttpContext.Current.Session[SessionKeys.CultureCode] != null)
+                {
+                    return HttpContext.Current.Session[SessionKeys.CultureCode].ToString();
+
+                }
+
+                return "en-US";
+            }
+            set { HttpContext.Current.Session[SessionKeys.CultureCode] = value; }
+        }
     }
 }

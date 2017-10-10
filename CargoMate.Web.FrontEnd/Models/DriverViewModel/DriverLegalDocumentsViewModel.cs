@@ -12,7 +12,7 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
 
     public class DriverLegalDocumentsFormModel
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         public string LicenseNumber { get; set; }
 
@@ -29,7 +29,7 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
 
     public class DriverLegalDocumentsDisplayModel
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         public string LicenseNumber { get; set; }
 

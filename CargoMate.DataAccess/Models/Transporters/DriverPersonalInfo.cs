@@ -20,12 +20,9 @@ namespace CargoMate.DataAccess.Models.Transporters
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
         [Required]
         [StringLength(50)]
-        public string DriverId { get; set; }
+        public string Id { get; set; }
 
         [StringLength(250)]
         public string Name { get; set; }

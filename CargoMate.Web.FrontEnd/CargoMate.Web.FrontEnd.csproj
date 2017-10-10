@@ -189,6 +189,7 @@
     <Compile Include="Models\DriverViewModel\DriverLegalDocumentsViewModel.cs" />
     <Compile Include="Models\DriverViewModel\DriverPersonalInfoViewModel.cs" />
     <Compile Include="Models\DriverViewModel\DriverSearchFilter.cs" />
+    <Compile Include="Models\DriverViewModel\DriverViewModel.cs" />
     <Compile Include="Models\GeoAddressViewModel.cs" />
     <Compile Include="Models\KeyValuePairViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\CapacityViewModel.cs" />
@@ -912,10 +913,13 @@
     <Content Include="Views\Driver\Edit.cshtml" />
     <Content Include="Views\Customer\CustomerSignIn.cshtml" />
     <Content Include="Views\Driver\DriverSignIn.cshtml" />
+    <Content Include="Views\Driver\Partials\_DriverPersonalInfo.cshtml" />
+    <Content Include="Views\Driver\Partials\_DriverLegalDocuments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="SystemImages\CustomerImages\" />
+    <Folder Include="SystemImages\DriverDocumentsImages\" />
     <Folder Include="SystemImages\DriverImages\" />
     <Folder Include="SystemImages\VehicleImages\" />
     <Folder Include="Views\Base\" />

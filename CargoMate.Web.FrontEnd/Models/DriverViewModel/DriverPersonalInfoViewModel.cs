@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
 {
@@ -12,10 +13,14 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
 
     public class DriverPersonalInfoFormModel
     {
-        public long Id { get; set; }
+        public DriverPersonalInfoFormModel()
+        {
+            CountriesList = new List<SelectListItem>();
+            FairTypes = new List<SelectListItem>();
+        }
 
         [Required]
-        public string DriverId { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 
@@ -31,6 +36,8 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
 
         public long? CountryId { get; set; }
 
+        public List<SelectListItem> CountriesList { get; set; }
+
         public bool? Gender { get; set; }
 
         public bool? FixedRate { get; set; }
@@ -44,13 +51,13 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
         public string SubLocality { get; set; }
 
         public long[] FairTypeIds { get; set; }
+
+        public List<SelectListItem> FairTypes { get; set; }
     }
 
     public class DriverPersonalInfoDisplayModel
     {
-        public long Id { get; set; }
-
-        public string DriverId { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 

@@ -65,6 +65,18 @@
     <Compile Include="Migrations\201709272020289_Locality,SubLocality.Designer.cs">
       <DependentUpon>201709272020289_Locality,SubLocality.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710102004388_Driver PK Change.cs" />
+    <Compile Include="Migrations\201710102004388_Driver PK Change.Designer.cs">
+      <DependentUpon>201710102004388_Driver PK Change.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710102009046_Driver PK Change 1.cs" />
+    <Compile Include="Migrations\201710102009046_Driver PK Change 1.Designer.cs">
+      <DependentUpon>201710102009046_Driver PK Change 1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710102013124_Driver PK Change 10.cs" />
+    <Compile Include="Migrations\201710102013124_Driver PK Change 10.Designer.cs">
+      <DependentUpon>201710102013124_Driver PK Change 10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasicData\Country.cs" />
     <Compile Include="Models\BasicData\CustomerStatus.cs" />
@@ -135,6 +147,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709272020289_Locality,SubLocality.resx">
       <DependentUpon>201709272020289_Locality,SubLocality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710102004388_Driver PK Change.resx">
+      <DependentUpon>201710102004388_Driver PK Change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710102009046_Driver PK Change 1.resx">
+      <DependentUpon>201710102009046_Driver PK Change 1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710102013124_Driver PK Change 10.resx">
+      <DependentUpon>201710102013124_Driver PK Change 10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

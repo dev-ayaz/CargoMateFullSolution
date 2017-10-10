@@ -9,6 +9,8 @@ namespace CargoMate.Web.FrontEnd.Shared
     {
         public static string DriverId = "SessionKeys:DriverId";
 
+        public static string CultureCode = "SessionKeys:CultureCode";
+
         public static string CustomerId = "SessionKeys:CustomerId";
 
         public static string UserRolePermissions = "SessionKeys:UserRolePermissions";

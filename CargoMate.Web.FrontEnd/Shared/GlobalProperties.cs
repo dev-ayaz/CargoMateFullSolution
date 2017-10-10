@@ -16,6 +16,8 @@ namespace CargoMate.Web.FrontEnd.Shared
 
         public static string DriverImagesFolder = $"{HttpContext.Current.Server.MapPath(@"\")}{"SystemImages/DriverImages"}";
 
+        public static string DriverDocumentsFolder = $"{HttpContext.Current.Server.MapPath(@"\")}{"SystemImages/DriverDocumentsImages"}";
+
         public static string CustomerImagesFolder = $"{HttpContext.Current.Server.MapPath(@"\")}{"SystemImages/CustomerImages"}";
 
         public static string VehicleImagesFolder = $"{HttpContext.Current.Server.MapPath(@"\")}{"SystemImages/VehicleImages"}";

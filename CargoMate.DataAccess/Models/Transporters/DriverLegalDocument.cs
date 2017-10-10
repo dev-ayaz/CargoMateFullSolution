@@ -12,7 +12,7 @@ namespace CargoMate.DataAccess.Models.Transporters
     public class DriverLegalDocument
     {
         [Key, ForeignKey("DriverPersonalInfo")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [StringLength(50)]
         public string LicenseNumber { get; set; }

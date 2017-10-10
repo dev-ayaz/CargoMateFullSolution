@@ -18,7 +18,7 @@ namespace CargoMate.DataAccess.Models.Transporters
 
         public long FareTypeId { get; set; }
 
-        public long DriverPersonalInfoId { get; set; }
+        public string DriverPersonalInfoId { get; set; }
 
         public virtual DriverPersonalInfo DriverPersonalInfo { get; set; }
 

@@ -1,5 +1,4 @@
-﻿
-
+﻿@model CargoMate.Web.FrontEnd.Models.DriverViewModel.DriverViewModel
 @{
     ViewBag.Title = "DriverDetails";
 }
@@ -30,149 +29,11 @@
         <div class="content">
 
             <section id="section-1">
-                <div id="login" class="login-min-height my-0 py-0">
-                    <div class="text-center">
-                        <h3 class="text-left"><i class="icon-user-1"></i> Personal Information</h3>
-                        <p class="text-left pl-3">*Please provide valid information to get better services.</p>
-                    </div>
-                    <hr />
-                    <form enctype="multipart/form-data">
-                        <!-- Left column -->
-                        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Name</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="text" class="form-control" placeholder="Your fullname">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Legal Name</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="text" class="form-control" placeholder="Your Legal Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Email</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="email" class="form-control" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Phone</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="number" class=" form-control" placeholder="0559684457">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right column -->
-                        <div class="col-xs-12 col-sm-6 float-right-left">
-
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Profile Picture</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="file" class="form-control" name="picture">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0"><i class="icon-calendar-7"></i> Date of Birth</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="text" class="form-control date-pick" value="" placeholder="05/01/2017">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Gender</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <select class="form-control" name="gender">
-                                        <option value="-1">-- Select --</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Address</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="text" class=" form-control" placeholder="Address">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div id="pass-info" class="clearfix"></div>
-                        <div class="col-xs-12 col-sm-11 text-right px-10">
-                            <button class="btn_1 d-inline-block">Update Personal Info</button>
-                        </div>
-                    </form>
-
-                </div>
+                @Html.Partial("Partials/_DriverpersonalInfo", Model.driverPersonalInfoFormModel)
             </section><!-- End section 1 -->
 
             <section id="section-2">
-                <div id="login" class="login-min-height my-0 py-0">
-                    <div class="text-center">
-                        <h3 class="text-left"><i class="icon-user-1"></i> Licence & Residence Information</h3>
-                        <p class="text-left pl-3">*Please provide valid information to get better services.</p>
-                    </div>
-                    <hr />
-                    <form enctype="multipart/form-data">
-                        @* Left column *@
-                        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Residence Number</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="text" class="form-control" placeholder="049049304">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0"><i class="icon-calendar-7"></i> Residence Expirey</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="text" class="form-control date-pick" placeholder="mm/dd/yyyy">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Residence Image</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="file" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        @* Right column *@
-                        <div class="col-xs-12 col-sm-6 float-right-left">
-
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Licence Number</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="text" class="form-control" name="picture" placeholder="994384389">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0"><i class="icon-calendar-7"></i> Licence Expirey</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="text" class="form-control date-pick" value="" placeholder="mm/dd/yyyy">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-xs-12 px-0">Licence Picture</label>
-                                <div class="col-xs-12 col-sm-10 px-0">
-                                    <input type="file" class=" form-control">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div id="pass-info" class="clearfix"></div>
-                        <div class="col-xs-12 col-sm-11 text-right px-10">
-                            <button class="btn_1 d-inline-block">Update Licence Info</button>
-                        </div>
-                    </form>
-
-                </div>
+                @Html.Partial("Partials/_DriverLegalDocuments", Model.driverLegalDocumentsFormModel)
             </section><!-- End section 2 -->
 
             <section id="section-3">
@@ -437,7 +298,7 @@
 </div><!-- end container -->
 
 @section scripts{
-
+    <script src="~/AppScripts/Drivers/Driver.js"></script>
     <script src="~/Scripts/tabs.js"></script>
     <script>new CBPFWTabs( document.getElementById( 'tabs' ) );</script>
     <script>

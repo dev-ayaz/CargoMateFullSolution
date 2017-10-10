@@ -30,11 +30,11 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
             UnitOfWork.DriverPersonalInfos.Insert(new DriverPersonalInfo
             {   
+                Id= driverPersonalInfoForm.Id,
                 Locality = driverPersonalInfoForm.Locality,
                 SubLocality = driverPersonalInfoForm.SubLocality,
                 CountryId = driverPersonalInfoForm.CountryId,
                 DateOfBirth = driverPersonalInfoForm.DateOfBirth,
-                DriverId = driverPersonalInfoForm.DriverId,
                 DriverStatusId = driverPersonalInfoForm.DriverStatusId,
                 EmailAddress = driverPersonalInfoForm.EmailAddress,
                 FixedRate = driverPersonalInfoForm.FixedRate,
@@ -59,7 +59,6 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                  {
                      Id = c.Id,
                      Name = c.Name,
-                     DriverId = c.DriverId,
                      DateOfBirth = c.DateOfBirth.ToString(),
                      EmailAddress = c.EmailAddress,
                      Gender = c.Gender,
@@ -82,7 +81,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
             if (!string.IsNullOrWhiteSpace(driverId))
             {
-                predicate = predicate.And(c => c.DriverId == driverId);
+                predicate = predicate.And(c => c.Id == driverId);
             }
             if (!string.IsNullOrWhiteSpace(emailAddress))
             {
@@ -118,7 +117,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
         }
 
         [HttpGet]
-        public DriverLegalDocumentsDisplayModel GetLegalDocumentsById(long driverId)
+        public DriverLegalDocumentsDisplayModel GetLegalDocumentsById(string driverId)
         {
             return UnitOfWork.DriverLegalDocuments.GetWhere(ld => ld.Id == driverId).Select(ld => new DriverLegalDocumentsDisplayModel
             {
