@@ -63,19 +63,15 @@ namespace CargoMate.Web.FrontEnd.Controllers
 
             var driverDocuments = UnitOfWork.DriverLegalDocuments.GetWhere(dd => dd.Id == driver.Id).ToList().Select(ld => new DriverLegalDocumentsFormModel
             {
-              Id = driver.Id,
-              LicenseExpiryDate=ld.LicenseExpiryDate,
-              LicenseImage=ld.LicenseImage,
-              LicenseNumber=ld.LicenseNumber,
-              ResidenceExpiryDate=ld.ResidenceExpiryDate,
-              ResidenceImage=ld.ResidenceImage,
-              ResidenceNumber=ld.ResidenceNumber
-            }).FirstOrDefault();
+                Id = driver?.Id,
+                LicenseExpiryDate=ld.LicenseExpiryDate,
+                LicenseImage=ld.LicenseImage,
+                LicenseNumber=ld.LicenseNumber,
+                ResidenceExpiryDate=ld.ResidenceExpiryDate,
+                ResidenceImage=ld.ResidenceImage,
+                ResidenceNumber=ld.ResidenceNumber
+            }).FirstOrDefault() ?? new DriverLegalDocumentsFormModel{Id =driverId};
 
-            if (driverDocuments == null)
-            {
-                driverDocuments = new DriverLegalDocumentsFormModel();
-            }
             var driverModel = new DriverViewModel
             {
                 driverPersonalInfoFormModel = driver,
@@ -98,22 +94,25 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 EmailAddress = driverForm.EmailAddress,
                 DateOfBirth = Convert.ToDateTime(driverForm.DateOfBirth, CultureInfo.InvariantCulture),
                 Gender = driverForm.Gender,
-                ImageUrl = CargoMateImageHandler.SaveImageFromBase64(driverForm.ImageUrl, GlobalProperties.CustomerImagesFolder),
+                ImageUrl = CargoMateImageHandler.SaveImageFromBase64(driverForm.ImageUrl, GlobalProperties.DriverImagesFolder),
                 Name = driverForm.Name,
                 LegalName = driverForm.LegalName,
                 PhoneNumber = driverForm.PhoneNumber,
                 CountryId = driverForm.CountryId
             });
+            var success = UnitOfWork.Commit() > 0;
+
             SetFairTypes(driverForm.FairTypeIds, driverForm.Id);
+
             return
-                Json(UnitOfWork.Commit() > 0
+                Json(success
                     ? CargoMateMessages.SuccessResponse
                     : CargoMateMessages.FailureResponse);
 
 
         }
 
-        public int SetFairTypes(long[] fairTypes,string driverId)
+        public int SetFairTypes(long?[] fairTypes,string driverId)
         {
             var savedFairTypes = UnitOfWork.DriverFareTypes.GetWhere(ft => ft.DriverPersonalInfoId==driverId).ToList();
             foreach(var ft in savedFairTypes)
@@ -121,16 +120,18 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 UnitOfWork.DriverFareTypes.Delete(ft);
             }
 
-            if (fairTypes.Any())
+            if (!fairTypes.Any()) return UnitOfWork.Commit();
+
+            foreach (var val in fairTypes)
             {
-                for (int i = 0; i < fairTypes.Count(); i++)
+                if (val!=null)
                 {
                     UnitOfWork.DriverFareTypes.Insert(new DriverFareType
                     {
-                        FareTypeId = fairTypes[i],
+                        FareTypeId = val,
                         DriverPersonalInfoId = driverId
-                    });
-                } 
+                    }); 
+                }
             }
 
             return UnitOfWork.Commit();

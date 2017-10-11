@@ -30,7 +30,7 @@
                 <label class="col-xs-12 px-0">Residence Image</label>
                 <div class="col-xs-12 col-sm-10 px-0">
                     @Html.HiddenFor(model => model.ResidenceImage)
-                    @Html.Editor("ResidenceImage", new { htmlAttributes = new { @class = "form-control", type = "file" } })
+                    @Html.Editor("ResidenceImageSrc", new { htmlAttributes = new { @class = "form-control", type = "file" } })
                     @Html.ValidationMessageFor(model => model.ResidenceImage, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <label class="col-xs-12 px-0">Licence Picture</label>
                 <div class="col-xs-12 col-sm-10 px-0">
                     @Html.HiddenFor(model => model.LicenseImage)
-                    @Html.Editor("LicenseImage", new { htmlAttributes = new { @class = "form-control", type = "file" } })
+                    @Html.Editor("LicenseImageSrc", new { htmlAttributes = new { @class = "form-control", type = "file" } })
                     @Html.ValidationMessageFor(model => model.LicenseImage, "", new { @class = "text-danger" })
                 </div>
             </div>

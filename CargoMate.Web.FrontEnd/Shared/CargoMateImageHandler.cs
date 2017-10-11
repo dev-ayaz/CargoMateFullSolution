@@ -7,7 +7,7 @@ namespace CargoMate.Web.FrontEnd.Shared
 {
     public static  class CargoMateImageHandler
     {
-        public static string VehicleImagesUrl = $"{HttpContext.Current.Server.MapPath(@"\")}{"SystemImages/FrontEndImages"}";
+        public static string VehicleImagesUrl = $"{HttpContext.Current.Server.MapPath(@"\")}SystemImages/FrontEndImages";
 
         public static string SingleFileUploader(HttpPostedFileBase file)
         {
@@ -27,7 +27,7 @@ namespace CargoMate.Web.FrontEnd.Shared
             if (!isExists)
                 Directory.CreateDirectory(VehicleImagesUrl);
 
-            var imageUrl = string.Format("{0}\\{1}", VehicleImagesUrl, file.FileName);
+            var imageUrl = $"{VehicleImagesUrl}\\{file.FileName}";
             file.SaveAs(imageUrl);
 
             return SessionKeys.VehicleImagePath;
@@ -46,11 +46,11 @@ namespace CargoMate.Web.FrontEnd.Shared
                 var random = new Random();
                 var randomNumber = random.Next(0, 100);
 
-                var imageName = $"{folderPath}{DateTime.Now.ToString("yyyyMMddTHHmmss")}-{randomNumber}.jpg";
+                var imageName = $"{DateTime.Now:yyyyMMddTHHmmss}-{randomNumber}.jpg";
 
-                var imgPath = Path.Combine(VehicleImagesUrl, imageName);
+                var imgPath = Path.Combine(folderPath, imageName);
 
-                byte[] imageBytes = Convert.FromBase64String(imgStr.Split(',')[1]);
+                var imageBytes = Convert.FromBase64String(imgStr.Split(',')[1]);
 
                 File.WriteAllBytes(imgPath, imageBytes);
 

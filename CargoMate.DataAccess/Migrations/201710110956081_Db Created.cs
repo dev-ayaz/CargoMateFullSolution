@@ -3,7 +3,7 @@ namespace CargoMate.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DataBaseCreated : DbMigration
+    public partial class DbCreated : DbMigration
     {
         public override void Up()
         {
@@ -191,6 +191,128 @@ namespace CargoMate.DataAccess.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "Transporters.DriverPersonalInfos",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 50),
+                        Name = c.String(maxLength: 250),
+                        LegalName = c.String(maxLength: 250),
+                        DateOfBirth = c.DateTime(storeType: "date"),
+                        PhoneNumber = c.String(maxLength: 20),
+                        EmailAddress = c.String(maxLength: 50),
+                        ImageUrl = c.String(),
+                        CountryId = c.Long(),
+                        Gender = c.Boolean(),
+                        IsPhoneNumberVerified = c.Boolean(),
+                        Rating = c.Decimal(precision: 18, scale: 2),
+                        TotalTrips = c.Long(),
+                        FixedRate = c.Boolean(),
+                        IdVerified = c.Boolean(),
+                        MembershipDate = c.DateTime(),
+                        IsValidated = c.Boolean(),
+                        Location = c.Geography(),
+                        Locality = c.String(),
+                        SubLocality = c.String(),
+                        DriverStatusId = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.Countries", t => t.CountryId)
+                .ForeignKey("BasicData.DriverStatuses", t => t.DriverStatusId)
+                .Index(t => t.CountryId)
+                .Index(t => t.DriverStatusId);
+            
+            CreateTable(
+                "Transporters.DriverFareTypes",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        FareTypeId = c.Long(nullable: false),
+                        DriverPersonalInfoId = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("Transporters.DriverPersonalInfos", t => t.DriverPersonalInfoId)
+                .ForeignKey("BasicData.FareTypes", t => t.FareTypeId, cascadeDelete: true)
+                .Index(t => t.FareTypeId)
+                .Index(t => t.DriverPersonalInfoId);
+            
+            CreateTable(
+                "BasicData.FareTypes",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        IsActive = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "BasicData.LocalizedFareTypes",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Name = c.String(maxLength: 50),
+                        FareTypeId = c.Long(),
+                        CultureCode = c.String(maxLength: 20),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.FareTypes", t => t.FareTypeId)
+                .Index(t => t.FareTypeId);
+            
+            CreateTable(
+                "Transporters.DriverLegalDocuments",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 50),
+                        LicenseNumber = c.String(maxLength: 50),
+                        LicenseExpiryDate = c.DateTime(storeType: "date"),
+                        LicenseImage = c.String(),
+                        ResidenceNumber = c.String(maxLength: 50),
+                        ResidenceExpiryDate = c.DateTime(storeType: "date"),
+                        ResidenceImage = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("Transporters.DriverPersonalInfos", t => t.Id)
+                .Index(t => t.Id);
+            
+            CreateTable(
+                "BasicData.DriverStatuses",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        IsActive = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "[BasicData.Localization].DriverStatuses",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Name = c.String(maxLength: 50),
+                        DriverStatusId = c.Long(),
+                        CultureCode = c.String(maxLength: 20),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.DriverStatuses", t => t.DriverStatusId)
+                .Index(t => t.DriverStatusId);
+            
+            CreateTable(
+                "Transporters.PreferredAddresses",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        CountryId = c.Long(nullable: false),
+                        Locality = c.String(maxLength: 50),
+                        SubLocality = c.String(maxLength: 50),
+                        Location = c.Geography(),
+                        DriverPersonalInfoId = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.Countries", t => t.CountryId, cascadeDelete: true)
+                .ForeignKey("Transporters.DriverPersonalInfos", t => t.DriverPersonalInfoId)
+                .Index(t => t.CountryId)
+                .Index(t => t.DriverPersonalInfoId);
+            
+            CreateTable(
                 "[BasicData.Localization].LocalizedCountries",
                 c => new
                     {
@@ -317,28 +439,6 @@ namespace CargoMate.DataAccess.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("BasicData.CustomerStatuses", t => t.CustomerStatusId)
                 .Index(t => t.CustomerStatusId);
-            
-            CreateTable(
-                "BasicData.DriverStatuses",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        IsActive = c.Boolean(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "[BasicData.Localization].DriverStatuses",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
-                        DriverStatusId = c.Long(),
-                        CultureCode = c.String(maxLength: 20),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("BasicData.DriverStatuses", t => t.DriverStatusId)
-                .Index(t => t.DriverStatusId);
             
             CreateTable(
                 "Transporters.InsuranceCompanies",
@@ -564,7 +664,6 @@ namespace CargoMate.DataAccess.Migrations
             DropForeignKey("[BasicData.Localization].LocalizedPayLoadType", "PayLoadTypeId", "BasicData.PayLoadTypes");
             DropForeignKey("[BasicData.Localization].LocalizedLengthUnits", "LengthUnitId", "BasicData.LengthUnits");
             DropForeignKey("[Transporters.Localization].LocalizedInsuranceCompanies", "InsuranceCompanyId", "Transporters.InsuranceCompanies");
-            DropForeignKey("[BasicData.Localization].DriverStatuses", "DriverStatusId", "BasicData.DriverStatuses");
             DropForeignKey("[BasicData.Localization].CustomerStatuses", "CustomerStatusId", "BasicData.CustomerStatuses");
             DropForeignKey("Customers.Customers", "CustomerStatusId", "BasicData.CustomerStatuses");
             DropForeignKey("Customers.Customers", "CompanyId", "Customers.Companies");
@@ -574,6 +673,15 @@ namespace CargoMate.DataAccess.Migrations
             DropForeignKey("[BasicData.Localization].LocalizedMakes", "VehicleMake_Id", "BasicData.VehicleMakes");
             DropForeignKey("BasicData.VehicleMakes", "CountryId", "BasicData.Countries");
             DropForeignKey("[BasicData.Localization].LocalizedCountries", "CountryId", "BasicData.Countries");
+            DropForeignKey("Transporters.PreferredAddresses", "DriverPersonalInfoId", "Transporters.DriverPersonalInfos");
+            DropForeignKey("Transporters.PreferredAddresses", "CountryId", "BasicData.Countries");
+            DropForeignKey("[BasicData.Localization].DriverStatuses", "DriverStatusId", "BasicData.DriverStatuses");
+            DropForeignKey("Transporters.DriverPersonalInfos", "DriverStatusId", "BasicData.DriverStatuses");
+            DropForeignKey("Transporters.DriverLegalDocuments", "Id", "Transporters.DriverPersonalInfos");
+            DropForeignKey("BasicData.LocalizedFareTypes", "FareTypeId", "BasicData.FareTypes");
+            DropForeignKey("Transporters.DriverFareTypes", "FareTypeId", "BasicData.FareTypes");
+            DropForeignKey("Transporters.DriverFareTypes", "DriverPersonalInfoId", "Transporters.DriverPersonalInfos");
+            DropForeignKey("Transporters.DriverPersonalInfos", "CountryId", "BasicData.Countries");
             DropForeignKey("Customers.Companies", "CountryId", "BasicData.Countries");
             DropForeignKey("User.UserRoles", "Role_Id2", "User.Roles");
             DropForeignKey("User.UserRoles", "Role_Id1", "User.Roles");
@@ -601,7 +709,6 @@ namespace CargoMate.DataAccess.Migrations
             DropIndex("BasicData.PayLoadTypes", new[] { "VehicleTypeId" });
             DropIndex("[BasicData.Localization].LocalizedLengthUnits", new[] { "LengthUnitId" });
             DropIndex("[Transporters.Localization].LocalizedInsuranceCompanies", new[] { "InsuranceCompanyId" });
-            DropIndex("[BasicData.Localization].DriverStatuses", new[] { "DriverStatusId" });
             DropIndex("[BasicData.Localization].CustomerStatuses", new[] { "CustomerStatusId" });
             DropIndex("Customers.Customers", new[] { "CustomerStatusId" });
             DropIndex("Customers.Customers", new[] { "CompanyId" });
@@ -611,6 +718,15 @@ namespace CargoMate.DataAccess.Migrations
             DropIndex("[BasicData.Localization].LocalizedMakes", new[] { "VehicleMake_Id" });
             DropIndex("BasicData.VehicleMakes", new[] { "CountryId" });
             DropIndex("[BasicData.Localization].LocalizedCountries", new[] { "CountryId" });
+            DropIndex("Transporters.PreferredAddresses", new[] { "DriverPersonalInfoId" });
+            DropIndex("Transporters.PreferredAddresses", new[] { "CountryId" });
+            DropIndex("[BasicData.Localization].DriverStatuses", new[] { "DriverStatusId" });
+            DropIndex("Transporters.DriverLegalDocuments", new[] { "Id" });
+            DropIndex("BasicData.LocalizedFareTypes", new[] { "FareTypeId" });
+            DropIndex("Transporters.DriverFareTypes", new[] { "DriverPersonalInfoId" });
+            DropIndex("Transporters.DriverFareTypes", new[] { "FareTypeId" });
+            DropIndex("Transporters.DriverPersonalInfos", new[] { "DriverStatusId" });
+            DropIndex("Transporters.DriverPersonalInfos", new[] { "CountryId" });
             DropIndex("Customers.Companies", new[] { "CountryId" });
             DropIndex("User.UserLogins", new[] { "UserId" });
             DropIndex("User.UserClaims", new[] { "UserId" });
@@ -643,8 +759,6 @@ namespace CargoMate.DataAccess.Migrations
             DropTable("BasicData.LengthUnits");
             DropTable("[Transporters.Localization].LocalizedInsuranceCompanies");
             DropTable("Transporters.InsuranceCompanies");
-            DropTable("[BasicData.Localization].DriverStatuses");
-            DropTable("BasicData.DriverStatuses");
             DropTable("[BasicData.Localization].CustomerStatuses");
             DropTable("BasicData.CustomerStatuses");
             DropTable("Customers.Customers");
@@ -654,6 +768,14 @@ namespace CargoMate.DataAccess.Migrations
             DropTable("[BasicData.Localization].LocalizedMakes");
             DropTable("BasicData.VehicleMakes");
             DropTable("[BasicData.Localization].LocalizedCountries");
+            DropTable("Transporters.PreferredAddresses");
+            DropTable("[BasicData.Localization].DriverStatuses");
+            DropTable("BasicData.DriverStatuses");
+            DropTable("Transporters.DriverLegalDocuments");
+            DropTable("BasicData.LocalizedFareTypes");
+            DropTable("BasicData.FareTypes");
+            DropTable("Transporters.DriverFareTypes");
+            DropTable("Transporters.DriverPersonalInfos");
             DropTable("BasicData.Countries");
             DropTable("Customers.Companies");
             DropTable("User.UserLogins");

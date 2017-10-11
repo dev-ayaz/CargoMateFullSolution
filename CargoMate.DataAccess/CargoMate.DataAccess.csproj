@@ -40,6 +40,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,29 +54,13 @@
     <Compile Include="Contracts\IUnitOfWork.cs" />
     <Compile Include="Contracts\IView.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Migrations\201709220008298_Data Base Created.cs" />
-    <Compile Include="Migrations\201709220008298_Data Base Created.Designer.cs">
-      <DependentUpon>201709220008298_Data Base Created.cs</DependentUpon>
+    <Compile Include="Migrations\201710110956081_Db Created.cs" />
+    <Compile Include="Migrations\201710110956081_Db Created.Designer.cs">
+      <DependentUpon>201710110956081_Db Created.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709252140307_Driver Tabels Added.cs" />
-    <Compile Include="Migrations\201709252140307_Driver Tabels Added.Designer.cs">
-      <DependentUpon>201709252140307_Driver Tabels Added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709272020289_Locality,SubLocality.cs" />
-    <Compile Include="Migrations\201709272020289_Locality,SubLocality.Designer.cs">
-      <DependentUpon>201709272020289_Locality,SubLocality.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710102004388_Driver PK Change.cs" />
-    <Compile Include="Migrations\201710102004388_Driver PK Change.Designer.cs">
-      <DependentUpon>201710102004388_Driver PK Change.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710102009046_Driver PK Change 1.cs" />
-    <Compile Include="Migrations\201710102009046_Driver PK Change 1.Designer.cs">
-      <DependentUpon>201710102009046_Driver PK Change 1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710102013124_Driver PK Change 10.cs" />
-    <Compile Include="Migrations\201710102013124_Driver PK Change 10.Designer.cs">
-      <DependentUpon>201710102013124_Driver PK Change 10.cs</DependentUpon>
+    <Compile Include="Migrations\201710111007532_Make FairTypeId Nullable.cs" />
+    <Compile Include="Migrations\201710111007532_Make FairTypeId Nullable.Designer.cs">
+      <DependentUpon>201710111007532_Make FairTypeId Nullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasicData\Country.cs" />
@@ -139,23 +124,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709220008298_Data Base Created.resx">
-      <DependentUpon>201709220008298_Data Base Created.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710110956081_Db Created.resx">
+      <DependentUpon>201710110956081_Db Created.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709252140307_Driver Tabels Added.resx">
-      <DependentUpon>201709252140307_Driver Tabels Added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709272020289_Locality,SubLocality.resx">
-      <DependentUpon>201709272020289_Locality,SubLocality.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710102004388_Driver PK Change.resx">
-      <DependentUpon>201710102004388_Driver PK Change.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710102009046_Driver PK Change 1.resx">
-      <DependentUpon>201710102009046_Driver PK Change 1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710102013124_Driver PK Change 10.resx">
-      <DependentUpon>201710102013124_Driver PK Change 10.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710111007532_Make FairTypeId Nullable.resx">
+      <DependentUpon>201710111007532_Make FairTypeId Nullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

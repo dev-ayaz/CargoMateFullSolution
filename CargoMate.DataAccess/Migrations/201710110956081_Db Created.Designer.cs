@@ -7,13 +7,13 @@ namespace CargoMate.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class DriverPKChange10 : IMigrationMetadata
+    public sealed partial class DbCreated : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DriverPKChange10));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DbCreated));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710102013124_Driver PK Change 10"; }
+            get { return "201710110956081_Db Created"; }
         }
         
         string IMigrationMetadata.Source

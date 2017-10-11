@@ -7,13 +7,13 @@ namespace CargoMate.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class DriverTabelsAdded : IMigrationMetadata
+    public sealed partial class MakeFairTypeIdNullable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DriverTabelsAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MakeFairTypeIdNullable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709252140307_Driver Tabels Added"; }
+            get { return "201710111007532_Make FairTypeId Nullable"; }
         }
         
         string IMigrationMetadata.Source

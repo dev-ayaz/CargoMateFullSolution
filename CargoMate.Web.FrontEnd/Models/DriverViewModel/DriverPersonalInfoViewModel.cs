@@ -46,11 +46,13 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
 
         public long? DriverStatusId { get; set; }
 
+        public string Address { get; set; }
+
         public string Locality { get; set; }
 
         public string SubLocality { get; set; }
 
-        public long[] FairTypeIds { get; set; }
+        public long?[] FairTypeIds { get; set; }
 
         public List<SelectListItem> FairTypes { get; set; }
     }
@@ -76,6 +78,8 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
         public bool? Gender { get; set; }
 
         public bool? FixedRate { get; set; }
+
+        public string Address { get; set; }
 
         public string Location { get; set; }
 

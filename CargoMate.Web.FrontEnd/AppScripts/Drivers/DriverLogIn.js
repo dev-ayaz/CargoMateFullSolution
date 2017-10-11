@@ -63,7 +63,7 @@
                 data: JSON.stringify(userModel),
                 success: function (data) {
                     CargoMateAlerts.actionAlert(data.MessageHeader, data.Message, data.IsError);
-                    location.href = "/Driver/UpdateDriver?driverId=" + user.uid;
+                    location.href = "/Driver/Edit?driverId=" + user.uid;
                 },
                 error: function (data) { console.log(data) }
             });

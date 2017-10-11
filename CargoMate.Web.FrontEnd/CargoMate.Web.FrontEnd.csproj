@@ -921,6 +921,7 @@
     <Folder Include="SystemImages\CustomerImages\" />
     <Folder Include="SystemImages\DriverDocumentsImages\" />
     <Folder Include="SystemImages\DriverImages\" />
+    <Folder Include="SystemImages\FrontEndImages\" />
     <Folder Include="SystemImages\VehicleImages\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

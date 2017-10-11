@@ -16,7 +16,7 @@ namespace CargoMate.DataAccess.Models.Transporters
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        public long FareTypeId { get; set; }
+        public long? FareTypeId { get; set; }
 
         public string DriverPersonalInfoId { get; set; }
 

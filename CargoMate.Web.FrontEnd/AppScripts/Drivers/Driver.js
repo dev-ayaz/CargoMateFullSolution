@@ -8,7 +8,11 @@
         ImageUrl: "#ImageUrl",
         DriverId: "#DriverId",
         Name: "#Name",
-        EmailAddress: "#EmailAddress"
+        EmailAddress: "#EmailAddress",
+        LicenseImageSrc: "#LicenseImageSrc",
+        LicenseImage: "#LicenseImage",
+        ResidenceImageSrc: "#ResidenceImageSrc",
+        ResidenceImage:"#ResidenceImage"
 
     },
     Services: {
@@ -45,10 +49,7 @@
     InitEvents: function () {
 
 
-
-
-
-        $(Driver.Selectors.ImageUrl + ":not(.bound)").addClass("bound").change(function () {
+        $(Driver.Selectors.ResidenceImageSrc + ":not(.bound)").addClass("bound").change(function () {
 
             var imageInput = $(this);
 
@@ -57,7 +58,38 @@
 
                 reader.onload = function (e) {
 
-                    $(imageInput.closest("form").find(Driver.Selectors.ImageSrc)).val(e.target.result);
+                    $(imageInput.closest("form").find(Driver.Selectors.ResidenceImage)).val(e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        $(Driver.Selectors.LicenseImageSrc + ":not(.bound)").addClass("bound").change(function () {
+
+            var imageInput = $(this);
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    $(imageInput.closest("form").find(Driver.Selectors.LicenseImage)).val(e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        $(Driver.Selectors.ImageSrc + ":not(.bound)").addClass("bound").change(function () {
+
+            var imageInput = $(this);
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    $(imageInput.closest("form").find(Driver.Selectors.ImageUrl)).val(e.target.result);
                 }
 
                 reader.readAsDataURL(this.files[0]);
@@ -71,7 +103,7 @@
                 var location = this.getLocation();
                 $(Driver.Selectors.Location).val(location.latitude + "," + location.longitude);
             }
-        }).data('placepicker');
+        }).data("placepicker");
 
         $(Driver.Selectors.Phone).intlTelInput({
 
@@ -99,3 +131,7 @@
         });
     }
 }
+
+jQuery(document).ready(function () {
+    Driver.InitEvents();
+});
