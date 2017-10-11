@@ -259,10 +259,10 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             capacityModel.VehicleTypesListItems = UnitOfWork.VehicleTypes
                                                  .GetAll(includeProperties: "LocalizedVehicleTypes")
                                                  .Select(t => new SelectListItem()
-                                                        {
-                                                          Text = t.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name,
-                                                          Value = t.Id.ToString()
-                                                        }).ToList();
+                                                 {
+                                                     Text = t.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name,
+                                                     Value = t.Id.ToString()
+                                                 }).ToList();
 
             return View("Partials/_AddVehicleCapicity", capacityModel);
 
@@ -270,18 +270,18 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
         public ActionResult VehicleCapacitiesList()
         {
-            var vehicleCapcitiesList =  UnitOfWork.VehicleCapacities.
+            var vehicleCapcitiesList = UnitOfWork.VehicleCapacities.
                                         GetAll(includeProperties: "VehicleType.LocalizedVehicleTypes,LocalizedCapacities")
                                        .Select(c => new VehicleCapacityListModel
-                                        {
-                                          Id = c.Id,
-                                          Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
-                                          Capacity = c.Capacity.Value,
-                                          Length = c.Length.Value,
-                                          PalletNumber = c.PalletNumber.Value,
-                                          VehicleType = c.VehicleType.LocalizedVehicleTypes
+                                       {
+                                           Id = c.Id,
+                                           Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
+                                           Capacity = c.Capacity.Value,
+                                           Length = c.Length.Value,
+                                           PalletNumber = c.PalletNumber.Value,
+                                           VehicleType = c.VehicleType.LocalizedVehicleTypes
                                                         .FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name
-                                        }).ToList();
+                                       }).ToList();
             return View("Partials/_VehicleCapicities", vehicleCapcitiesList);
 
         }
@@ -298,7 +298,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
             UnitOfWork.VehicleCapacities.Delete(capacity);
 
-            return Json( UnitOfWork.Commit() > 0 ? AlertMessages.SuccessResponse : AlertMessages.FailureResponse, JsonRequestBehavior.AllowGet);
+            return Json(UnitOfWork.Commit() > 0 ? AlertMessages.SuccessResponse : AlertMessages.FailureResponse, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -310,12 +310,12 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             {
                 return Json(AlertMessages.ModelError);
             }
-            
+
             var configurationModel = new VehicleConfiguration
             {
-                ImageUrl = ImageUploader.SaveImageFromBase64(configurationsViewModel.ImageUrl,SessionKeys.VehicleImagesPath),
+                ImageUrl = ImageUploader.SaveImageFromBase64(configurationsViewModel.ImageUrl, SessionKeys.VehicleImagesPath),
                 VehicleTypeId = configurationsViewModel.TypeId,
-                IsActive=true,
+                IsActive = true,
                 LocalizedVehicleConfigurations = new List<LocalizedVehicleConfiguration>
                 {
                     new LocalizedVehicleConfiguration
@@ -344,7 +344,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
             savedConfiguration.VehicleTypeId = configurationsViewModel.TypeId;
 
-            var localizedConfiguration = savedConfiguration.LocalizedVehicleConfigurations.FirstOrDefault(lc=>lc.CultureCode==SessionHandler.CultureCode);
+            var localizedConfiguration = savedConfiguration.LocalizedVehicleConfigurations.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode);
 
             if (localizedConfiguration != null)
             {
@@ -378,12 +378,12 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                 configurationModel.VehicleTypesListItems = UnitOfWork.VehicleTypes
                                                            .GetAll(includeProperties: "LocalizedVehicleTypes")
                                                            .Select(t => new SelectListItem()
-                                                             {
-                                                                  Text = t.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name,
-                                                                  Value = t.Id.ToString()
-                                                             }).ToList();
+                                                           {
+                                                               Text = t.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name,
+                                                               Value = t.Id.ToString()
+                                                           }).ToList();
 
-               return View("Partials/_AddVehicleConfiguration", configurationModel);
+                return View("Partials/_AddVehicleConfiguration", configurationModel);
             }
 
             return View("Partials/_AddVehicleConfiguration", new VehicleTypeConfigurationsViewModel());
@@ -394,19 +394,19 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             var configurationsList = UnitOfWork.VehicleConfigurations
                                     .GetAll(includeProperties: "LocalizedVehicleTypesConfigurations,VehicleType.LocalizedVehicleTypes")
                                     .Select(c => new VehicleTypeConfigurationListModel
-                                     {
-                                         Id =           c.Id,
+                                    {
+                                        Id = c.Id,
 
-                                         Name =         c.LocalizedVehicleConfigurations
+                                        Name = c.LocalizedVehicleConfigurations
                                                         .FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
 
-                                         Descreption =  c.LocalizedVehicleConfigurations
+                                        Descreption = c.LocalizedVehicleConfigurations
                                                         .FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Descreption,
-                                         ImageUrl =     c.ImageUrl,
+                                        ImageUrl = c.ImageUrl,
 
-                                         VehicleTypeName = c.VehicleType.LocalizedVehicleTypes
+                                        VehicleTypeName = c.VehicleType.LocalizedVehicleTypes
                                                            .FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name
-                                     }).ToList();
+                                    }).ToList();
 
             return View("Partials/_VehicleConfigurationList", configurationsList);
         }
@@ -430,21 +430,27 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
         {
             var makeViewModel = new MakeViewModel
             {
-                MakeModel = new MakeModel
+                MakeFormModel = new MakeFormModel
                 {
-                    Countries = UnitOfWork.Countries.GetWhere(c => c.IsActive == true).Select(c => new SelectListItem
+                    Countries = UnitOfWork.LocalizedCountries.GetWhere(lc => lc.CultureCode == SessionHandler.CultureCode).Select(c => new SelectListItem
                     {
-                        Text = c.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
-                        Value = c.Id.ToString()
+                        Text = c.Name,
+                        Value = c.CountryId.ToString()
+                    }).ToList(),
+                    VehicleTypes = UnitOfWork.LocalizedVehicleTypes.GetWhere(c => c.CultureCode == SessionHandler.CultureCode).Select(c => new SelectListItem
+                    {
+                        Text = c.Name,
+                        Value = c.VehicleTypeId.ToString()
                     }).ToList()
 
                 },
-                MakeModelsList = UnitOfWork.VehicleMakes.GetWhere(m => m.IsActive == true).Select(m => new MakeModel
+                MakeDisplayModelList = UnitOfWork.VehicleMakes.GetWhere(m => m.IsActive == true).Select(m => new MakeDisplayModel
                 {
                     Name = m.LocalizedVehicleMakes.FirstOrDefault(ml => ml.CultureCode == SessionHandler.CultureCode).Name,
                     ImageUrl = m.ImageUrl,
                     Id = m.Id,
-                    CountryName = m.Country.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name
+                    Country = m.Country.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
+                    VehicleType = m.VehicleType.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name
 
                 }).ToList()
 
@@ -452,7 +458,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             return View("VehicleMakes", makeViewModel);
         }
 
-        public JsonResult AddVehicleMake(MakeModel makeModel)
+        public JsonResult AddVehicleMake(MakeFormModel makeModel)
         {
             if (!ModelState.IsValid)
             {
@@ -462,8 +468,9 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             var make = new VehicleMake
             {
                 CountryId = makeModel.CountryId,
-                ImageUrl = ImageUploader.SaveImageFromBase64(makeModel.ImageUrl,SessionKeys.VehicleImagesPath),
+                ImageUrl = ImageUploader.SaveImageFromBase64(makeModel.ImageUrl, SessionKeys.VehicleImagesPath),
                 IsActive = true,
+                VehicleTypeId = makeModel.VehicleTypeId,
                 LocalizedVehicleMakes = new List<LocalizedVehicleMake>()
                 {
                     new LocalizedVehicleMake
@@ -482,11 +489,11 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
         public ActionResult MakeList()
         {
-            var makeList = UnitOfWork.VehicleMakes.GetAll().Select(m => new MakeModel
+            var makeList = UnitOfWork.VehicleMakes.GetAll().Select(m => new MakeDisplayModel
             {
-                CountryId = m.CountryId.Value,
                 Name = m.LocalizedVehicleMakes.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode).Name,
-                CountryName = m.Country.LocalizedCountries.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode).Name,
+                Country = m.Country.LocalizedCountries.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode).Name,
+                VehicleType = m.VehicleType.LocalizedVehicleTypes.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode).Name,
                 Id = m.Id,
                 ImageUrl = m.ImageUrl
             }).ToList();
@@ -510,23 +517,24 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
         public ActionResult EditVehicleMake(long makeId)
         {
-            var vehicleMake = UnitOfWork.VehicleMakes.GetWhere(m => m.Id == makeId).ToList().Select(m => new MakeModel
-                                {
-                                  Name = m.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
-                                  CountryId = m.CountryId.Value,
-                                  ImageUrl = m.ImageUrl,
-                                  Id = m.Id,
-                                  Countries = UnitOfWork.Countries.GetWhere(c => c.IsActive == true).Select(c => new SelectListItem
-                                               {
-                                                 Text = c.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
-                                                 Value = c.Id.ToString()
-                                               }).ToList()
-                                 }).FirstOrDefault();
+            var vehicleMake = UnitOfWork.VehicleMakes.GetWhere(m => m.Id == makeId).ToList().Select(m => new MakeFormModel
+            {
+                Name = m.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
+                CountryId = m.CountryId.Value,
+                ImageUrl = m.ImageUrl,
+                Id = m.Id,
+                VehicleTypeId = m.VehicleTypeId,
+                Countries = UnitOfWork.Countries.GetWhere(c => c.IsActive == true).Select(c => new SelectListItem
+                {
+                    Text = c.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
+                    Value = c.Id.ToString()
+                }).ToList()
+            }).FirstOrDefault();
 
             return View("Partials/_AddMake", vehicleMake);
         }
 
-        public JsonResult UpdateVehicleMake(MakeModel makeModel)
+        public JsonResult UpdateVehicleMake(MakeFormModel makeModel)
         {
 
             var savedMake = UnitOfWork.VehicleMakes.GetWhere(m => m.Id == makeModel.Id).FirstOrDefault();
@@ -538,12 +546,13 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
             if (!string.IsNullOrEmpty(makeModel.ImageUrl))
             {
-                savedMake.ImageUrl = ImageUploader.SaveImageFromBase64(makeModel.ImageUrl,SessionKeys.VehicleImagesPath);
+                savedMake.ImageUrl = ImageUploader.SaveImageFromBase64(makeModel.ImageUrl, SessionKeys.VehicleImagesPath);
             }
             savedMake.CountryId = makeModel.CountryId;
+            savedMake.VehicleTypeId = makeModel.VehicleTypeId;
 
             var localizedMake = UnitOfWork.VehicleMakes.GetWhere(lm => lm.Id == makeModel.Id)
-                               .FirstOrDefault().LocalizedVehicleMakes.FirstOrDefault(lm=>lm.CultureCode==SessionHandler.CultureCode);
+                               .FirstOrDefault().LocalizedVehicleMakes.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode);
 
             if (localizedMake != null)
             {
@@ -587,11 +596,11 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             {
                 return Json(AlertMessages.ModelError);
             }
-           
+
             var model = new CargoMate.DataAccess.Models.BasicData.VehicleModel
             {
                 VehicleMakeId = vehicleModel.MakeId,
-                ImageURL = ImageUploader.SaveImageFromBase64(vehicleModel.ImageUrl,SessionKeys.VehicleImagesPath),
+                ImageURL = ImageUploader.SaveImageFromBase64(vehicleModel.ImageUrl, SessionKeys.VehicleImagesPath),
                 LocalizedVehicleModels = new List<LocalizedVehicleModel>
                 {
                     new LocalizedVehicleModel
@@ -623,9 +632,9 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
         public ActionResult EditVehicleModel(long modelId)
         {
-            var savedModel = UnitOfWork.VehicleModels.GetWhere(m => m.Id == modelId).Select(m => new Models.Vehicle.VehicleModel
+            var savedModel = UnitOfWork.VehicleModels.GetWhere(m => m.Id == modelId, includeProperties: "LocalizedVehicleModels").ToList().Select(m => new Models.Vehicle.VehicleModel
             {
-                MakeList = UnitOfWork.VehicleMakes.GetAll().Select(ml => new SelectListItem
+                MakeList = UnitOfWork.VehicleMakes.GetAll(includeProperties: "LocalizedVehicleMakes").Select(ml => new SelectListItem
                 {
                     Value = ml.Id.ToString(),
                     Text = ml.LocalizedVehicleMakes.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode).Name
@@ -650,7 +659,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                 return Json(AlertMessages.ModelError);
             }
 
-          
+
 
             if (string.IsNullOrEmpty(vehicleModel.ImageUrl))
             {
@@ -734,7 +743,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             {
                 VehicleModelId = modelYear.ModelId,
                 Year = modelYear.YearId.Value,
-                ImageUrl = ImageUploader.SaveImageFromBase64(modelYear.ImageUrl,SessionKeys.VehicleImagesPath)
+                ImageUrl = ImageUploader.SaveImageFromBase64(modelYear.ImageUrl, SessionKeys.VehicleImagesPath)
             };
 
             UnitOfWork.ModelYearCombinations.Insert(modelYearCombination);
@@ -790,11 +799,11 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                 return Json(AlertMessages.ModelError);
             }
 
-           
+
 
             if (!string.IsNullOrEmpty(vehicleModelyear.ImageUrl))
             {
-                savedModelYear.ImageUrl = ImageUploader.SaveImageFromBase64(vehicleModelyear.ImageUrl,SessionKeys.VehicleImagesPath);
+                savedModelYear.ImageUrl = ImageUploader.SaveImageFromBase64(vehicleModelyear.ImageUrl, SessionKeys.VehicleImagesPath);
             }
 
             savedModelYear.VehicleModelId = vehicleModelyear.ModelId;
@@ -842,16 +851,18 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             {
                 IsActive = true,
                 VehicleTypeId = payLoadModel.TypeId,
-                ImageUrl = ImageUploader.SaveImageFromBase64(payLoadModel.ImageUrl,SessionKeys.VehicleImagesPath)
+                ImageUrl = ImageUploader.SaveImageFromBase64(payLoadModel.ImageUrl, SessionKeys.VehicleImagesPath),
+                LocalizedPayLoadTypes = new List<LocalizedPayLoadType>
+                {
+                    new LocalizedPayLoadType
+                     {
+                        Name = payLoadModel.Name,
+                        CultureCode = SessionHandler.CultureCode
+                     }
+                }
             };
 
-            var localizedPayLoad = new LocalizedPayLoadType
-            {
-                Name = payLoadModel.Name,
-                CultureCode = SessionHandler.CultureCode
-            };
 
-            payLoad.LocalizedPayLoadTypes.Add(localizedPayLoad);
             UnitOfWork.PayLoadTypes.Insert(payLoad);
 
             return Json(UnitOfWork.Commit() > 0 ? AlertMessages.SuccessResponse : AlertMessages.FailureResponse);
@@ -895,10 +906,10 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             if (model != null)
             {
                 model.VehicleTypesList = UnitOfWork.VehicleTypes.GetAll(includeProperties: "LocalizedVehicleTypes").Select(t => new SelectListItem
-                                          {
-                                             Text = t.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name,
-                                             Value = t.Id.ToString()
-                                           }).ToList();
+                {
+                    Text = t.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name,
+                    Value = t.Id.ToString()
+                }).ToList();
             }
             return View("Partials/_AddPayLoadType", model);
         }
@@ -913,7 +924,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                 return Json(AlertMessages.ModelError);
             }
 
-            
+
 
             if (!string.IsNullOrEmpty(payLoadModel.ImageUrl))
             {
@@ -922,7 +933,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
             savedModel.VehicleTypeId = payLoadModel.TypeId;
 
-            var localizedModel = savedModel.LocalizedPayLoadTypes.FirstOrDefault(lpt => lpt.PayLoadTypeId == payLoadModel.Id);
+            var localizedModel = savedModel.LocalizedPayLoadTypes.FirstOrDefault(lpt => lpt.CultureCode==SessionHandler.CultureCode);
             if (localizedModel != null)
             {
                 localizedModel.Name = payLoadModel.Name;

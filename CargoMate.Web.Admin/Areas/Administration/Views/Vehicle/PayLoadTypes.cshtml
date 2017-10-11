@@ -82,7 +82,7 @@
                 </div>
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    @using (Ajax.BeginForm("AddPayLoadtype", null, null, new { enctype = "multipart/form-data", id = "AddPayLoadtypeForm" }))
+                    @using (Ajax.BeginForm("AddPayLoadtype", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "PayLoadTypes.callbacks.insertSuccess" }, new {id = "AddPayLoadtypeForm" }))
                     {
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-horizontal">
@@ -121,7 +121,7 @@
                 </div>
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    @using (Ajax.BeginForm("UpdatePayLoadType", null, null, new { enctype = "multipart/form-data", id = "UpdatePayLoadTypeForm" }))
+                    @using (Ajax.BeginForm("UpdatePayLoadType", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "PayLoadTypes.callbacks.insertSuccess" }, new { id = "UpdatePayLoadTypeForm" }))
                     {
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-horizontal">

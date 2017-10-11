@@ -7,13 +7,13 @@ namespace CargoMate.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class MakeFairTypeIdNullable : IMigrationMetadata
+    public sealed partial class DBreset : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MakeFairTypeIdNullable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DBreset));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710111007532_Make FairTypeId Nullable"; }
+            get { return "201710111605259_DB reset"; }
         }
         
         string IMigrationMetadata.Source

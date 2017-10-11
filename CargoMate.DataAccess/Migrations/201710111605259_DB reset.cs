@@ -3,7 +3,7 @@ namespace CargoMate.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DbCreated : DbMigration
+    public partial class DBreset : DbMigration
     {
         public override void Up()
         {
@@ -226,12 +226,12 @@ namespace CargoMate.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
-                        FareTypeId = c.Long(nullable: false),
+                        FareTypeId = c.Long(),
                         DriverPersonalInfoId = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("Transporters.DriverPersonalInfos", t => t.DriverPersonalInfoId)
-                .ForeignKey("BasicData.FareTypes", t => t.FareTypeId, cascadeDelete: true)
+                .ForeignKey("BasicData.FareTypes", t => t.FareTypeId)
                 .Index(t => t.FareTypeId)
                 .Index(t => t.DriverPersonalInfoId);
             

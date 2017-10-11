@@ -1,9 +1,17 @@
-﻿@model CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.MakeModel
+﻿@model CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.MakeFormModel
 
 @{
     Layout = null;
 }
 @Html.HiddenFor(model => model.Id)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.VehicleTypeId, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.DropDownListFor(model => model.VehicleTypeId, new SelectList(Model.VehicleTypes, "Value", "Text", @Model.VehicleTypeId), "Select Vehicle Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.VehicleTypeId, "", new { @class = "text-danger" })
+    </div>
+</div>
 
 <div class="form-group">
     @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-3" })

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.MakeModel>
+﻿@model IEnumerable<CargoMate.Web.Admin.Areas.Administration.Models.Vehicle.MakeDisplayModel>
 @{
     Layout = null;
 }
@@ -13,7 +13,10 @@
         </th>
         
         <th>
-            @Html.DisplayNameFor(model => model.CountryName)
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleType)
         </th>
         <th>Action</th>
     </tr>
@@ -30,9 +33,11 @@
             @item.Name
         </td>
         <td>
-            @item.CountryName
+            @item.Country
         </td>
-       
+        <td>
+            @item.VehicleType
+        </td>
         <td>
             <div class="btn-group">
                 <button class="btn btn-sm green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">

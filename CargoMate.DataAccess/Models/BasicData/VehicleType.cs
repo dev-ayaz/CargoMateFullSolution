@@ -34,6 +34,8 @@ namespace CargoMate.DataAccess.Models.BasicData
 
         public bool? IsActive { get; set; }
 
+        public virtual ICollection<VehicleMake> VehicleMakes { get; set; }
+
         public virtual ICollection<PayLoadType> PayLoadTypes { get; set; }
 
         public virtual ICollection<VehicleCapacity> VehicleCapacities { get; set; }

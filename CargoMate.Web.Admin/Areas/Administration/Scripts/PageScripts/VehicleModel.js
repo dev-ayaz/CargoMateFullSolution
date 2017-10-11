@@ -7,7 +7,10 @@
         btnVehicleModelEdit: ".VehicleModelEdit",
         EditVehicleModelFormContent: "#EditVehicleModelFormContent",
         EditVehicleModelForm: "#EditVehicleModelForm",
-        modalEditVehicleModel: "#modalEditVehicleModel"
+        modalEditVehicleModel: "#modalEditVehicleModel",
+        ImagePreView: "#ImagePreviewr",
+        ImageUrl: "#ImageUrl",
+        ImageInput: "#ImageInput"
     },
     services: {
         controller: "Vehicle",
@@ -90,47 +93,23 @@
             VehicleModel.callbacks.editVehicleModel($this);
         });
 
-        $(VehicleModel.selectors.AddVehicleModelForm).submit(function (e) {
+       
+        $(VehicleModel.selectors.ImageInput + ":not(.bound)").addClass("bound").change(function () {
 
-            e.preventDefault();
-            var action = $(VehicleModel.selectors.AddVehicleModelForm).attr("action");
-            var formData = new FormData($(VehicleModel.selectors.AddVehicleModelForm).get(0));
-            console.log(formData);
+            var imageInput = $(this);
 
-            $.ajax({
-                type: "POST",
-                url: action,
-                data: formData,
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    VehicleModel.callbacks.insertSuccess(data);
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    $(imageInput.closest("form").find(VehicleModel.selectors.ImageUrl)).val(e.target.result);
+
+                    $(VehicleModel.selectors.ImagePreView).attr("src", e.target.result);
                 }
-            });
-            return false;
+
+                reader.readAsDataURL(this.files[0]);
+            }
         });
-
-        $(VehicleModel.selectors.EditVehicleModelForm).submit(function (e) {
-
-            e.preventDefault();
-            var action = $(VehicleModel.selectors.EditVehicleModelForm).attr("action");
-            var formData = new FormData($(VehicleModel.selectors.EditVehicleModelForm).get(0));
-            console.log(formData);
-
-            $.ajax({
-                type: "POST",
-                url: action,
-                data: formData,
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    VehicleModel.callbacks.updateSuccess(data);
-                }
-            });
-            return false;
-        });
-
     }
 };

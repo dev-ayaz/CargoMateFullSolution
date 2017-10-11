@@ -7,13 +7,13 @@ namespace CargoMate.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class DbCreated : IMigrationMetadata
+    public sealed partial class VehicleTypemakeRelsationship : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DbCreated));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(VehicleTypemakeRelsationship));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710110956081_Db Created"; }
+            get { return "201710111743393_Vehicle Type & make Relsationship"; }
         }
         
         string IMigrationMetadata.Source

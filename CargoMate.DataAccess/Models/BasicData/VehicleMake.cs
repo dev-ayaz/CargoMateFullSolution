@@ -29,6 +29,10 @@ namespace CargoMate.DataAccess.Models.BasicData
 
         public bool? IsActive { get; set; }
 
+        public long? VehicleTypeId { get; set; }
+
+        public virtual VehicleType VehicleType { get; set; }
+
         public virtual Country Country { get; set; }
 
         public virtual ICollection<Localizations.LocalizedVehicleMake> LocalizedVehicleMakes { get; set; }
