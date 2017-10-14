@@ -58,7 +58,7 @@ namespace CargoMate.Web.FrontEnd.Shared
             }
             catch (Exception)
             {
-                return "SystemImages/placeholder.png";
+                return imgStr;
             }
         }
     }

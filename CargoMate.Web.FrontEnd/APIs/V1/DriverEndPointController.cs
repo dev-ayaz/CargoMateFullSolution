@@ -45,7 +45,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                 PhoneNumber = driverPersonalInfoForm.PhoneNumber,
                 Gender = driverPersonalInfoForm.Gender,
                 ImageUrl= CargoMateImageHandler.SaveImageFromBase64(driverPersonalInfoForm.ImageUrl, GlobalProperties.DriverImagesFolder),
-                DriverFareTypes= driverPersonalInfoForm.FairTypeIds?.Select(t=>new DriverFareType {FareTypeId=t}).ToList()
+                DriverFareTypes= driverPersonalInfoForm.FairTypeId?.Select(t=>new DriverFareType {FareTypeId=t}).ToList()
             });
 
             return Request.CreateResponse(HttpStatusCode.OK, UnitOfWork.Commit());

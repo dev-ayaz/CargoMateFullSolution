@@ -43,21 +43,15 @@ namespace CargoMate.Web.FrontEnd.Controllers
                             DateOfBirth = d.DateOfBirth,
                             Gender = d.Gender,
                             CountryId = d.CountryId,
-                            FairTypeIds = d.DriverFareTypes.Select(ft => ft.FareTypeId).ToArray(),
-                            CountriesList = UnitOfWork.LocalizedCountries
+                            FairTypeId = d.DriverFareTypes.Select(ft => ft.FareTypeId).ToArray(),
+                            CountriesList =  UnitOfWork.LocalizedCountries
                                            .GetWhere(lc => lc.CultureCode == SessionHandler.CultureCode)
                                            .Select(c => new SelectListItem
                                            {
                                                Text = c.Name,
                                                Value = c.CountryId.ToString()
                                            }).ToList(),
-                            FairTypes = UnitOfWork.LocalizedFareTypes
-                                           .GetWhere(lc => lc.CultureCode == SessionHandler.CultureCode)
-                                           .Select(c => new SelectListItem
-                                           {
-                                               Text = c.Name,
-                                               Value = c.FareTypeId.ToString()
-                                           }).ToList()
+                            FairTypes = new MultiSelectList(UnitOfWork.LocalizedFareTypes.GetWhere(lc => lc.CultureCode == SessionHandler.CultureCode).ToList(), "FareTypeId", "Name")
 
                         }).FirstOrDefault();
 
@@ -102,7 +96,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
             });
             var success = UnitOfWork.Commit() > 0;
 
-            SetFairTypes(driverForm.FairTypeIds, driverForm.Id);
+            SetFairTypes(driverForm.FairTypeId, driverForm.Id);
 
             return
                 Json(success

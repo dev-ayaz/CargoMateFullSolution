@@ -182,6 +182,7 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DriverController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\CustomerViewModels\CompanyViewModel.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Models\DriverViewModel\DriverViewModel.cs" />
     <Compile Include="Models\GeoAddressViewModel.cs" />
     <Compile Include="Models\KeyValuePairViewModel.cs" />
+    <Compile Include="Models\VehicleRegistrationModels\VehicleViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\CapacityViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\ConfigurationsViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\LengthViewModel.cs" />
@@ -870,6 +872,10 @@
     <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.js" />
     <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.min.css" />
     <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.min.js" />
+    <Content Include="Scripts\Plugins\dropzone\basic.min.css" />
+    <Content Include="Scripts\Plugins\dropzone\dropzone.js" />
+    <Content Include="Scripts\Plugins\dropzone\dropzone.min.css" />
+    <Content Include="Scripts\Plugins\dropzone\dropzone.min.js" />
     <Content Include="Scripts\Plugins\InternationalTelephoneInput\css\demo.css" />
     <Content Include="Scripts\Plugins\InternationalTelephoneInput\css\intlTelInput.css" />
     <Content Include="Scripts\Plugins\InternationalTelephoneInput\img\flags%402x.png" />
@@ -915,6 +921,12 @@
     <Content Include="Views\Driver\DriverSignIn.cshtml" />
     <Content Include="Views\Driver\Partials\_DriverPersonalInfo.cshtml" />
     <Content Include="Views\Driver\Partials\_DriverLegalDocuments.cshtml" />
+    <Content Include="Views\Vehicle\Index.cshtml" />
+    <Content Include="Views\Vehicle\Partials\_BasicInformation.cshtml" />
+    <Content Include="Views\Vehicle\Partials\_VehicleScan.cshtml" />
+    <Content Include="Views\Vehicle\Partials\_TripInformation.cshtml" />
+    <Content Include="Views\Vehicle\Partials\_InsuranceInformation.cshtml" />
+    <Content Include="Views\Vehicle\Partials\_VehicleImages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

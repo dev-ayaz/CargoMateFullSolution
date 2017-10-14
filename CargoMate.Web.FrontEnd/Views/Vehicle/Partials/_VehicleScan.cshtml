@@ -1,0 +1,59 @@
+﻿@model CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels.VehicleScan
+
+<div id="login" class="login-min-height my-0 py-0">
+    <div class="text-center">
+        <h3 class="text-left"><i class="icon-list-1"></i> Vehicle Scan</h3>
+        <p class="text-left pl-3">*Please provide valid information to get better services.</p>
+    </div>
+    <hr />
+    <form enctype="multipart/form-data">
+        @* Left column *@
+        <div class="col-xs-12 col-sm-6 col-md-push-1 float-right-left">
+            <div class="form-group">
+                <label class="col-xs-12 px-0">Engine Number</label>
+                <div class="col-xs-12 col-sm-10 px-0">
+                    <input type="text" class="form-control" placeholder="049049304">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-12 px-0"><i class="icon-calendar-7"></i> Registration Expirey</label>
+                <div class="col-xs-12 col-sm-10 px-0">
+                    <input type="text" class="form-control date-pick" placeholder="mm/dd/yyyy">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-12 px-0">Registeration Image</label>
+                <div class="col-xs-12 col-sm-10 px-0">
+                    <input type="file" class="form-control">
+                    <small>*Please take a clean picture from your registeration and upload</small>
+                </div>
+            </div>
+        </div>
+
+        @* Right column *@
+        <div class="col-xs-12 col-sm-6 float-right-left">
+
+            <div class="form-group">
+                <label class="col-xs-12 px-0">Plate Number</label>
+                <div class="col-xs-12 col-sm-10 px-0">
+                    <input type="text" class="form-control" name="picture" placeholder="994384389">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-12 px-0">Registeration Number</label>
+                <div class="col-xs-12 col-sm-10 px-0">
+                    <input type="text" class="form-control" placeholder="049049304">
+                </div>
+            </div>
+
+        </div>
+
+        <div id="pass-info" class="clearfix"></div>
+        <div class="col-xs-12 col-sm-11 text-right px-10">
+            <button class="btn btn-default d-inline-block">Skip </button>
+            <button class="btn_1 d-inline-block">Continue <i class="icon-angle-double-right rotate-180"></i></button>
+        </div>
+    </form>
+
+</div>

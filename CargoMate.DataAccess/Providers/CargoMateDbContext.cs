@@ -2,6 +2,7 @@
 using CargoMate.DataAccess.Models.Customers;
 using CargoMate.DataAccess.Models.Transporters;
 using CargoMate.DataAccess.Models.Users;
+using CargoMate.DataAccess.Models.Vehicles;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -84,6 +85,11 @@ namespace CargoMate.DataAccess.Providers
         public virtual DbSet<DriverPersonalInfo> DriverPersonalInfos { get; set; }
 
         //************************** Transporters Data  END************************************************
+
+        public virtual DbSet<Vehicle> Vehicles { get; set; }
+        public virtual DbSet<VehicleImage> VehicleImages { get; set; }
+        public virtual DbSet<VehiclePayloadType> VehiclePayloadTypes { get; set; }
+        public virtual DbSet<VehicleTripType> VehicleTripTypes { get; set; }
 
 
         //************************** User Data  Start************************************************

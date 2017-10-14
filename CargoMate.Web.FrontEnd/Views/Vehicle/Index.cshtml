@@ -1,10 +1,16 @@
-﻿
+﻿@model CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels.VehicleViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
 @{
     ViewBag.Title = "Vehicle Details";
 }
 
 @section styles{
     <link href="~/Content/admin.css" rel="stylesheet">
+<link href="~/Scripts/Plugins/dropzone/dropzone.min.css" rel="stylesheet" />
     <style>
         #login {
             background-color: #f9f9f9;
@@ -12,6 +18,10 @@
 
         .tabs nav a:before {
             color: #0057e7;
+        }
+        .dropzone {
+            border: dashed;
+            border-color: rgb(25, 181, 254);
         }
     </style>
 }
@@ -30,23 +40,24 @@
         <div class="content">
 
             <section id="section-1">
-                @Html.Partial("Partials/_BasicInformation")
+                @Html.Partial("Partials/_BasicInformation",Model.BasicInformation)
             </section><!-- End section 1 -->
 
             <section id="section-2">
-                @Html.Partial("Partials/_VehicleScan")
+                @Html.Partial("Partials/_VehicleScan",Model.VehicleScan)
             </section><!-- End section 2 -->
 
             <section id="section-3">
-                @Html.Partial("Partials/_TripInformation")
+                @Html.Partial("Partials/_TripInformation",Model.TripInformation)
             </section><!-- End section 3 -->
 
-            <section id="section-4"><!-- End section 4 -->
+            <section id="section-4">
+                <!-- End section 4 -->
                 @Html.Partial("Partials/_VehicleImages")
             </section><!-- End section 4 -->
 
             <section id="section-5">
-                @Html.Partial("Partials/_InsuranceInformation")
+                @Html.Partial("Partials/_InsuranceInformation",Model.InsuranceInformation)
             </section><!-- End section 2 -->
 
         </div><!-- End content -->
@@ -54,7 +65,7 @@
 </div><!-- end container -->
 
 @section scripts{
-
+<script src="~/Scripts/Plugins/dropzone/dropzone.js"></script>
     <script src="~/Scripts/tabs.js"></script>
     <script>new CBPFWTabs( document.getElementById( 'tabs' ) );</script>
     <script>
@@ -65,3 +76,4 @@
     </script>
 
 }
+

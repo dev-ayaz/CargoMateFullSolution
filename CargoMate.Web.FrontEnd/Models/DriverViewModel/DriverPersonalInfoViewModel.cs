@@ -16,7 +16,7 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
         public DriverPersonalInfoFormModel()
         {
             CountriesList = new List<SelectListItem>();
-            FairTypes = new List<SelectListItem>();
+            FairTypes = new MultiSelectList(string.Empty, string.Empty);
         }
 
         [Required]
@@ -52,9 +52,9 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
 
         public string SubLocality { get; set; }
 
-        public long?[] FairTypeIds { get; set; }
+        public long?[] FairTypeId { get; set; }
 
-        public List<SelectListItem> FairTypes { get; set; }
+        public MultiSelectList FairTypes { get; set; }
     }
 
     public class DriverPersonalInfoDisplayModel

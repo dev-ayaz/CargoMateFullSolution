@@ -49,8 +49,8 @@
             <div class="form-group">
                 <label class="col-xs-12 px-0">Fair Type</label>
                 <div class="col-xs-12 col-sm-10 px-0">
-                    @Html.DropDownListFor(model => model.FairTypeIds, new MultiSelectList(Model.FairTypes, "Value", "Text"), "Please Select Fair Type", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.FairTypeIds, "", new { @class = "text-danger" })
+                    @Html.ListBoxFor(model => model.FairTypeId, Model.FairTypes, new { @class = "form-control", multiple = "multiple", size = 4})
+                    @Html.ValidationMessageFor(model => model.FairTypeId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
