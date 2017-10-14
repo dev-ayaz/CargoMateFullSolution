@@ -12,25 +12,22 @@
             <div class="form-group">
                 <label class="col-xs-12 px-0">Vehicle Type</label>
                 <div class="col-xs-12 col-sm-10 px-0">
-                    <select class="form-control select2">
-                        <option value="-1">-- Select --</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.VehicleTypeId, new SelectList(Model.VehicleTypes, "Value", "Text"), "Please Select Vehicle Type", new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.VehicleTypeId, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-xs-12 px-0">Vehicle Configuration</label>
                 <div class="col-xs-12 col-sm-10 px-0">
-                    <select class="form-control select2">
-                        <option value="-1">-- Select --</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.VehicleConfigurationId, new SelectList(Model.VehicleConfigurations, "Value", "Text"), "Please Select Vehicle Configuration", new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.VehicleConfigurationId, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-xs-12 px-0">Vehicle Capacity</label>
                 <div class="col-xs-12 col-sm-10 px-0">
-                    <select class="form-control select2">
-                        <option value="-1">-- Select --</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.VehicleCapacityId, new SelectList(Model.VehicleCapacities, "Value", "Text"), "Please Select Vehicle Capacity", new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.VehicleCapacityId, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -41,27 +38,24 @@
             <div class="form-group">
                 <label class="col-xs-12 px-0">Vehicle Make</label>
                 <div class="col-xs-12 col-sm-10 px-0">
-                    <select class="form-control select2">
-                        <option value="-1">-- Select --</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.VehicleMakeId, new SelectList(Model.VehicleMakes, "Value", "Text"), "Please Select Vehicle Make", new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.VehicleMakeId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-xs-12 px-0">Vehicle Model</label>
                 <div class="col-xs-12 col-sm-10 px-0">
-                    <select class="form-control select2">
-                        <option value="-1">-- Select --</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.VehicleModelId, new SelectList(Model.VehicleModels, "Value", "Text"), "Please Select Vehicle Model", new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.VehicleModelId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-xs-12 px-0">Vehicle Year</label>
                 <div class="col-xs-12 col-sm-10 px-0">
-                    <select class="form-control select2">
-                        <option value="-1">-- Select --</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.VehicleModelYearId, new SelectList(Model.VehicleModelYears, "Value", "Text"), "Please Select Vehicle Year", new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.VehicleModelYearId, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -69,8 +63,7 @@
 
         <div id="pass-info" class="clearfix"></div>
         <div class="col-xs-12 col-sm-11 text-right px-10">
-            <button class="btn btn-default d-inline-block">Skip </button>
-            <button class="btn_1 d-inline-block">Continue <i class="icon-angle-double-right rotate-180"></i></button>
+            <button type="submit" class ="btn_1 d-inline-block"> Save Basic Info <i class="icon-angle-double-right rotate-180"></i></button>
         </div>
     </form>
 
