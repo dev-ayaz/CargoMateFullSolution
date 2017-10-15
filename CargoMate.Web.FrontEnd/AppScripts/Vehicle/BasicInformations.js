@@ -1,46 +1,73 @@
 ﻿var Vehicles = {
     Selectors: {
-        ConfigurationDropDown: "#ConfigurationId",
-        TypedropDown: "#TypeId",
-        CapacityDropDown: "#CapacityId",
-        MakeDropDown: "#MakeId",
-        ModelDropDown: "#ModelId",
-        YearDropDown: "#YearId",
-        PayLoadTypesDropDown: "#PayLoadTypes",
-        TripTypesDropDown: "#TripTypes"
+        VehicleConfigurationDropDown: "#VehicleConfigurationId",
+        VehicleTypeDropDown: "#VehicleTypeId",
+        VehicleCapacityDropDown: "#VehicleCapacityId",
+        VehicleMakeDropDown: "#VehicleMakeId",
+        VehicleModelDropDown: "#VehicleModelId",
+        VehicleModelYearDropDown: "#VehicleModelYearId",
+        PayLoadTypesDropDown: "#PayLoadTypeIds",
+        TripTypesDropDown: "#TripTypeIds"
     },
     Services: {
 
         Controller: "Vehicle",
         Actions: {
-            ConfigurationList: "ConfigurationList",
-            CapacitiesList: "CapacitiesList",
-            ModelList: "ModelList",
-            YearsList: "YearsList",
-            PayLoadTypeList: "PayLoadTypeList",
-            TriptypesList: "TriptypesList"
+            MakeAutoComplete:"MakeAutoComplete",
+            VehicleConfigurationsAutoComplete: "VehicleConfigurationsAutoComplete",
+            VehicleCapacitiesAutoComplete: "VehicleCapacitiesAutoComplete",
+            ModelsAutoComplete: "ModelsAutoComplete",
+            ModelYearAutoComplete: "ModelYearAutoComplete",
+            PayloadTypesAutoComplete: "PayloadTypesAutoComplete"
         }
     },
     CallBacks: {
         InsertSuccess: function (response) {
             CargoMateAlerts.actionAlert(response.MessageHeader, response.Message, response.IsError);
         },
+        VehicleMakes: function ($this) {
+ 
+            var $makeDropDown = $this.closest("form").find(Vehicles.Selectors.VehicleMakeDropDown);
 
-        ConfigurationList: function ($this) {
+            $makeDropDown.val(null).trigger("change").empty();
 
-            var $configurationDropDown = $this.closest("form").find(Vehicles.Selectors.ConfigurationDropDown);
+            var options = "<option value=''>Please select vehicle make </option>";
 
-            $configurationDropDown.val(null).trigger("change").empty();
-
-            var options = "<option value=''>Please Select a Configuration </option>";
-
-            var url = [RequestHandler.getSiteRoot(), Vehicles.Services.controller, "/", Vehicles.Services.Actions.ConfigurationList].join("");
+            var url = [RequestHandler.getSiteBase(), "/", Vehicles.Services.Controller, "/", Vehicles.Services.Actions.MakeAutoComplete].join("");
 
             var typeId = $this.val();
 
             if (typeId) {
 
-                $.getJSON(url, { typeId: typeId }, function (data) {
+                $.getJSON(url, { vehicletypeId: typeId }, function (data) {
+
+                    $.each(data,
+                        function (i, item) {
+                            options += "<option value='" + item.Value + "'> " + item.Text + "</option>";
+                        });
+
+                    $makeDropDown.html(options);
+                });
+            }
+            else {
+                $makeDropDown.html(options);
+            }
+        },
+        ConfigurationList: function ($this) {
+
+            var $configurationDropDown = $this.closest("form").find(Vehicles.Selectors.VehicleConfigurationDropDown);
+
+            $configurationDropDown.val(null).trigger("change").empty();
+
+            var options = "<option value=''>Please Select a Configuration </option>";
+
+            var url = [RequestHandler.getSiteBase(), "/", Vehicles.Services.Controller, "/", Vehicles.Services.Actions.VehicleConfigurationsAutoComplete].join("");
+
+            var typeId = $this.val();
+
+            if (typeId) {
+
+                $.getJSON(url, { vehicletypeId: typeId }, function (data) {
 
                     $.each(data,
                         function (i, item) {
@@ -62,13 +89,13 @@
 
             var options = "<option value=''>Please Select Pay Load Types </option>";
 
-            var url = [RequestHandler.getSiteRoot(), Vehicles.Services.controller, "/", Vehicles.Services.Actions.PayLoadTypeList].join("");
+            var url = [RequestHandler.getSiteBase(), "/", Vehicles.Services.Controller, "/", Vehicles.Services.Actions.PayloadTypesAutoComplete].join("");
 
             var typeId = $this.val();
 
             if (typeId) {
 
-                $.getJSON(url, { typeId: typeId }, function (data) {
+                $.getJSON(url, { vehicletypeId: typeId }, function (data) {
 
                     $.each(data,
                         function (i, item) {
@@ -84,19 +111,19 @@
         },
         CapacityList: function ($this) {
 
-            var $capacityDropDown = $this.closest("form").find(Vehicles.Selectors.CapacityDropDown);
+            var $capacityDropDown = $this.closest("form").find(Vehicles.Selectors.VehicleCapacityDropDown);
 
             $capacityDropDown.val(null).trigger("change").empty();
 
             var options = "<option value=''>Please Select a Capacity </option>";
 
-            var url = [RequestHandler.getSiteRoot(), Vehicles.Services.controller, "/", Vehicles.Services.Actions.CapacitiesList].join("");
+            var url = [RequestHandler.getSiteBase(), "/", Vehicles.Services.Controller, "/", Vehicles.Services.Actions.VehicleCapacitiesAutoComplete].join("");
 
             var typeId = $this.val();
 
             if (typeId) {
 
-                $.getJSON(url, { typeId: typeId }, function (data) {
+                $.getJSON(url, { vehicletypeId: typeId }, function (data) {
 
                     $.each(data,
                         function (i, item) {
@@ -112,13 +139,13 @@
         },
         ModelsList: function ($this) {
 
-            var $modelDropDown = $this.closest("form").find(Vehicles.Selectors.ModelDropDown);
+            var $modelDropDown = $this.closest("form").find(Vehicles.Selectors.VehicleModelDropDown);
 
             $modelDropDown.val(null).trigger("change").empty();
 
             var options = "<option value=''>Please Select a Model </option>";
 
-            var url = [RequestHandler.getSiteRoot(), Vehicles.Services.controller, "/", Vehicles.Services.Actions.ModelList].join("");
+            var url = [RequestHandler.getSiteBase(), "/", Vehicles.Services.Controller, "/", Vehicles.Services.Actions.ModelsAutoComplete].join("");
 
             var makeId = $this.val();
 
@@ -140,13 +167,13 @@
         },
         YearList: function ($this) {
 
-            var $yearDropDown = $this.closest("form").find(Vehicles.Selectors.YearDropDown);
+            var $yearDropDown = $this.closest("form").find(Vehicles.Selectors.VehicleModelYearDropDown);
 
             $yearDropDown.val(null).trigger("change").empty();
 
             var options = "<option value=''>Please Select a Year </option>";
 
-            var url = [RequestHandler.getSiteRoot(), Vehicles.Services.controller, "/", Vehicles.Services.Actions.YearsList].join("");
+            var url = [RequestHandler.getSiteBase(), "/", Vehicles.Services.Controller, "/", Vehicles.Services.Actions.ModelYearAutoComplete].join("");
 
             var modelId = $this.val();
 
@@ -174,7 +201,7 @@
 
             var options = "<option value=''>Please Select Trip Types </option>";
 
-            var url = [RequestHandler.getSiteRoot(), Vehicles.Services.controller, "/", Vehicles.Services.Actions.TriptypesList].join("");
+            var url = [RequestHandler.getSiteBase(), "/", Vehicles.Services.Controller, "/", Vehicles.Services.Actions.TriptypesList].join("");
 
             var modelId = $this.val();
 
@@ -196,20 +223,24 @@
         }
     },
     InitEvents: function () {
-        $(Vehicles.Selectors.TypedropDown + ":not(.bound)").addClass("bound").change(function() {
+        $(Vehicles.Selectors.VehicleTypeDropDown + ":not(.bound)").addClass("bound").change(function () {
 
+            Vehicles.CallBacks.VehicleMakes($(this));
             Vehicles.CallBacks.ConfigurationList($(this));
             Vehicles.CallBacks.CapacityList($(this));
             Vehicles.CallBacks.PayLoadTypesList($(this));
         });
-        $(Vehicles.Selectors.MakeDropDown + ":not(.bound)").addClass("bound").change(function () {
+        $(Vehicles.Selectors.VehicleMakeDropDown + ":not(.bound)").addClass("bound").change(function () {
 
             Vehicles.CallBacks.ModelsList($(this));
         });
-        $(Vehicles.Selectors.ModelDropDown + ":not(.bound)").addClass("bound").change(function () {
+        $(Vehicles.Selectors.VehicleModelDropDown + ":not(.bound)").addClass("bound").change(function () {
 
             Vehicles.CallBacks.YearList($(this));
-            Vehicles.CallBacks.TripTypeList($(this));
         });
     }
 }
+
+jQuery(document).ready(function () {
+    Vehicles.InitEvents();
+});

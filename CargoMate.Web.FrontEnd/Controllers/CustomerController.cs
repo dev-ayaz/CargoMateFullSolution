@@ -37,10 +37,11 @@ namespace CargoMate.Web.FrontEnd.Controllers
             if (string.IsNullOrEmpty(customer.Address) || string.IsNullOrEmpty(customer.Name) ||
                                    string.IsNullOrEmpty(customer.PhoneNumber))
             {
-                return Json(new { IsExists = true, RedirectUrl = Url.Action("EditCustomer", "Customer", new { customerId = userId }) }, JsonRequestBehavior.AllowGet);
+                return Json(new { IsExists = true, RedirectUrl = Url.Action("EditCustomer", "Customer", new { userId = userId }) }, JsonRequestBehavior.AllowGet);
             }
 
-            Session[SessionKeys.CustomerId] = userId;
+            SetSession(customer);
+
             return Json(new { IsExists = true }, JsonRequestBehavior.AllowGet);
         }
 
@@ -83,9 +84,9 @@ namespace CargoMate.Web.FrontEnd.Controllers
             });
         }
 
-        public ActionResult EditCustomer(string customerId)
+        public ActionResult EditCustomer(string userId)
         {
-            var customer = UnitOfWork.Customers.GetWhere(c => c.CustomerId == customerId).ToList().Select(c => new CustomerFormModel
+            var customer = UnitOfWork.Customers.GetWhere(c => c.CustomerId == userId).ToList().Select(c => new CustomerFormModel
             {
                 Address = c.Address,
                 CompanyId = c.CompanyId,
@@ -100,6 +101,8 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 Gender=c.Gender
             }).FirstOrDefault();
 
+           
+
             return View(customer);
 
         }
@@ -112,7 +115,6 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 return Json(CargoMateMessages.ModelError);
             }
 
-            var location = customerForm.Location.Contains("Point") ? customerForm.Location : (!string.IsNullOrEmpty(customerForm.Location) ? $"POINT({customerForm.Location?.Replace(",", " "),4326 })": string.Empty);
             UnitOfWork.Customers.Update(new Customer
             {
                 Id = customerForm.Id,
@@ -122,17 +124,16 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 CustomerId = customerForm.CustomerId,
                 CompanyId = customerForm.CompanyId,
                 Gender = customerForm.Gender,
-                ImageUrl = CargoMateImageHandler.SaveImageFromBase64(customerForm.ImageSrc, GlobalProperties.CustomerImagesFolder),
+                ImageUrl = CargoMateImageHandler.SaveImageFromBase64(customerForm.ImageSrc, GlobalProperties.UserImagesFolder),
                 Name = customerForm.Name,
                 PhoneNumber = customerForm.PhoneNumber,
-                Location = !string.IsNullOrEmpty(location)?DbGeography.FromText(location,4326) : null
+                Location = Utilities.StringtoDbGeography(customerForm.Location) 
 
             });
 
-            return
-                Json(UnitOfWork.Commit() > 0
-                    ? CargoMateMessages.SuccessResponse
-                    : CargoMateMessages.FailureResponse);
+            SetSession(UnitOfWork.Customers.GetWhere(c=>c.CustomerId==customerForm.CustomerId).FirstOrDefault());
+
+            return Json(UnitOfWork.Commit() > 0 ? CargoMateMessages.SuccessResponse : CargoMateMessages.FailureResponse);
 
 
         }
@@ -153,6 +154,16 @@ namespace CargoMate.Web.FrontEnd.Controllers
 
         public ActionResult CustomerSignIn() {
             return View();
+        }
+
+        public void SetSession(Customer customer)
+        {
+            SessionHandler.UserId = customer.CustomerId;
+            SessionHandler.UserType = Enums.UserType.Driver;
+            SessionHandler.UserName = customer.Name;
+            SessionHandler.UserImage = customer.ImageUrl;
+            SessionHandler.UserEmail = customer.EmailAddress;
+            SessionHandler.UserProfile = "Customer/EditCustomer?userId=" + customer.CustomerId;
         }
     }
 }

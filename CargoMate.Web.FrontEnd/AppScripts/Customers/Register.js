@@ -32,7 +32,7 @@
                 data: JSON.stringify(userModel),
                 success: function(data) {
                     CargoMateAlerts.actionAlert(data.MessageHeader, data.Message, data.IsError);
-                    location.href = "/Customer/EditCustomer?customerId=" + user.uid;
+                    location.href = "/Customer/EditCustomer?userId=" + user.uid;
                 },
                 error: function (data) { console.log(data) }
             });
@@ -57,7 +57,7 @@
 
         $(CustomerRegistration.selectors.CustomerRegistrationForm).submit(function (e) {
             var a = $(CustomerRegistration.selectors.EmailAddress).val();
-            debugger;
+
             e.preventDefault();
             firebaseUtilFunc.createUserWithEmailAndPassword($(CustomerRegistration.selectors.EmailAddress).val(), $(CustomerRegistration.selectors.Password).val()).then(function (response) {
                 if (response.IsError) {

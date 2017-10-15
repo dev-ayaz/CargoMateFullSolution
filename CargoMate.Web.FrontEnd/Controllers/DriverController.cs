@@ -28,9 +28,9 @@ namespace CargoMate.Web.FrontEnd.Controllers
             return View();
         }
 
-        public ActionResult Edit(string driverId)
+        public ActionResult Edit(string userId)
         {
-            var driver = UnitOfWork.DriverPersonalInfos.GetWhere(d => d.Id == driverId)
+            var driver = UnitOfWork.DriverPersonalInfos.GetWhere(d => d.Id == userId)
                         .ToList()
                         .Select(d => new DriverPersonalInfoFormModel
                         {
@@ -64,7 +64,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 ResidenceExpiryDate=ld.ResidenceExpiryDate,
                 ResidenceImage=ld.ResidenceImage,
                 ResidenceNumber=ld.ResidenceNumber
-            }).FirstOrDefault() ?? new DriverLegalDocumentsFormModel{Id =driverId};
+            }).FirstOrDefault() ?? new DriverLegalDocumentsFormModel{Id = userId };
 
             var driverModel = new DriverViewModel
             {
@@ -88,7 +88,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 EmailAddress = driverForm.EmailAddress,
                 DateOfBirth = Convert.ToDateTime(driverForm.DateOfBirth, CultureInfo.InvariantCulture),
                 Gender = driverForm.Gender,
-                ImageUrl = CargoMateImageHandler.SaveImageFromBase64(driverForm.ImageUrl, GlobalProperties.DriverImagesFolder),
+                ImageUrl = CargoMateImageHandler.SaveImageFromBase64(driverForm.ImageUrl, GlobalProperties.UserImagesFolder),
                 Name = driverForm.Name,
                 LegalName = driverForm.LegalName,
                 PhoneNumber = driverForm.PhoneNumber,
@@ -176,10 +176,16 @@ namespace CargoMate.Web.FrontEnd.Controllers
 
             if (string.IsNullOrEmpty(driver.EmailAddress) || string.IsNullOrEmpty(driver.Name) || string.IsNullOrEmpty(driver.PhoneNumber))
             {
-                return Json(new { IsExist = true, RedirectUrl = Url.Action("Edit", "Driver", new { driverId = userId }) }, JsonRequestBehavior.AllowGet);
+                return Json(new { IsExist = true, RedirectUrl = Url.Action("Edit", "Driver", new { userId = userId }) }, JsonRequestBehavior.AllowGet);
             }
 
-            Session[SessionKeys.DriverId] = userId;
+            SessionHandler.UserId = userId;
+            SessionHandler.UserType = Enums.UserType.Driver;
+            SessionHandler.UserName = driver.Name;
+            SessionHandler.UserImage = driver.ImageUrl;
+            SessionHandler.UserEmail = driver.EmailAddress;
+            SessionHandler.UserProfile = "Driver/Edit?userId="+userId;
+
             return Json(new { IsExists = true }, JsonRequestBehavior.AllowGet);
         }
 

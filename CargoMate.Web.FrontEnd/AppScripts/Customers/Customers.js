@@ -34,7 +34,7 @@
 
                     window.location.href = response.RedirectUrl;
                 } else {
-                    debugger;
+
                     window.location.href = RequestHandler.getSiteBase();
                 }
             });

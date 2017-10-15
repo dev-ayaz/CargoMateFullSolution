@@ -12,8 +12,6 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
 
         public VehicleScan VehicleScan { get; set; }
 
-        public TripInformation TripInformation { get; set; }
-
         public InsuranceInformation InsuranceInformation { get; set; }
 
     }
@@ -29,6 +27,8 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
             VehicleMakes = new List<SelectListItem>();
             VehicleModels = new List<SelectListItem>();
             VehicleModelYears = new List<SelectListItem>();
+            TripTypes = new MultiSelectList(string.Empty, string.Empty);
+            PayLoadTypes = new MultiSelectList(string.Empty, string.Empty);
         }
 
         public long VehicleId { get; set; }
@@ -57,6 +57,14 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
 
         public List<SelectListItem> VehicleModelYears { get; set; }
 
+        public int?[] TripTypeIds { get; set; }
+
+        public MultiSelectList TripTypes { get; set; }
+
+        public int?[] PayLoadTypeIds { get; set; }
+
+        public MultiSelectList PayLoadTypes { get; set; }
+
     }
 
     public class VehicleScan
@@ -74,18 +82,6 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
         public DateTime? RegistrationExpiry { get; set; }
     }
 
-    public class TripInformation
-    {
-        public long VehicleId { get; set; }
-
-        public int?[] TripTypeIds { get; set; }
-
-        public MultiSelectList TripTypes { get; set; }
-
-        public int?[] PayLoadTypeIds { get; set; }
-
-        public MultiSelectList PayLoadTypes { get; set; }
-    }
 
     public class InsuranceInformation
     {

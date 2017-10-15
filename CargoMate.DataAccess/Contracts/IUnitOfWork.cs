@@ -3,6 +3,7 @@ using CargoMate.DataAccess.Models.BasicData.Localizations;
 using CargoMate.DataAccess.Models.Customers;
 using CargoMate.DataAccess.Models.Transporters;
 using CargoMate.DataAccess.Models.Users;
+using CargoMate.DataAccess.Models.Vehicles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,11 @@ namespace CargoMate.DataAccess.Contracts
         IRepository<DriverLegalDocument> DriverLegalDocuments { get; }
         IRepository<DriverPersonalInfo> DriverPersonalInfos { get; }
         IRepository<DriverFareType> DriverFareTypes { get; }
+
+        IRepository<Vehicle> Vehicles { get; }
+        IRepository<VehicleImage> VehicleImages { get; }
+        IRepository<VehiclePayloadType> VehiclePayloadTypes { get; }
+        IRepository<VehicleTripType> VehicleTripTypes { get; }
         //************************** Transporters Data  END************************************************
 
         IRepository<UserRole> UserRoles { get; }

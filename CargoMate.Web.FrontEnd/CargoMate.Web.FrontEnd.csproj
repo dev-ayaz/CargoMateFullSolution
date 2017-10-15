@@ -205,6 +205,7 @@
     <Compile Include="Models\VehicleViewModel\WeightViewModel.cs" />
     <Compile Include="Shared\CargoMateImageHandler.cs" />
     <Compile Include="Shared\CargoMateMessages.cs" />
+    <Compile Include="Shared\Enums.cs" />
     <Compile Include="Shared\GlobalProperties.cs" />
     <Compile Include="Shared\PredicateBuilder.cs" />
     <Compile Include="Shared\SessionHandler.cs" />
@@ -925,7 +926,6 @@
     <Content Include="Views\Vehicle\Index.cshtml" />
     <Content Include="Views\Vehicle\Partials\_BasicInformation.cshtml" />
     <Content Include="Views\Vehicle\Partials\_VehicleScan.cshtml" />
-    <Content Include="Views\Vehicle\Partials\_TripInformation.cshtml" />
     <Content Include="Views\Vehicle\Partials\_InsuranceInformation.cshtml" />
     <Content Include="Views\Vehicle\Partials\_VehicleImages.cshtml" />
   </ItemGroup>
@@ -935,6 +935,7 @@
     <Folder Include="SystemImages\DriverDocumentsImages\" />
     <Folder Include="SystemImages\DriverImages\" />
     <Folder Include="SystemImages\FrontEndImages\" />
+    <Folder Include="SystemImages\UserImages\" />
     <Folder Include="SystemImages\VehicleImages\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

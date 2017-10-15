@@ -68,7 +68,9 @@
                     CustomerLogin.callbacks.registerCustomer(user);
                 }
                 else {
+
                     CargoMateAlerts.actionAlert("Success", "Successfully login !", false);
+                    setTimeout(window.location.reload(), 100);
                 }
             });
         }

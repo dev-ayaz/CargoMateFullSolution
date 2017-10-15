@@ -7,7 +7,17 @@ namespace CargoMate.Web.FrontEnd.Shared
 {
     public class SessionKeys
     {
-        public static string DriverId = "SessionKeys:DriverId";
+        public static string UserId = "SessionKeys:UserId";
+
+        public static string UserName = "SessionKeys:UserName";
+
+        public static string UserImage = "SessionKeys:UserImage";
+
+        public static string UserEmail = "SessionKeys:UserEmail";
+
+        public static string UserProfile = "SessionKeys:UserProfile";
+
+        public static string UserType = "SessionKeys:UserType";
 
         public static string CultureCode = "SessionKeys:CultureCode";
 

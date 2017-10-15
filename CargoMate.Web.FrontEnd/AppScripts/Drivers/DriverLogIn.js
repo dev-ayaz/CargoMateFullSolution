@@ -37,13 +37,18 @@
 
             RequestHandler.postToController(url, RequestHandler.formMethods.Get, { userId: user.uid }, function (response) {
 
-
-                if (response.RedirectUrl && response.IsExist) {
+                if (response.RedirectUrl && response.IsExists) {
 
                     window.location.href = response.RedirectUrl;
                 }
-                else if (!response.IsExist) {
+                else if (!response.IsExists) {
                     DriverLogin.callbacks.registerDriver(user);
+                }
+                else {
+
+                    CargoMateAlerts.actionAlert("Success", "Successfully login !", false);
+                    setTimeout(window.location.reload(), 100);
+                    
                 }
             });
         },
@@ -63,7 +68,7 @@
                 data: JSON.stringify(userModel),
                 success: function (data) {
                     CargoMateAlerts.actionAlert(data.MessageHeader, data.Message, data.IsError);
-                    location.href = "/Driver/Edit?driverId=" + user.uid;
+                    location.href = "/Driver/Edit?userId=" + user.uid;
                 },
                 error: function (data) { console.log(data) }
             });
@@ -78,7 +83,7 @@
             console.log(user);
         });
         $(DriverLogin.selectors.signInWithGoogleButton + ":not(.bound)").addClass("bound").click(function () {
-            debugger;
+
             firebaseUtilFunc.signInwithGoogle().then(function (response) {
                 if (response.IsError) {
                     CargoMateAlerts.actionAlert("Error", response.result, true);

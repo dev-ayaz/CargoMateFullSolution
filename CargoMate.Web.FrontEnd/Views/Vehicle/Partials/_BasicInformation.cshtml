@@ -17,17 +17,25 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-xs-12 px-0">Vehicle Model</label>
+                <div class="col-xs-12 col-sm-10 px-0">
+                    @Html.DropDownListFor(model => model.VehicleModelId, new SelectList(Model.VehicleModels, "Value", "Text"), "Please Select Vehicle Model", new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.VehicleModelId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-xs-12 px-0">Vehicle Configuration</label>
                 <div class="col-xs-12 col-sm-10 px-0">
                     @Html.DropDownListFor(model => model.VehicleConfigurationId, new SelectList(Model.VehicleConfigurations, "Value", "Text"), "Please Select Vehicle Configuration", new { @class = "form-control select2" })
                     @Html.ValidationMessageFor(model => model.VehicleConfigurationId, "", new { @class = "text-danger" })
                 </div>
             </div>
+
             <div class="form-group">
-                <label class="col-xs-12 px-0">Vehicle Capacity</label>
+                <label class="col-xs-12 px-0">Trip Types</label>
                 <div class="col-xs-12 col-sm-10 px-0">
-                    @Html.DropDownListFor(model => model.VehicleCapacityId, new SelectList(Model.VehicleCapacities, "Value", "Text"), "Please Select Vehicle Capacity", new { @class = "form-control select2" })
-                    @Html.ValidationMessageFor(model => model.VehicleCapacityId, "", new { @class = "text-danger" })
+                    @Html.ListBoxFor(model => model.TripTypeIds, Model.TripTypes, new { @class = "form-control", multiple = "multiple", size = 4 })
+                    @Html.ValidationMessageFor(model => model.TripTypeIds, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -42,20 +50,25 @@
                     @Html.ValidationMessageFor(model => model.VehicleMakeId, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="col-xs-12 px-0">Vehicle Model</label>
-                <div class="col-xs-12 col-sm-10 px-0">
-                    @Html.DropDownListFor(model => model.VehicleModelId, new SelectList(Model.VehicleModels, "Value", "Text"), "Please Select Vehicle Model", new { @class = "form-control select2" })
-                    @Html.ValidationMessageFor(model => model.VehicleModelId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
             <div class="form-group">
                 <label class="col-xs-12 px-0">Vehicle Year</label>
                 <div class="col-xs-12 col-sm-10 px-0">
                     @Html.DropDownListFor(model => model.VehicleModelYearId, new SelectList(Model.VehicleModelYears, "Value", "Text"), "Please Select Vehicle Year", new { @class = "form-control select2" })
                     @Html.ValidationMessageFor(model => model.VehicleModelYearId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-12 px-0">Vehicle Capacity</label>
+                <div class="col-xs-12 col-sm-10 px-0">
+                    @Html.DropDownListFor(model => model.VehicleCapacityId, new SelectList(Model.VehicleCapacities, "Value", "Text"), "Please Select Vehicle Capacity", new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.VehicleCapacityId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-12 px-0">Payload Types</label>
+                <div class="col-xs-12 col-sm-10 px-0">
+                    @Html.ListBoxFor(model => model.PayLoadTypeIds, Model.PayLoadTypes, new { @class = "form-control", multiple = "multiple", size = 4 })
+                    @Html.ValidationMessageFor(model => model.PayLoadTypeIds, "", new { @class = "text-danger" })
                 </div>
             </div>
 

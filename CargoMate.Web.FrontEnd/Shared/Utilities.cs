@@ -10,9 +10,9 @@ namespace CargoMate.Web.FrontEnd.Shared
             if (string.IsNullOrEmpty(location)){
                 return null;
             }
-            else if (location.Contains("Point"))
+            else if (location.Contains("POINT"))
             {
-                return DbGeography.FromText(location, 4326);
+                return DbGeography.FromText(location.Split(';')[1], 4326);
             }
             return DbGeography.FromText($"POINT({location?.Replace(",", " "),4326 })");
         }

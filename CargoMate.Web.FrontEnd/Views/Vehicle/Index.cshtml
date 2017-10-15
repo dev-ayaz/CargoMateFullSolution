@@ -10,7 +10,7 @@
 
 @section styles{
     <link href="~/Content/admin.css" rel="stylesheet">
-<link href="~/Scripts/Plugins/dropzone/dropzone.min.css" rel="stylesheet" />
+    <link href="~/Scripts/Plugins/dropzone/dropzone.min.css" rel="stylesheet" />
     <style>
         #login {
             background-color: #f9f9f9;
@@ -19,6 +19,7 @@
         .tabs nav a:before {
             color: #0057e7;
         }
+
         .dropzone {
             border: dashed;
             border-color: rgb(25, 181, 254);
@@ -32,7 +33,6 @@
             <ul>
                 <li><a href="#section-1" class="icon-truck-1"><span>Vehicle Information</span></a></li>
                 <li><a href="#section-2" class="icon-list-1"><span>Vehicle Scan</span></a></li>
-                <li><a href="#section-3" class="icon-road-1"><span>Trip Information</span></a></li>
                 <li><a href="#section-4" class="icon-camera-1"><span>Vehicle Images</span></a></li>
                 <li><a href="#section-5" class="icon-credit-card-4"><span>Insurrance Information</span></a></li>
             </ul>
@@ -40,16 +40,15 @@
         <div class="content">
 
             <section id="section-1">
-                @Html.Partial("Partials/_BasicInformation",Model.BasicInformation)
+                @using (Ajax.BeginForm("Addvehicle", "Vehicle", null, new AjaxOptions { HttpMethod = "POST",OnSuccess= "Vehicles.CallBacks.InsertSuccess" }, new { @class = "form-actual", id = "VehicleRegistrationForm" }))
+                {
+                    @Html.Partial("Partials/_BasicInformation", Model.BasicInformation)
+                }
             </section><!-- End section 1 -->
 
             <section id="section-2">
-                @Html.Partial("Partials/_VehicleScan",Model.VehicleScan)
+                @Html.Partial("Partials/_VehicleScan", Model.VehicleScan)
             </section><!-- End section 2 -->
-
-            <section id="section-3">
-                @Html.Partial("Partials/_TripInformation",Model.TripInformation)
-            </section><!-- End section 3 -->
 
             <section id="section-4">
                 <!-- End section 4 -->
@@ -57,7 +56,7 @@
             </section><!-- End section 4 -->
 
             <section id="section-5">
-                @Html.Partial("Partials/_InsuranceInformation",Model.InsuranceInformation)
+                @Html.Partial("Partials/_InsuranceInformation", Model.InsuranceInformation)
             </section><!-- End section 2 -->
 
         </div><!-- End content -->
@@ -65,14 +64,16 @@
 </div><!-- end container -->
 
 @section scripts{
-<script src="~/Scripts/Plugins/dropzone/dropzone.js"></script>
+
+    <script src="~/AppScripts/Vehicle/BasicInformations.js"></script>
+    <script src="~/Scripts/Plugins/dropzone/dropzone.js"></script>
     <script src="~/Scripts/tabs.js"></script>
-    <script>new CBPFWTabs( document.getElementById( 'tabs' ) );</script>
+    <script>new CBPFWTabs(document.getElementById('tabs'));</script>
     <script>
-	$('.wishlist_close_admin').on('click', function(c){
-		$(this).parent().parent().parent().fadeOut('slow', function(c){
-		});
-	});
+        $('.wishlist_close_admin').on('click', function (c) {
+            $(this).parent().parent().parent().fadeOut('slow', function (c) {
+            });
+        });
     </script>
 
 }
