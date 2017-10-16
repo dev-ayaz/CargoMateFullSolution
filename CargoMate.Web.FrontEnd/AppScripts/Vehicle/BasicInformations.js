@@ -7,7 +7,9 @@
         VehicleModelDropDown: "#VehicleModelId",
         VehicleModelYearDropDown: "#VehicleModelYearId",
         PayLoadTypesDropDown: "#PayLoadTypeIds",
-        TripTypesDropDown: "#TripTypeIds"
+        TripTypesDropDown: "#TripTypeIds",
+        ImageUrl: "#RegistrationImage",
+        ImageSrc:"#ImageSrc"
     },
     Services: {
 
@@ -223,6 +225,23 @@
         }
     },
     InitEvents: function () {
+
+        $(Vehicles.Selectors.ImageSrc + ":not(.bound)").addClass("bound").change(function () {
+
+            var imageInput = $(this);
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+
+                    $(imageInput.closest("form").find(Vehicles.Selectors.ImageUrl)).val(e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
         $(Vehicles.Selectors.VehicleTypeDropDown + ":not(.bound)").addClass("bound").change(function () {
 
             Vehicles.CallBacks.VehicleMakes($(this));

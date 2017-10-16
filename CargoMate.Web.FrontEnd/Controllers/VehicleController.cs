@@ -170,6 +170,30 @@ namespace CargoMate.Web.FrontEnd.Controllers
             return Json(UnitOfWork.Commit() > 0 ? CargoMateMessages.SuccessResponse : CargoMateMessages.FailureResponse);
         }
 
+        public JsonResult AddvehicleInsurance(InsuranceInformation insuranceInformation)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(CargoMateMessages.ModelError);
+            }
+
+            var vehicle = UnitOfWork.Vehicles.GetWhere(v => v.Id == insuranceInformation.VehicleId).FirstOrDefault();
+
+            if (vehicle == null)
+            {
+                return Json(CargoMateMessages.FailureResponse);
+            }
+
+            vehicle.InsuranceCompanyId = insuranceInformation.InsuranceCompanyId;
+            vehicle.InsuranceAmount = insuranceInformation.InsuranceAmount;
+            vehicle.InsuranceExpirey = insuranceInformation.InsuranceExpirey;
+            vehicle.PolicyNumber = insuranceInformation.PolicyNumber;
+            vehicle.IsInsured = true;
+            UnitOfWork.Vehicles.Update(vehicle);
+            return Json(UnitOfWork.Commit() > 0 ? CargoMateMessages.SuccessResponse : CargoMateMessages.FailureResponse);
+        }
+        
+
         public JsonResult MakeAutoComplete(long vehicletypeId)
         {
             var vehicleMakes = UnitOfWork.VehicleMakes.GetWhere(m => m.VehicleTypeId == vehicletypeId).Select(c => new SelectListItem
