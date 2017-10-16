@@ -270,6 +270,7 @@
     <Content Include="AppScripts\Drivers\Register.js" />
     <Content Include="AppScripts\FireBase\Configurations.js" />
     <Content Include="AppScripts\Vehicle\BasicInformations.js" />
+    <Content Include="AppScripts\Vehicle\VehicleImages.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\animate.css" />

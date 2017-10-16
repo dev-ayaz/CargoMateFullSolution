@@ -15,7 +15,7 @@ namespace CargoMate.DataAccess.Models.Vehicles
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        public long VehicleId { get; set; }
+        public long? VehicleId { get; set; }
 
         public string ImageUrl { get; set; }
 

@@ -156,6 +156,5 @@
       <DependentUpon>201710151938407_Driver Id modified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

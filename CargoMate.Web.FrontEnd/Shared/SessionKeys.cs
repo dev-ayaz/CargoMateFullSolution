@@ -19,7 +19,9 @@ namespace CargoMate.Web.FrontEnd.Shared
 
         public static string UserType = "SessionKeys:UserType";
 
-        public static string CultureCode = "SessionKeys:CultureCode";
+        public static string CultureCode = "SessionKeys:CultureCode"; 
+
+        public static string VehicleId = "SessionKeys:VehicleId";
 
         public static string CustomerId = "SessionKeys:CustomerId";
 

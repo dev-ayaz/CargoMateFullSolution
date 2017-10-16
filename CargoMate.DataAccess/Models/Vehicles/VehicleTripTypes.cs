@@ -18,7 +18,7 @@ namespace CargoMate.DataAccess.Models.Vehicles
 
         public long VehicleId { get; set; }
 
-        public long TripTypeId { get; set; }
+        public long? TripTypeId { get; set; }
 
         public virtual Vehicle Vehicle { get; set; }
 

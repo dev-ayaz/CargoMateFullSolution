@@ -33,23 +33,23 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
 
         public long VehicleId { get; set; }
 
-        public long VehicleTypeId { get; set; }
+        public long? VehicleTypeId { get; set; }
 
         public List<SelectListItem> VehicleTypes { get; set; }
 
-        public long VehicleMakeId { get; set; }
+        public long? VehicleMakeId { get; set; }
 
         public List<SelectListItem> VehicleMakes { get; set; }
 
-        public long VehicleConfigurationId { get; set; }
+        public long? VehicleConfigurationId { get; set; }
 
         public List<SelectListItem> VehicleConfigurations { get; set; }
 
-        public long VehicleModelId { get; set; }
+        public long? VehicleModelId { get; set; }
 
         public List<SelectListItem> VehicleModels { get; set; }
 
-        public long VehicleCapacityId { get; set; }
+        public long? VehicleCapacityId { get; set; }
 
         public List<SelectListItem> VehicleCapacities { get; set; }
 
@@ -57,11 +57,11 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
 
         public List<SelectListItem> VehicleModelYears { get; set; }
 
-        public int?[] TripTypeIds { get; set; }
+        public long?[] TripTypeIds { get; set; }
 
         public MultiSelectList TripTypes { get; set; }
 
-        public int?[] PayLoadTypeIds { get; set; }
+        public long?[] PayLoadTypeIds { get; set; }
 
         public MultiSelectList PayLoadTypes { get; set; }
 
@@ -87,7 +87,7 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
     {
         public long VehicleId { get; set; }
 
-        public long InsuranceCOmpanyId { get; set; }
+        public long? InsuranceCompanyId { get; set; }
 
         public decimal? InsuranceAmount { get; set; }
 
