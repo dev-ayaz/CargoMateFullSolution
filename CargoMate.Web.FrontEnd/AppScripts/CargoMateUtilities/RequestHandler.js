@@ -108,7 +108,7 @@ RequestHandler = {
         $.validator.unobtrusive.parse("form");
     },
     select2Ajax: function ($this, controller, action) {
-        debugger;
+ 
         var utilities = RequestHandler;
         var url = [utilities.getSiteBase(),"/", controller, "/", action].join("");
 

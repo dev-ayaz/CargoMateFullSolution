@@ -1,7 +1,7 @@
 ﻿var VehicleImages = {
     selectors: {
         VehicleImagesDropZone: "#VehicleImagesDropZone",
-        ImagesPath: [utils.getSiteBase(), "/SystemImages/VehicleImages/"].join("")
+        ImagesPath: [RequestHandler.getSiteBase(), "/SystemImages/VehicleImages/"].join("")
 
     },
 
@@ -19,8 +19,9 @@
         initDropZone: function () {
             Dropzone.autoDiscover = false;
 
-            var deleteUrl = [RequestHandler.getSiteRoot(), VehicleImages.services.controller, "/", VehicleImages.services.actions.Delete].join("");
-            var selectUrl = [RequestHandler.getSiteRoot(), VehicleImages.services.controller, "/", VehicleImages.services.actions.Select].join("");
+            var deleteUrl = [RequestHandler.getSiteBase(),"/", VehicleImages.services.controller, "/", VehicleImages.services.actions.Delete].join("");
+            var selectUrl = [RequestHandler.getSiteBase(),"/", VehicleImages.services.controller, "/", VehicleImages.services.actions.Select].join("");
+            
 
             var vehicleImagesDropZone = new Dropzone(VehicleImages.selectors.VehicleImagesDropZone, {
                 addRemoveLinks: true,
@@ -29,7 +30,7 @@
                 acceptedFiles: "image/*",
                 dictInvalidFileType: "upload only JPG/PNG",
                 init: function () {
-
+  
                     thisDropZone = this;
                     thisDropZone.on("removedfile", function (file) {
                         $.post(deleteUrl, { name: file.name }, function (data) {
@@ -38,10 +39,11 @@
                     });
 
                     $.get(selectUrl, function (data) {
+                  
                         $.each(data, function (key, value) {
                             var mockFile = { name: value, size: 1000 };
                             thisDropZone.options.addedfile.call(thisDropZone, mockFile);
-                            thisDropZone.createThumbnailFromUrl(mockFile, [RequestHandler.getSiteBase(), "/SystemImages/VehicleImage/"].join("") + value, function () {
+                            thisDropZone.createThumbnailFromUrl(mockFile, [RequestHandler.getSiteBase(), "/SystemImages/VehicleImages/"].join("") + value, function () {
                                 thisDropZone.emit("complete", mockFile);
                             });
 

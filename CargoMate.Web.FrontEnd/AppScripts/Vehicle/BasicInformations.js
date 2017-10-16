@@ -9,7 +9,8 @@
         PayLoadTypesDropDown: "#PayLoadTypeIds",
         TripTypesDropDown: "#TripTypeIds",
         ImageUrl: "#RegistrationImage",
-        ImageSrc:"#ImageSrc"
+        ImageSrc: "#ImageSrc",
+        CompanyDrpDown:"InsuranceCompanyId"
     },
     Services: {
 
@@ -20,7 +21,8 @@
             VehicleCapacitiesAutoComplete: "VehicleCapacitiesAutoComplete",
             ModelsAutoComplete: "ModelsAutoComplete",
             ModelYearAutoComplete: "ModelYearAutoComplete",
-            PayloadTypesAutoComplete: "PayloadTypesAutoComplete"
+            PayloadTypesAutoComplete: "PayloadTypesAutoComplete",
+            CompaniesDropDownSource:"CompaniesDropDownSource"
         }
     },
     CallBacks: {
@@ -225,6 +227,8 @@
         }
     },
     InitEvents: function () {
+
+        RequestHandler.select2Ajax(Vehicles.Selectors.CompanyDrpDown, Vehicles.Services.Controller, Vehicles.Services.Actions.CompaniesDropDownSource);
 
         $(Vehicles.Selectors.ImageSrc + ":not(.bound)").addClass("bound").change(function () {
 

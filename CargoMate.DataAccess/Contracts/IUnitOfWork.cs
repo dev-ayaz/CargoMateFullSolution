@@ -2,6 +2,7 @@
 using CargoMate.DataAccess.Models.BasicData.Localizations;
 using CargoMate.DataAccess.Models.Customers;
 using CargoMate.DataAccess.Models.Transporters;
+using CargoMate.DataAccess.Models.Transporters.Localization;
 using CargoMate.DataAccess.Models.Users;
 using CargoMate.DataAccess.Models.Vehicles;
 using System;
@@ -57,6 +58,7 @@ namespace CargoMate.DataAccess.Contracts
         //************************** Transporters Data  Start************************************************
 
         IRepository<InsuranceCompany> InsuranceCompanies { get; }
+        IRepository<LocalizedInsuranceCompany> LocalizedInsuranceCompanies { get; }        
         IRepository<DriverLegalDocument> DriverLegalDocuments { get; }
         IRepository<DriverPersonalInfo> DriverPersonalInfos { get; }
         IRepository<DriverFareType> DriverFareTypes { get; }

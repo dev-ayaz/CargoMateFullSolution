@@ -50,7 +50,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                             {
                                 Value = c.Id.ToString(),
                                 Text = c.LocalizedPayLoadTypes.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name
-                            }).ToList(), "TripTypeId", "Name"),
+                            }).ToList(), "Value", "Text"),
 
                             VehicleCapacities = UnitOfWork.VehicleCapacities.GetWhere(c => c.VehicleTypeId == v.ModelYearCombination.VehicleModel.VehicleMake.VehicleTypeId).Select(c => new SelectListItem
                             {
@@ -91,6 +91,8 @@ namespace CargoMate.Web.FrontEnd.Controllers
                             PolicyNumber = v.PolicyNumber
                         }
             }).FirstOrDefault();
+
+                SessionHandler.VehicleId = vehicleId;
 
                 return View(editvehicl);
             }
@@ -283,7 +285,10 @@ namespace CargoMate.Web.FrontEnd.Controllers
                             var isExists = System.IO.Directory.Exists(originalDirectory.ToString());
 
                             if (!isExists)
+                            {
                                 System.IO.Directory.CreateDirectory(originalDirectory.ToString());
+                            }
+
 
                             if (SessionHandler.VehicleId != null)
                             {
@@ -294,7 +299,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                                 var vehicleImage = new VehicleImage
                                 {
                                     VehicleId = SessionHandler.VehicleId.Value,
-                                    ImageUrl = "HotelImage" + SessionHandler.VehicleId.Value + file.FileName,
+                                    ImageUrl = "VehicleImage" + SessionHandler.VehicleId.Value + file.FileName,
                                     CreationDate = DateTime.Now.Date,
                                     ImageTitle = filename.Split('.')[0],
                                     IsActive = true
@@ -337,6 +342,20 @@ namespace CargoMate.Web.FrontEnd.Controllers
             UnitOfWork.Commit();
 
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CompaniesDropDownSource(string term)
+        {
+            var companies = UnitOfWork.LocalizedInsuranceCompanies.GetWhere(c => c.Name.Contains(term))
+                .Select(c => new
+                {
+                    id = c.InsuranceCompanyId,
+                    Name = c.Name
+                }).Take(10)
+                .ToList();
+
+            return Json(companies, JsonRequestBehavior.AllowGet);
         }
     }
 }
