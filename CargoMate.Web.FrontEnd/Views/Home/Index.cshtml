@@ -12,13 +12,15 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>PickUp Address</label>
-                            <input type="text" class="form-control" id="" name="firstname_booking" placeholder="Type your search terms">
+                            <input type="text" class="form-control placePicker" name="pickUpAddress" placeholder="Type your search terms">
+                            <input type="hidden" id="pickUpAddress" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>DropUp Address</label>
-                            <input type="text" class="form-control" id="" name="firstname_booking" placeholder="Type your search terms">
+                            <input type="text" class="form-control placePicker" name="dropUpAddress" placeholder="Type your search terms">
+                            <input type="hidden" id="pickUpAddress" />
                         </div>
                     </div>
                 </div><!-- End row -->
@@ -68,5 +70,11 @@
     </div>
 </section><!-- End hero -->
 @*@Html.Partial("Partials/_Search")*@
+
+@section scripts{
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC88G_-I2GZl8sVDs95qoxcuqBy9_q36nQ&force=lite"></script>
+    <script src="~/Scripts/Plugins/jquery.placepicker.min.js"></script>
+    <script src="~/AppScripts/Home/Home.js"></script>
+}
 
 

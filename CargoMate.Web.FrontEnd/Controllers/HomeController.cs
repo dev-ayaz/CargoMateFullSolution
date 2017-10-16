@@ -47,5 +47,9 @@ namespace CargoMate.Web.FrontEnd.Controllers
         public ActionResult VehicleDetails() {
             return View();
         }
+
+        public ActionResult SearchResults() {
+            return View();
+        }
     }
 }

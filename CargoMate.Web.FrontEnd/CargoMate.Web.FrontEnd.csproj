@@ -269,6 +269,7 @@
     <Content Include="AppScripts\Drivers\DriverLogIn.js" />
     <Content Include="AppScripts\Drivers\Register.js" />
     <Content Include="AppScripts\FireBase\Configurations.js" />
+    <Content Include="AppScripts\Home\Home.js" />
     <Content Include="AppScripts\Vehicle\BasicInformations.js" />
     <Content Include="AppScripts\Vehicle\VehicleImages.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -300,6 +301,8 @@
     <Content Include="Content\images\blank.gif" />
     <Content Include="Content\images\closedhand.cur" />
     <Content Include="Content\images\openhand.cur" />
+    <Content Include="Content\ion.rangeSlider.css" />
+    <Content Include="Content\ion.rangeSlider.skinFlat.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\menu-rtl.css" />
     <Content Include="Content\menu.css" />
@@ -857,6 +860,7 @@
     <Content Include="Scripts\functions.js" />
     <Content Include="Scripts\icheck.js" />
     <Content Include="Scripts\icheck.min.js" />
+    <Content Include="Scripts\infobox.js" />
     <Content Include="Scripts\jquery-1.11.2.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
@@ -870,6 +874,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\map_full_page.js" />
+    <Content Include="Scripts\map_transfer.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.css" />
     <Content Include="Scripts\Plugins\bootstrap-toastr\toastr.js" />
@@ -929,6 +935,7 @@
     <Content Include="Views\Vehicle\Partials\_VehicleScan.cshtml" />
     <Content Include="Views\Vehicle\Partials\_InsuranceInformation.cshtml" />
     <Content Include="Views\Vehicle\Partials\_VehicleImages.cshtml" />
+    <Content Include="Views\Home\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
