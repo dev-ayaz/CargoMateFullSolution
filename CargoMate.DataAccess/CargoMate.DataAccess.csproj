@@ -54,25 +54,9 @@
     <Compile Include="Contracts\IUnitOfWork.cs" />
     <Compile Include="Contracts\IView.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Migrations\201710111605259_DB reset.cs" />
-    <Compile Include="Migrations\201710111605259_DB reset.Designer.cs">
-      <DependentUpon>201710111605259_DB reset.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710111743393_Vehicle Type &amp; make Relsationship.cs" />
-    <Compile Include="Migrations\201710111743393_Vehicle Type &amp; make Relsationship.Designer.cs">
-      <DependentUpon>201710111743393_Vehicle Type &amp; make Relsationship.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710131708247_Vehicle Tables Added.cs" />
-    <Compile Include="Migrations\201710131708247_Vehicle Tables Added.Designer.cs">
-      <DependentUpon>201710131708247_Vehicle Tables Added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710131714042_Vehicle Tables Modified.cs" />
-    <Compile Include="Migrations\201710131714042_Vehicle Tables Modified.Designer.cs">
-      <DependentUpon>201710131714042_Vehicle Tables Modified.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710151938407_Driver Id modified.cs" />
-    <Compile Include="Migrations\201710151938407_Driver Id modified.Designer.cs">
-      <DependentUpon>201710151938407_Driver Id modified.cs</DependentUpon>
+    <Compile Include="Migrations\201710191206569_DBReset.cs" />
+    <Compile Include="Migrations\201710191206569_DBReset.Designer.cs">
+      <DependentUpon>201710191206569_DBReset.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasicData\Country.cs" />
@@ -140,20 +124,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710111605259_DB reset.resx">
-      <DependentUpon>201710111605259_DB reset.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710111743393_Vehicle Type &amp; make Relsationship.resx">
-      <DependentUpon>201710111743393_Vehicle Type &amp; make Relsationship.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710131708247_Vehicle Tables Added.resx">
-      <DependentUpon>201710131708247_Vehicle Tables Added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710131714042_Vehicle Tables Modified.resx">
-      <DependentUpon>201710131714042_Vehicle Tables Modified.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710151938407_Driver Id modified.resx">
-      <DependentUpon>201710151938407_Driver Id modified.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710191206569_DBReset.resx">
+      <DependentUpon>201710191206569_DBReset.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

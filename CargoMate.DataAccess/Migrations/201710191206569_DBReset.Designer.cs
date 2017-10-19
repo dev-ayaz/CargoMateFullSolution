@@ -7,13 +7,13 @@ namespace CargoMate.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class DBreset : IMigrationMetadata
+    public sealed partial class DBReset : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DBreset));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DBReset));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710111605259_DB reset"; }
+            get { return "201710191206569_DBReset"; }
         }
         
         string IMigrationMetadata.Source

@@ -47,7 +47,7 @@
                 else {
 
                     CargoMateAlerts.actionAlert("Success", "Successfully login !", false);
-                    setTimeout(window.location.reload(), 100);
+                    window.location.reload();
                     
                 }
             });

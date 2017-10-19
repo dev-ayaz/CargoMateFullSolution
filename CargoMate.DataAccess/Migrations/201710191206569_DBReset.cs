@@ -3,7 +3,7 @@ namespace CargoMate.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DBreset : DbMigration
+    public partial class DBReset : DbMigration
     {
         public override void Up()
         {
@@ -336,10 +336,13 @@ namespace CargoMate.DataAccess.Migrations
                         CountryId = c.Long(),
                         ImageUrl = c.String(maxLength: 500),
                         IsActive = c.Boolean(),
+                        VehicleTypeId = c.Long(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("BasicData.Countries", t => t.CountryId)
-                .Index(t => t.CountryId);
+                .ForeignKey("BasicData.VehicleTypes", t => t.VehicleTypeId)
+                .Index(t => t.CountryId)
+                .Index(t => t.VehicleTypeId);
             
             CreateTable(
                 "[BasicData.Localization].LocalizedMakes",
@@ -392,6 +395,116 @@ namespace CargoMate.DataAccess.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("BasicData.VehicleModel", t => t.VehicleModelId)
                 .Index(t => t.VehicleModelId);
+            
+            CreateTable(
+                "BasicData.VehicleTypes",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        ImageUrl = c.String(),
+                        IsEquipment = c.Boolean(),
+                        Source = c.String(maxLength: 250),
+                        IsActive = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "[BasicData.Localization].LocalizedVehicleTypes",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Name = c.String(maxLength: 500),
+                        Descreption = c.String(),
+                        CultureCode = c.String(maxLength: 10),
+                        VehicleTypeId = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.VehicleTypes", t => t.VehicleTypeId, cascadeDelete: true)
+                .Index(t => t.VehicleTypeId);
+            
+            CreateTable(
+                "BasicData.PayLoadTypes",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        VehicleTypeId = c.Long(),
+                        ImageUrl = c.String(),
+                        IsActive = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.VehicleTypes", t => t.VehicleTypeId)
+                .Index(t => t.VehicleTypeId);
+            
+            CreateTable(
+                "[BasicData.Localization].LocalizedPayLoadType",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Name = c.String(maxLength: 500),
+                        CultureCode = c.String(maxLength: 10),
+                        PayLoadTypeId = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.PayLoadTypes", t => t.PayLoadTypeId, cascadeDelete: true)
+                .Index(t => t.PayLoadTypeId);
+            
+            CreateTable(
+                "BasicData.VehicleCapacities",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Capacity = c.Long(),
+                        Length = c.Long(),
+                        PalletNumber = c.Long(),
+                        CultureCode = c.String(maxLength: 10),
+                        VehicleTypeId = c.Long(),
+                        Source = c.String(maxLength: 250),
+                        IsActive = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.VehicleTypes", t => t.VehicleTypeId)
+                .Index(t => t.VehicleTypeId);
+            
+            CreateTable(
+                "[BasicData.Localization].LocalizedVehicleCapacities",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Name = c.String(maxLength: 500),
+                        CultureCode = c.String(maxLength: 10),
+                        VehicleCapacityId = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.VehicleCapacities", t => t.VehicleCapacityId, cascadeDelete: true)
+                .Index(t => t.VehicleCapacityId);
+            
+            CreateTable(
+                "BasicData.VehicleConfigurations",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        ImageUrl = c.String(),
+                        VehicleTypeId = c.Long(),
+                        Source = c.String(maxLength: 50),
+                        IsActive = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.VehicleTypes", t => t.VehicleTypeId)
+                .Index(t => t.VehicleTypeId);
+            
+            CreateTable(
+                "[BasicData.Localization].LocalizedVehicleConfiguration",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Name = c.String(maxLength: 500),
+                        Descreption = c.String(),
+                        CultureCode = c.String(maxLength: 10),
+                        VehicleConfigurationId = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.VehicleConfigurations", t => t.VehicleConfigurationId, cascadeDelete: true)
+                .Index(t => t.VehicleConfigurationId);
             
             CreateTable(
                 "Customers.Customers",
@@ -494,116 +607,6 @@ namespace CargoMate.DataAccess.Migrations
                 .Index(t => t.LengthUnitId);
             
             CreateTable(
-                "BasicData.PayLoadTypes",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        VehicleTypeId = c.Long(),
-                        ImageUrl = c.String(),
-                        IsActive = c.Boolean(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("BasicData.VehicleTypes", t => t.VehicleTypeId)
-                .Index(t => t.VehicleTypeId);
-            
-            CreateTable(
-                "[BasicData.Localization].LocalizedPayLoadType",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        Name = c.String(maxLength: 500),
-                        CultureCode = c.String(maxLength: 10),
-                        PayLoadTypeId = c.Long(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("BasicData.PayLoadTypes", t => t.PayLoadTypeId, cascadeDelete: true)
-                .Index(t => t.PayLoadTypeId);
-            
-            CreateTable(
-                "BasicData.VehicleTypes",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        ImageUrl = c.String(),
-                        IsEquipment = c.Boolean(),
-                        Source = c.String(maxLength: 250),
-                        IsActive = c.Boolean(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "[BasicData.Localization].LocalizedVehicleTypes",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        Name = c.String(maxLength: 500),
-                        Descreption = c.String(),
-                        CultureCode = c.String(maxLength: 10),
-                        VehicleTypeId = c.Long(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("BasicData.VehicleTypes", t => t.VehicleTypeId, cascadeDelete: true)
-                .Index(t => t.VehicleTypeId);
-            
-            CreateTable(
-                "BasicData.VehicleCapacities",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        Capacity = c.Long(),
-                        Length = c.Long(),
-                        PalletNumber = c.Long(),
-                        CultureCode = c.String(maxLength: 10),
-                        VehicleTypeId = c.Long(),
-                        Source = c.String(maxLength: 250),
-                        IsActive = c.Boolean(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("BasicData.VehicleTypes", t => t.VehicleTypeId)
-                .Index(t => t.VehicleTypeId);
-            
-            CreateTable(
-                "[BasicData.Localization].LocalizedVehicleCapacities",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        Name = c.String(maxLength: 500),
-                        CultureCode = c.String(maxLength: 10),
-                        VehicleCapacityId = c.Long(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("BasicData.VehicleCapacities", t => t.VehicleCapacityId, cascadeDelete: true)
-                .Index(t => t.VehicleCapacityId);
-            
-            CreateTable(
-                "BasicData.VehicleConfigurations",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        ImageUrl = c.String(),
-                        VehicleTypeId = c.Long(),
-                        Source = c.String(maxLength: 50),
-                        IsActive = c.Boolean(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("BasicData.VehicleTypes", t => t.VehicleTypeId)
-                .Index(t => t.VehicleTypeId);
-            
-            CreateTable(
-                "[BasicData.Localization].LocalizedVehicleConfiguration",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        Name = c.String(maxLength: 500),
-                        Descreption = c.String(),
-                        CultureCode = c.String(maxLength: 10),
-                        VehicleConfigurationId = c.Long(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("BasicData.VehicleConfigurations", t => t.VehicleConfigurationId, cascadeDelete: true)
-                .Index(t => t.VehicleConfigurationId);
-            
-            CreateTable(
                 "BasicData.TripTypes",
                 c => new
                     {
@@ -623,6 +626,84 @@ namespace CargoMate.DataAccess.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("BasicData.TripTypes", t => t.TripTypeId, cascadeDelete: true)
+                .Index(t => t.TripTypeId);
+            
+            CreateTable(
+                "Vehicles.VehicleImages",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        VehicleId = c.Long(),
+                        ImageUrl = c.String(),
+                        ImageTitle = c.String(),
+                        CreationDate = c.DateTime(),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("Vehicles.Vehicles", t => t.VehicleId)
+                .Index(t => t.VehicleId);
+            
+            CreateTable(
+                "Vehicles.Vehicles",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        ModelYearCombinationId = c.Long(),
+                        VehicleConfigurationId = c.Long(),
+                        VehicleCapacityId = c.Long(),
+                        PlateNumber = c.String(maxLength: 50),
+                        EngineNumber = c.String(maxLength: 50),
+                        RegistrationNumber = c.String(maxLength: 50),
+                        RegistrationImage = c.String(),
+                        RegistrationExpiry = c.DateTime(),
+                        IsInsured = c.Boolean(),
+                        InsuranceCompanyId = c.Long(),
+                        InsuranceAmount = c.Decimal(precision: 18, scale: 2),
+                        PolicyNumber = c.String(),
+                        InsuranceExpirey = c.DateTime(),
+                        DriverPersonalInfoId = c.String(maxLength: 50),
+                        IsVerified = c.Boolean(),
+                        Status = c.Int(),
+                        IsActive = c.Boolean(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("Transporters.DriverPersonalInfos", t => t.DriverPersonalInfoId)
+                .ForeignKey("Transporters.InsuranceCompanies", t => t.InsuranceCompanyId)
+                .ForeignKey("BasicData.ModelYearCombinations", t => t.ModelYearCombinationId)
+                .ForeignKey("BasicData.VehicleCapacities", t => t.VehicleCapacityId)
+                .ForeignKey("BasicData.VehicleConfigurations", t => t.VehicleConfigurationId)
+                .Index(t => t.ModelYearCombinationId)
+                .Index(t => t.VehicleConfigurationId)
+                .Index(t => t.VehicleCapacityId)
+                .Index(t => t.InsuranceCompanyId)
+                .Index(t => t.DriverPersonalInfoId);
+            
+            CreateTable(
+                "Vehicles.VehiclePayloadTypes",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        VehicleId = c.Long(nullable: false),
+                        PayLoadTypeId = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.PayLoadTypes", t => t.PayLoadTypeId)
+                .ForeignKey("Vehicles.Vehicles", t => t.VehicleId, cascadeDelete: true)
+                .Index(t => t.VehicleId)
+                .Index(t => t.PayLoadTypeId);
+            
+            CreateTable(
+                "Vehicles.VehicleTripTypes",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        VehicleId = c.Long(nullable: false),
+                        TripTypeId = c.Long(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("BasicData.TripTypes", t => t.TripTypeId)
+                .ForeignKey("Vehicles.Vehicles", t => t.VehicleId, cascadeDelete: true)
+                .Index(t => t.VehicleId)
                 .Index(t => t.TripTypeId);
             
             CreateTable(
@@ -654,19 +735,30 @@ namespace CargoMate.DataAccess.Migrations
         public override void Down()
         {
             DropForeignKey("[BasicData.Localization].LocalizedWeightUnits", "WeightUnitId", "BasicData.WeightUnits");
+            DropForeignKey("Vehicles.VehicleTripTypes", "VehicleId", "Vehicles.Vehicles");
+            DropForeignKey("Vehicles.VehicleTripTypes", "TripTypeId", "BasicData.TripTypes");
+            DropForeignKey("Vehicles.VehiclePayloadTypes", "VehicleId", "Vehicles.Vehicles");
+            DropForeignKey("Vehicles.VehiclePayloadTypes", "PayLoadTypeId", "BasicData.PayLoadTypes");
+            DropForeignKey("Vehicles.VehicleImages", "VehicleId", "Vehicles.Vehicles");
+            DropForeignKey("Vehicles.Vehicles", "VehicleConfigurationId", "BasicData.VehicleConfigurations");
+            DropForeignKey("Vehicles.Vehicles", "VehicleCapacityId", "BasicData.VehicleCapacities");
+            DropForeignKey("Vehicles.Vehicles", "ModelYearCombinationId", "BasicData.ModelYearCombinations");
+            DropForeignKey("Vehicles.Vehicles", "InsuranceCompanyId", "Transporters.InsuranceCompanies");
+            DropForeignKey("Vehicles.Vehicles", "DriverPersonalInfoId", "Transporters.DriverPersonalInfos");
             DropForeignKey("[BasicData.Localization].LocalizedTripTypes", "TripTypeId", "BasicData.TripTypes");
-            DropForeignKey("BasicData.VehicleConfigurations", "VehicleTypeId", "BasicData.VehicleTypes");
-            DropForeignKey("[BasicData.Localization].LocalizedVehicleConfiguration", "VehicleConfigurationId", "BasicData.VehicleConfigurations");
-            DropForeignKey("BasicData.VehicleCapacities", "VehicleTypeId", "BasicData.VehicleTypes");
-            DropForeignKey("[BasicData.Localization].LocalizedVehicleCapacities", "VehicleCapacityId", "BasicData.VehicleCapacities");
-            DropForeignKey("BasicData.PayLoadTypes", "VehicleTypeId", "BasicData.VehicleTypes");
-            DropForeignKey("[BasicData.Localization].LocalizedVehicleTypes", "VehicleTypeId", "BasicData.VehicleTypes");
-            DropForeignKey("[BasicData.Localization].LocalizedPayLoadType", "PayLoadTypeId", "BasicData.PayLoadTypes");
             DropForeignKey("[BasicData.Localization].LocalizedLengthUnits", "LengthUnitId", "BasicData.LengthUnits");
             DropForeignKey("[Transporters.Localization].LocalizedInsuranceCompanies", "InsuranceCompanyId", "Transporters.InsuranceCompanies");
             DropForeignKey("[BasicData.Localization].CustomerStatuses", "CustomerStatusId", "BasicData.CustomerStatuses");
             DropForeignKey("Customers.Customers", "CustomerStatusId", "BasicData.CustomerStatuses");
             DropForeignKey("Customers.Customers", "CompanyId", "Customers.Companies");
+            DropForeignKey("BasicData.VehicleConfigurations", "VehicleTypeId", "BasicData.VehicleTypes");
+            DropForeignKey("[BasicData.Localization].LocalizedVehicleConfiguration", "VehicleConfigurationId", "BasicData.VehicleConfigurations");
+            DropForeignKey("BasicData.VehicleMakes", "VehicleTypeId", "BasicData.VehicleTypes");
+            DropForeignKey("BasicData.VehicleCapacities", "VehicleTypeId", "BasicData.VehicleTypes");
+            DropForeignKey("[BasicData.Localization].LocalizedVehicleCapacities", "VehicleCapacityId", "BasicData.VehicleCapacities");
+            DropForeignKey("BasicData.PayLoadTypes", "VehicleTypeId", "BasicData.VehicleTypes");
+            DropForeignKey("[BasicData.Localization].LocalizedPayLoadType", "PayLoadTypeId", "BasicData.PayLoadTypes");
+            DropForeignKey("[BasicData.Localization].LocalizedVehicleTypes", "VehicleTypeId", "BasicData.VehicleTypes");
             DropForeignKey("BasicData.VehicleModel", "VehicleMakeId", "BasicData.VehicleMakes");
             DropForeignKey("BasicData.ModelYearCombinations", "VehicleModelId", "BasicData.VehicleModel");
             DropForeignKey("[BasicData.Localization].LocalizedVehicleModels", "VehicleModelId", "BasicData.VehicleModel");
@@ -699,23 +791,34 @@ namespace CargoMate.DataAccess.Migrations
             DropForeignKey("User.Menus", "ParentId", "User.Menus");
             DropForeignKey("User.MenuActions", "ActionId", "User.Actions");
             DropIndex("[BasicData.Localization].LocalizedWeightUnits", new[] { "WeightUnitId" });
+            DropIndex("Vehicles.VehicleTripTypes", new[] { "TripTypeId" });
+            DropIndex("Vehicles.VehicleTripTypes", new[] { "VehicleId" });
+            DropIndex("Vehicles.VehiclePayloadTypes", new[] { "PayLoadTypeId" });
+            DropIndex("Vehicles.VehiclePayloadTypes", new[] { "VehicleId" });
+            DropIndex("Vehicles.Vehicles", new[] { "DriverPersonalInfoId" });
+            DropIndex("Vehicles.Vehicles", new[] { "InsuranceCompanyId" });
+            DropIndex("Vehicles.Vehicles", new[] { "VehicleCapacityId" });
+            DropIndex("Vehicles.Vehicles", new[] { "VehicleConfigurationId" });
+            DropIndex("Vehicles.Vehicles", new[] { "ModelYearCombinationId" });
+            DropIndex("Vehicles.VehicleImages", new[] { "VehicleId" });
             DropIndex("[BasicData.Localization].LocalizedTripTypes", new[] { "TripTypeId" });
-            DropIndex("[BasicData.Localization].LocalizedVehicleConfiguration", new[] { "VehicleConfigurationId" });
-            DropIndex("BasicData.VehicleConfigurations", new[] { "VehicleTypeId" });
-            DropIndex("[BasicData.Localization].LocalizedVehicleCapacities", new[] { "VehicleCapacityId" });
-            DropIndex("BasicData.VehicleCapacities", new[] { "VehicleTypeId" });
-            DropIndex("[BasicData.Localization].LocalizedVehicleTypes", new[] { "VehicleTypeId" });
-            DropIndex("[BasicData.Localization].LocalizedPayLoadType", new[] { "PayLoadTypeId" });
-            DropIndex("BasicData.PayLoadTypes", new[] { "VehicleTypeId" });
             DropIndex("[BasicData.Localization].LocalizedLengthUnits", new[] { "LengthUnitId" });
             DropIndex("[Transporters.Localization].LocalizedInsuranceCompanies", new[] { "InsuranceCompanyId" });
             DropIndex("[BasicData.Localization].CustomerStatuses", new[] { "CustomerStatusId" });
             DropIndex("Customers.Customers", new[] { "CustomerStatusId" });
             DropIndex("Customers.Customers", new[] { "CompanyId" });
+            DropIndex("[BasicData.Localization].LocalizedVehicleConfiguration", new[] { "VehicleConfigurationId" });
+            DropIndex("BasicData.VehicleConfigurations", new[] { "VehicleTypeId" });
+            DropIndex("[BasicData.Localization].LocalizedVehicleCapacities", new[] { "VehicleCapacityId" });
+            DropIndex("BasicData.VehicleCapacities", new[] { "VehicleTypeId" });
+            DropIndex("[BasicData.Localization].LocalizedPayLoadType", new[] { "PayLoadTypeId" });
+            DropIndex("BasicData.PayLoadTypes", new[] { "VehicleTypeId" });
+            DropIndex("[BasicData.Localization].LocalizedVehicleTypes", new[] { "VehicleTypeId" });
             DropIndex("BasicData.ModelYearCombinations", new[] { "VehicleModelId" });
             DropIndex("[BasicData.Localization].LocalizedVehicleModels", new[] { "VehicleModelId" });
             DropIndex("BasicData.VehicleModel", new[] { "VehicleMakeId" });
             DropIndex("[BasicData.Localization].LocalizedMakes", new[] { "VehicleMake_Id" });
+            DropIndex("BasicData.VehicleMakes", new[] { "VehicleTypeId" });
             DropIndex("BasicData.VehicleMakes", new[] { "CountryId" });
             DropIndex("[BasicData.Localization].LocalizedCountries", new[] { "CountryId" });
             DropIndex("Transporters.PreferredAddresses", new[] { "DriverPersonalInfoId" });
@@ -745,16 +848,12 @@ namespace CargoMate.DataAccess.Migrations
             DropIndex("User.MenuActions", new[] { "MenuId" });
             DropTable("[BasicData.Localization].LocalizedWeightUnits");
             DropTable("BasicData.WeightUnits");
+            DropTable("Vehicles.VehicleTripTypes");
+            DropTable("Vehicles.VehiclePayloadTypes");
+            DropTable("Vehicles.Vehicles");
+            DropTable("Vehicles.VehicleImages");
             DropTable("[BasicData.Localization].LocalizedTripTypes");
             DropTable("BasicData.TripTypes");
-            DropTable("[BasicData.Localization].LocalizedVehicleConfiguration");
-            DropTable("BasicData.VehicleConfigurations");
-            DropTable("[BasicData.Localization].LocalizedVehicleCapacities");
-            DropTable("BasicData.VehicleCapacities");
-            DropTable("[BasicData.Localization].LocalizedVehicleTypes");
-            DropTable("BasicData.VehicleTypes");
-            DropTable("[BasicData.Localization].LocalizedPayLoadType");
-            DropTable("BasicData.PayLoadTypes");
             DropTable("[BasicData.Localization].LocalizedLengthUnits");
             DropTable("BasicData.LengthUnits");
             DropTable("[Transporters.Localization].LocalizedInsuranceCompanies");
@@ -762,6 +861,14 @@ namespace CargoMate.DataAccess.Migrations
             DropTable("[BasicData.Localization].CustomerStatuses");
             DropTable("BasicData.CustomerStatuses");
             DropTable("Customers.Customers");
+            DropTable("[BasicData.Localization].LocalizedVehicleConfiguration");
+            DropTable("BasicData.VehicleConfigurations");
+            DropTable("[BasicData.Localization].LocalizedVehicleCapacities");
+            DropTable("BasicData.VehicleCapacities");
+            DropTable("[BasicData.Localization].LocalizedPayLoadType");
+            DropTable("BasicData.PayLoadTypes");
+            DropTable("[BasicData.Localization].LocalizedVehicleTypes");
+            DropTable("BasicData.VehicleTypes");
             DropTable("BasicData.ModelYearCombinations");
             DropTable("[BasicData.Localization].LocalizedVehicleModels");
             DropTable("BasicData.VehicleModel");

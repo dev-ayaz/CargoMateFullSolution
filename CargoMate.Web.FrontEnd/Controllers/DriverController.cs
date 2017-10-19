@@ -9,6 +9,7 @@ using CargoMate.Web.FrontEnd.Models;
 using CargoMate.DataAccess.Models.Transporters;
 using CargoMate.Web.FrontEnd.Models.DriverViewModel;
 using System.Globalization;
+using CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels;
 
 namespace CargoMate.Web.FrontEnd.Controllers
 {
@@ -66,10 +67,24 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 ResidenceNumber=ld.ResidenceNumber
             }).FirstOrDefault() ?? new DriverLegalDocumentsFormModel{Id = userId };
 
+            var vehicles = UnitOfWork.Vehicles.GetWhere(v => v.DriverPersonalInfoId == driver.Id).Select(
+                v => new VehicleDisplayModel
+                {
+                    Id = v.Id,
+                    RegistrationNumber = v.RegistrationNumber,
+                    PlateNumber = v.PlateNumber,
+                    RegistrationExpiry = v.RegistrationExpiry,
+                    EngineNumber = v.EngineNumber,
+                    IsActive = v.IsActive.Value,
+                    IsInsured = v.IsInsured.Value
+
+                }).ToList();
+
             var driverModel = new DriverViewModel
             {
                 DriverPersonalInfoFormModel = driver,
-                DriverLegalDocumentsFormModel = driverDocuments
+                DriverLegalDocumentsFormModel = driverDocuments,
+                VehicleDisplayModels = vehicles
             }; 
             return View(driverModel);
         }
