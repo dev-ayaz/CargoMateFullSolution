@@ -33,140 +33,15 @@
         <div class="content">
 
             <section id="section-1">
-                @Html.Partial("Partials/_DriverpersonalInfo", Model.driverPersonalInfoFormModel)
+                @Html.Partial("Partials/_DriverpersonalInfo", Model.DriverPersonalInfoFormModel)
             </section><!-- End section 1 -->
 
             <section id="section-2">
-                @Html.Partial("Partials/_DriverLegalDocuments", Model.driverLegalDocumentsFormModel)
+                @Html.Partial("Partials/_DriverLegalDocuments", Model.DriverLegalDocumentsFormModel)
             </section><!-- End section 2 -->
 
             <section id="section-3">
-                <div id="login" class="login-min-height my-0 py-0">
-                    <div class="text-center">
-                        <h3 class="text-left">
-                            <i class="icon-truck-1"></i>
-                            Vehicle Information
-
-                            <a href="#" class="btn_1 btn-sm pull-right"><i class="icon-plus"></i> New Vehicle</a>
-                        </h3>
-                        <p class="text-left pl-3">Manage Your Vehicle Details Here.</p>
-                    </div>
-                    <hr />
-
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th class="hide">S.No</th>
-                                <th>Plate No#</th>
-                                <th>Registeration No#</th>
-                                <th>Registeration Expirey</th>
-                                <th>Capacity</th>
-                                <th>Is Insured</th>
-                                <th>Is Active</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="hide">1</td>
-                                <td>PKE-0033</td>
-                                <td>HK9-0088</td>
-                                <td>20/05/2017</td>
-                                <td>200(SQFT)</td>
-                                <td>Yes</td>
-                                <td>Yes</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-default dropdown-toggle" type="button" href="#">
-                                            <i class="icon-edit"></i> Edit
-                                        </a>
-                                        <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span class="icon-angle-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                            <li>
-                                                <a href="#" class="delete-record dropdown-item">
-                                                    <i class="icon-info-circled"></i> Vehicle Info
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="#" class="delete-record dropdown-item">
-                                                    <i class="icon-trash"></i>  Delete Vehicle
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="hide">2</td>
-                                <td>PKE-0033</td>
-                                <td>HK9-0088</td>
-                                <td>20/05/2017</td>
-                                <td>200(SQFT)</td>
-                                <td>Yes</td>
-                                <td>Yes</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-default dropdown-toggle" type="button" href="#">
-                                            <i class="icon-edit"></i> Edit
-                                        </a>
-                                        <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span class="icon-angle-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                            <li>
-                                                <a href="#" class="delete-record dropdown-item">
-                                                    <i class="icon-info-circled"></i> Vehicle Info
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="#" class="delete-record dropdown-item">
-                                                    <i class="icon-trash"></i>  Delete Vehicle
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="hide">3</td>
-                                <td>PKE-0033</td>
-                                <td>HK9-0088</td>
-                                <td>20/05/2017</td>
-                                <td>200(SQFT)</td>
-                                <td>Yes</td>
-                                <td>Yes</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-default dropdown-toggle" type="button" href="#">
-                                            <i class="icon-edit"></i> Edit
-                                        </a>
-                                        <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <span class="icon-angle-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                            <li>
-                                                <a href="#" class="delete-record dropdown-item">
-                                                    <i class="icon-info-circled"></i> Vehicle Info
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="#" class="delete-record dropdown-item">
-                                                    <i class="icon-trash"></i>  Delete Vehicle
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
+                @Html.Partial("Partials/_VehicelList",Model.VehicleDisplayModels)
             </section><!-- End section 3 -->
 
             <section id="section-4">
@@ -174,16 +49,16 @@
                     <div class="col-md-6 col-sm-6">
                         <h4>Your profile</h4>
                         <ul id="profile_summary">
-                            <li>Full Name <span>@Model.driverPersonalInfoFormModel.Name</span></li>
-                            <li>Legal Name <span>@Model.driverPersonalInfoFormModel.LegalName</span></li>
-                            <li>Email Address <span>@Model.driverPersonalInfoFormModel.EmailAddress</span></li>
-                            <li>Phone number <span>@Model.driverPersonalInfoFormModel.PhoneNumber</span></li>
-                            <li>Date of birth <span>@Model.driverPersonalInfoFormModel.DateOfBirth</span></li>
-                            <li>Address <span>@Model.driverPersonalInfoFormModel.Address</span></li>
+                            <li>Full Name <span>@Model.DriverPersonalInfoFormModel.Name</span></li>
+                            <li>Legal Name <span>@Model.DriverPersonalInfoFormModel.LegalName</span></li>
+                            <li>Email Address <span>@Model.DriverPersonalInfoFormModel.EmailAddress</span></li>
+                            <li>Phone number <span>@Model.DriverPersonalInfoFormModel.PhoneNumber</span></li>
+                            <li>Date of birth <span>@Model.DriverPersonalInfoFormModel.DateOfBirth</span></li>
+                            <li>Address <span>@Model.DriverPersonalInfoFormModel.Address</span></li>
                         </ul>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <img src="~/SystemImages/DriverImages/@Model.driverPersonalInfoFormModel.ImageUrl" style="width: 100px;" alt="Image" class="img-circle styled profile_pic">
+                        <img src="~/SystemImages/DriverImages/@Model.DriverPersonalInfoFormModel.ImageUrl" style="width: 100px;" alt="Image" class="img-circle styled profile_pic">
 
                     </div>
                 </div><!-- End row -->
@@ -193,17 +68,17 @@
                     <div class="col-md-6 col-sm-6">
                         <h4>Legal Documents</h4>
                         <ul id="profile_summary">
-                            <li>Residence Number <span>@Model.driverLegalDocumentsFormModel.ResidenceNumber</span></li>
-                            <li> Residence Expirey <span>@Model.driverLegalDocumentsFormModel.ResidenceExpiryDate</span></li>
+                            <li>Residence Number <span>@Model.DriverLegalDocumentsFormModel.ResidenceNumber</span></li>
+                            <li> Residence Expirey <span>@Model.DriverLegalDocumentsFormModel.ResidenceExpiryDate</span></li>
                             <li class="divider"></li>
-                            <li>Licence Number <span>@Model.driverLegalDocumentsFormModel.LicenseNumber</span></li>
-                            <li> Licence Expirey <span>@Model.driverLegalDocumentsFormModel.LicenseExpiryDate</span></li>
+                            <li>Licence Number <span>@Model.DriverLegalDocumentsFormModel.LicenseNumber</span></li>
+                            <li> Licence Expirey <span>@Model.DriverLegalDocumentsFormModel.LicenseExpiryDate</span></li>
 
                         </ul>
                     </div>    
                     <div class="col-md-6 col-sm-6">
-                        <div class="row"><img src="~/SystemImages/DriverDocumentsImages/@Model.driverLegalDocumentsFormModel.ResidenceImage" style="width: 120px;" alt="Image" class="img-responsive styled profile_pic"></div> 
-                        <div class="row">  <img src="~/SystemImages/DriverDocumentsImages/@Model.driverLegalDocumentsFormModel.LicenseImage"  style="width: 120px;" alt="Image" class="img-responsive styled profile_pic"></div>
+                        <div class="row"><img src="~/SystemImages/DriverDocumentsImages/@Model.DriverLegalDocumentsFormModel.ResidenceImage" style="width: 120px;" alt="Image" class="img-responsive styled profile_pic"></div> 
+                        <div class="row">  <img src="~/SystemImages/DriverDocumentsImages/@Model.DriverLegalDocumentsFormModel.LicenseImage"  style="width: 120px;" alt="Image" class="img-responsive styled profile_pic"></div>
                     </div>
                 </div>
                

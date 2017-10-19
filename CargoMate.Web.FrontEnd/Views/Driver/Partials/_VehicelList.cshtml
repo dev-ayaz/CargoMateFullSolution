@@ -1,0 +1,70 @@
+﻿@model  IEnumerable<CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels.VehicleDisplayModel>
+
+<div id="login" class="login-min-height my-0 py-0">
+    <div class="text-center">
+        <h3 class="text-left">
+            <i class="icon-truck-1"></i>
+            Vehicle Information
+
+            <a href="@Url.Action("Index","Vehicle")" class="btn_1 btn-sm pull-right"><i class="icon-plus"></i> New Vehicle</a>
+        </h3>
+        <p class="text-left pl-3">Manage Your Vehicle Details Here.</p>
+    </div>
+    <hr />
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="hide">S.No</th>
+            <th>Plate No#</th>
+            <th>Registeration No#</th>
+            <th>Registeration Expirey</th>
+            <th>Engine Number</th>
+            <th>Is Insured</th>
+            <th>Is Active</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var vehicle in Model)
+        {
+            <tr>
+                <td class="hide">@vehicle.Id</td>
+                <td>@vehicle.PlateNumber</td>
+                <td>@vehicle.RegistrationNumber</td>
+                <td>@vehicle.RegistrationExpiry</td>
+                <td>@vehicle.EngineNumber</td>
+                <td>@vehicle.IsInsured</td>
+                <td>@vehicle.IsActive</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default dropdown-toggle" type="button" href="#">
+                            <i class="icon-edit"></i> Edit
+                        </a>
+                        <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="icon-angle-down"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li>
+                                <a href="#" class="delete-record dropdown-item">
+                                    <i class="icon-info-circled"></i> Vehicle Info
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#" class="delete-record dropdown-item">
+                                    <i class="icon-trash"></i> Delete Vehicle
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+        
+        
+        
+        </tbody>
+    </table>
+
+</div>

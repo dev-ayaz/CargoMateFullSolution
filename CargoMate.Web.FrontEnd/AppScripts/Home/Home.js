@@ -1,7 +1,6 @@
 ﻿var Home = {
     Selectors: {
-
-        AddressPicker: ".placePicker",
+        AddressPicker: ".placePicker"
     },
     Callbacks: {
 

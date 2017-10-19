@@ -82,7 +82,6 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
         public DateTime? RegistrationExpiry { get; set; }
     }
 
-
     public class InsuranceInformation
     {
         public long VehicleId { get; set; }
@@ -95,5 +94,22 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
 
         public DateTime? InsuranceExpirey { get; set; }
 
+    }
+
+    public class VehicleDisplayModel
+    {
+        public long Id { get; set; }
+
+        public string PlateNumber { get; set; }
+
+        public string EngineNumber { get; set; }
+
+        public string RegistrationNumber { get; set; }
+
+        public DateTime? RegistrationExpiry { get; set; }
+
+        public bool IsInsured { get; set; }
+
+         public bool IsActive { get; set; }
     }
 }

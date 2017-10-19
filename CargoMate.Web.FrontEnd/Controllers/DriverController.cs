@@ -68,8 +68,8 @@ namespace CargoMate.Web.FrontEnd.Controllers
 
             var driverModel = new DriverViewModel
             {
-                driverPersonalInfoFormModel = driver,
-                driverLegalDocumentsFormModel = driverDocuments
+                DriverPersonalInfoFormModel = driver,
+                DriverLegalDocumentsFormModel = driverDocuments
             }; 
             return View(driverModel);
         }

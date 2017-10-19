@@ -936,6 +936,7 @@
     <Content Include="Views\Vehicle\Partials\_InsuranceInformation.cshtml" />
     <Content Include="Views\Vehicle\Partials\_VehicleImages.cshtml" />
     <Content Include="Views\Home\SearchResults.cshtml" />
+    <Content Include="Views\Driver\Partials\_VehicelList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
