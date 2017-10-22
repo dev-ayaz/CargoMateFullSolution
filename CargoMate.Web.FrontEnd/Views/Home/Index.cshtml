@@ -32,9 +32,9 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="form-group">
+                        <div class="form-group overflow-false">
                             <label><i class="icon-calendar-7"></i> Pay Load Type</label>
-                            <select class="ddslick" name="PayLoadType">
+                            <select class="ddslick" id="PayLoadType" name="PayLoadType">
                                 <option value="0" data-imagesrc="../../images/icons_search/all_tours.png" selected>All</option>
                                 <option value="1" data-imagesrc="../../images/icons_search/sightseeing.png">Pay Load Type 1</option>
                                 <option value="2" data-imagesrc="../../images/icons_search/museums.png">Pay Load Type 2</option>
@@ -47,9 +47,9 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
+                        <div class="form-group overflow-false">
                             <label>Vehicle Type</label>
-                            <select class="ddslick" name="category">
+                            <select class="ddslick" id="category" name="category">
                                 <option value="0" data-imagesrc="../../images/icons_search/all_tours.png" selected>All</option>
                                 <option value="1" data-imagesrc="../../images/icons_search/sightseeing.png">Vehicle Type 1</option>
                                 <option value="2" data-imagesrc="../../images/icons_search/museums.png">Vehicle Type 2</option>
@@ -63,7 +63,7 @@
                     </div>                  
                 </div><!-- End row -->
                 <hr>
-                <button class="btn_1 green"><i class="icon-search"></i>Search now</button>
+                <a href="@Url.Action("SearchResults","Home")" class="btn_1 green"><i class="icon-search"></i>Search now</a>
             </div><!-- End rab -->
             
         </div>

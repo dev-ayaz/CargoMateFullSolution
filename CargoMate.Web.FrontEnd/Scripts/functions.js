@@ -70,8 +70,7 @@ $('#overlay').click(function(e){
 
 /* ==============================================
 	Common
-=============================================== */
-<!-- Tooltip -->	
+=============================================== */	
 $('.tooltip-1').tooltip({html:true});
 	
  //accordion	
@@ -83,7 +82,6 @@ function toggleChevron(e) {
 }
 $('.panel-group').on('hidden.bs.collapse shown.bs.collapse', toggleChevron);
 
-<!-- Button show/hide map -->	
  $(".btn_map").on("click", function() {
   var el = $(this);
   el.text() == el.data("text-swap") 
@@ -170,19 +168,18 @@ var toggles = document.querySelectorAll(".cmn-toggle-switch");
     });
 });
 
-<!-- Cat nav onclick active -->	
 $('ul#cat_nav li a').on('click', function(){
     $('ul#cat_nav li a.active').removeClass('active');
     $(this).addClass('active');
 });
 
-<!-- Map filter onclick active -->	
+	
 $('#map_filter ul li a').on('click', function(){
     $('#map_filter ul li a.active').removeClass('active');
     $(this).addClass('active');
 });
 
-<!-- Input range slider -->	
+
     $(function () {
 		'use strict';
         $("#range").ionRangeSlider({

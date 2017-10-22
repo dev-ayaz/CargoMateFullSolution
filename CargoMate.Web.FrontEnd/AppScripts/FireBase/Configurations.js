@@ -23,6 +23,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 
+
 $("#btnlogout").click(function () {
     firebaseUtilFunc.logout();
 });

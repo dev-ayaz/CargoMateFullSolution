@@ -54,7 +54,7 @@
                     <li id="logout_menu" class="hide logout_menu">
                         <div class="dropdown dropdown-access">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="~/images/avatar3.jpg" class="profile_avatar" />
+                                <img src="@(!string.IsNullOrEmpty(SessionHandler.UserImage)?"../SystemImages/UserImages/"+SessionHandler.UserImage:"../images/avatar3.jpg")" class="profile_avatar" />
                                @SessionHandler.UserName
                             </a>
                             <div class="dropdown-menu px-0">
