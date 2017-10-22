@@ -1,17 +1,40 @@
 ﻿using CargoMate.Web.FrontEnd.Models;
+using CargoMate.Web.FrontEnd.Models.SearchVehicleViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CargoMate.DataAccess.Contracts;
+using CargoMate.Web.FrontEnd.Shared;
 
 namespace CargoMate.Web.FrontEnd.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        public HomeController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        {
+        }
+
         public ActionResult Index()
         {
-            return View(new LoginViewModel());
+            var searchModel = new SearchVehicleViewModel() {
+                PayLoadTypes = UnitOfWork.LocalizedPayLoadTypes
+                               .GetWhere(p => p.CultureCode == SessionHandler.CultureCode)
+                               .Select(p=> new SelectListItem {
+                                    Value = p.PayLoadTypeId.ToString(),
+                                    Text=p.Name
+                               }).ToList(),
+
+                VehicleTypes = UnitOfWork.LocalizedVehicleTypes
+                               .GetWhere(p => p.CultureCode == SessionHandler.CultureCode)
+                               .Select(p => new SelectListItem {
+                                    Value = p.VehicleTypeId.ToString(),
+                                    Text = p.Name
+                               }).ToList()
+            };
+
+            return View(searchModel);
         }
 
         public ActionResult About()

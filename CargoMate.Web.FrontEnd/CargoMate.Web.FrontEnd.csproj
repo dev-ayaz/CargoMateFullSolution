@@ -193,6 +193,7 @@
     <Compile Include="Models\DriverViewModel\DriverViewModel.cs" />
     <Compile Include="Models\GeoAddressViewModel.cs" />
     <Compile Include="Models\KeyValuePairViewModel.cs" />
+    <Compile Include="Models\SearchVehicleViewModels\SearchVehicleViewModel.cs" />
     <Compile Include="Models\VehicleRegistrationModels\VehicleViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\CapacityViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\ConfigurationsViewModel.cs" />

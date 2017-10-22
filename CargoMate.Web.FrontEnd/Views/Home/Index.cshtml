@@ -1,5 +1,14 @@
-﻿@{
+﻿@model CargoMate.Web.FrontEnd.Models.SearchVehicleViewModels.SearchVehicleViewModel
+@{
     ViewBag.Title = "Home Page";
+}
+
+@section styles{
+    <style>
+        .dd-selected-text {
+            line-height: 35px;
+        }
+    </style>   
 }
 
 <!--banner Section start-->
@@ -8,19 +17,29 @@
         <div class="tab-content">
             <div class="tab-pane active" id="tab1">
                 <h3>Search Vehicles</h3>
+                
+                @using (Ajax.BeginForm("", "", null, new AjaxOptions { HttpMethod = "POST" }, new { @class = "VehicleSearchFilter" }))
+                {
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>PickUp Address</label>
-                            <input type="text" class="form-control placePicker" name="pickUpAddress" placeholder="Type your search terms">
-                            <input type="hidden" id="pickUpAddress" />
+                            @*@Html.LabelFor(model => model.PickUpAddress)*@
+                            <label><i class="icon-globe-1"></i>PickUp Address</label>
+                            @Html.EditorFor(model => model.PickUpAddress, new { htmlAttributes = new { @class = "form-control placePicker", placeholder = "Type your pickup address" } })
+                            @Html.ValidationMessageFor(model => model.PickUpAddress, "", new { @class = "text-danger" })
+                            
+                            @Html.HiddenFor(model => model.PickUpLocation)
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>DropUp Address</label>
-                            <input type="text" class="form-control placePicker" name="dropUpAddress" placeholder="Type your search terms">
-                            <input type="hidden" id="pickUpAddress" />
+                            @*@Html.LabelFor(model => model.DropUpAddress)*@
+                            <label><i class="icon-globe-1"></i>DropUp Address</label>
+                            @Html.EditorFor(model => model.DropUpAddress, new { htmlAttributes = new { @class = "form-control placePicker", placeholder = "Type your dropup address" } })
+                            @Html.ValidationMessageFor(model => model.DropUpAddress, "", new { @class = "text-danger" })
+
+                            @Html.HiddenFor(model => model.DropUpLocation)
                         </div>
                     </div>
                 </div><!-- End row -->
@@ -28,42 +47,25 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label><i class="icon-calendar-7"></i> Date</label>
-                            <input class="date-pick form-control" data-date-format="M d, D" type="text">
+                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control date-pick", placeholder = "M d, D", data_date_format="M d, D" } })
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group overflow-false">
-                            <label><i class="icon-calendar-7"></i> Pay Load Type</label>
-                            <select class="ddslick" id="PayLoadType" name="PayLoadType">
-                                <option value="0" data-imagesrc="../../images/icons_search/all_tours.png" selected>All</option>
-                                <option value="1" data-imagesrc="../../images/icons_search/sightseeing.png">Pay Load Type 1</option>
-                                <option value="2" data-imagesrc="../../images/icons_search/museums.png">Pay Load Type 2</option>
-                                <option value="3" data-imagesrc="../../images/icons_search/historic.png">Pay Load Type 3</option>
-                                <option value="4" data-imagesrc="../../images/icons_search/walking.png">Pay Load Type 4</option>
-                                <option value="5" data-imagesrc="../../images/icons_search/eat.png">Pay Load Type 5</option>
-                                <option value="6" data-imagesrc="../../images/icons_search/churches.png">Pay Load Type 5</option>
-                                <option value="7" data-imagesrc="../../images/icons_search/skyline.png">Pay Load Type 6</option>
-                            </select>
+                            <label>Pay Load Type</label>
+                            @Html.DropDownListFor(model => model.PayLoadTypeId, new SelectList(Model.PayLoadTypes, "Value", "Text"), "Select PayLoad Type", new { @class = "ddslick" })
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group overflow-false">
                             <label>Vehicle Type</label>
-                            <select class="ddslick" id="category" name="category">
-                                <option value="0" data-imagesrc="../../images/icons_search/all_tours.png" selected>All</option>
-                                <option value="1" data-imagesrc="../../images/icons_search/sightseeing.png">Vehicle Type 1</option>
-                                <option value="2" data-imagesrc="../../images/icons_search/museums.png">Vehicle Type 2</option>
-                                <option value="3" data-imagesrc="../../images/icons_search/historic.png">Vehicle Type 3</option>
-                                <option value="4" data-imagesrc="../../images/icons_search/walking.png">Vehicle Type 4</option>
-                                <option value="5" data-imagesrc="../../images/icons_search/eat.png">Vehicle Type 5</option>
-                                <option value="6" data-imagesrc="../../images/icons_search/churches.png">Vehicle Type 6</option>
-                                <option value="7" data-imagesrc="../../images/icons_search/skyline.png">Vehicle Type 7</option>
-                            </select>
+                            @Html.DropDownListFor(model => model.VehicleTypeId, new SelectList(Model.VehicleTypes, "Value", "Text"), "Select Vehicle Type", new { @class = "ddslick" })
                         </div>
                     </div>                  
                 </div><!-- End row -->
                 <hr>
-                <a href="@Url.Action("SearchResults","Home")" class="btn_1 green"><i class="icon-search"></i>Search now</a>
+                <a href="@Url.Action("SearchResults", "Home")" class="btn_1 green"><i class="icon-search"></i>Search now</a>
+                }
             </div><!-- End rab -->
             
         </div>
