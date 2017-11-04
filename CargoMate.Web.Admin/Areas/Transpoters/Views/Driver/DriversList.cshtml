@@ -1,0 +1,210 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "DriversList";
+}
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE HEAD-->
+        @*<div class="page-head">
+                <!-- BEGIN PAGE TITLE -->
+                <div class="m-heading-1 border-green m-bordered">
+                    <h3>
+                        Vehicle
+                        <small>Vehicle Managment</small>
+                    </h3>
+                </div>
+                <!-- END PAGE TITLE -->
+                <!-- BEGIN PAGE TOOLBAR -->
+                <div class="page-toolbar">
+
+                </div>
+                <!-- END PAGE TOOLBAR -->
+            </div>*@
+        <!-- END PAGE HEAD-->
+        <!-- BEGIN PAGE BASE CONTENT -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light bordered">
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="table-toolbar">
+                                <div class="row">
+                                    <div class="portlet-body">
+                                        <div class="table-toolbar">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="btn-group">
+                                                        <a id="btnAddNewVehicleModel" data-toggle="modal" data-target="#modalAddNewVehicleModel" class="btn sbold green">
+                                                            Add New
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dataTables_wrapper no-footer">
+                                <div class="row" id="tblVehicleModelssList">
+                                    <table class="table" id="tblDriversList">
+                                        <thead>
+                                            <tr>
+                                                <th>Driver Id</th>
+                                                <th>Driver Picture</th>
+                                                <th>Driver Name</th>
+                                                <th>Legal Name</th>
+                                                <th>Email Address</th>
+                                                <th>Phone Number</th>
+                                                <th>Date Of Birth</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    
+    <script>
+        var DriversTable = {
+            selectors : {
+                TblDriversList: "#tblDriversList"
+            },
+            services: {
+
+                controller: "Driver",
+                actions: {
+                    Edit: "EditDriver",
+                    Delete: "DeleteDriver",
+                    List: "GetDriversList"
+                }
+
+            },
+            domConfigurations: {
+                initTable: function () {
+                    var utilities = IAC.Utilities;
+                    var listUrl = [utilities.getSiteRoot(), DriversTable.services.controller, "/", DriversTable.services.actions.List].join("");
+                    var DriverDetailsUrl = [utilities.getSiteBase(), "/Transporters/Driver/GetDriversList"].join("");
+
+                    var actions = [
+                        {
+                            actionName: " Add Images ",
+                            icon: "fa fa-picture-o",
+                            classes: "btnAddImages",
+                            dataAttr: ["Id"],
+                            hrefParams: [{ Name: "rowId", ValueColumn: "Id" }],
+                            href: "MaintenanceRequestImages?IsPostRepair=false",
+                            target: "_blank"
+                        },
+
+                        {
+                            actionName: " Edit",
+                            icon: "fa fa-pencil-square-o",
+                            classes: "btnEdit",
+                            dataAttr: ["Id"]
+
+                        },
+                        {
+                            actionName: " Chat",
+                            icon: "fa fa-commenting-o",
+                            classes: "btnChat",
+                            dataAttr: ["Id"]
+
+                        },
+
+                        {
+                            actionName: " Details",
+                            icon: "fa fa-info-circle",
+                            classes: "btnDetails",
+                            dataAttr: ["Id"],
+                            hrefParams: [{ Name: "requestId", ValueColumn: "Id" }, { Name: "houseMeterId", ValueColumn: "HouseMeterId" }],
+                            href: "HouseMeterRequest/HouseMeterRequestDetails?HashCode=0099"
+
+                        }
+                        ,
+                        {
+                            actionName: " Assign Worker",
+                            icon: "fa fa fa-tasks",
+                            classes: "btnAssignWorker",
+                            dataAttr: ["TaskId"]
+
+                        }
+                    ];
+
+                    var dataTable = $(DriversTable.selectors.TblDriversList).DataTable({
+                        "bServerSide": true,
+                        "bSortCellsTop": true,
+                        "ajax": {
+                            "url": listUrl,
+                            "data": function (data) {
+                                var params = IACdataTable.setDataTableFilters(data);
+                                //params.Status = $(DriversTable.selectors.searchFilterSelectors.Status).attr("data-status");
+                                return params;
+                            }
+                        },
+                        "bProcessing": false,
+                        "filter": false, //set to false to Disable filter (search box)
+                        "drawCallback": function (settings) {
+
+                        },
+                        "columns": [
+                            //{
+                            //    "className": "details-control",
+                            //    "orderable": false,
+                            //    "data": null,
+                            //    "defaultContent": ""
+                            //},
+                            //{
+                            //    mRender: function (data, type, row) { return "<a href='" + [utilities.getSiteRoot(), HouseMeterRequest.services.controller, "/", HouseMeterRequest.services.actions.Details].join("") + "?requestId=" + row.Id + "'><i class='fa fa-info-circle' aria-hidden='true'></i>  " + row.RequestNumber + "</a>" },
+                            //    "sortable": false
+                            //},
+                            //{
+                            //    mRender: function (data, type, row) { return "<a href='" + houseMeterDetailsUrl + "?id=" + row.HouseMeterId + "'><i class='fa fa-info-circle' aria-hidden='true'></i>  " + row.HouseMeterNumber + "</a>" },
+                            //    "sortable": false
+                            //},
+                            { data: "Id", "sortable": true },
+                            { data: "ImageUrl", "sortable": false },
+                            { data: "Name", "sortable": true },
+                            { data: "LegalName", "sortable": false },
+                            { data: "EmailAddress", "sortable": false },
+                            { data: "PhoneNumber", "sortable": false },
+                            { data: "DateOfBirth", "sortable": true },
+                            { data: "Status", "sortable": false, defaultContent: "<i>Not set</i>" },
+                            {
+                                mRender: function (data, type, row) { return IACdataTable.htmlWrapers.ActionMenu.replace("{li}", IACdataTable.createActionLink(actions, row)); },
+                                "sortable": false
+                            }
+                        ],
+                        "aaSorting": [1, "asc"],
+                        "createdRow": function (row, data, index) {
+                            $("td", row).eq(4).addClass(data.Priority);
+
+                        }
+                    });
+
+                } // end initTable
+
+            } // end domConfigurations
+        };
+
+        jQuery(document).ready(function () {
+            DriversTable.domConfigurations.initTable();
+        });
+    </script>
+}

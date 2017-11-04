@@ -52,10 +52,6 @@
     color: #0057E7;
 }
 
-.btn_1:hover, .btn_1:active, .btn_1:focus {
-    cursor: default;
-}
-
 .form-group {
     display: block;
     overflow: hidden;

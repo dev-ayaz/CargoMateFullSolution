@@ -37,6 +37,21 @@ namespace CargoMate.Web.FrontEnd.Controllers
             return View(searchModel);
         }
 
+        [HttpPost]
+        public ActionResult SearchResults(SearchVehicleViewModel searchModel) {
+
+            if (!ModelState.IsValid)
+            {
+                return View("Index", searchModel);
+            }
+
+            var searchResults = UnitOfWork.Vehicles
+                                .GetWhere(s => s.ModelYearCombination.VehicleModel.VehicleMake.VehicleTypeId == searchModel.VehicleTypeId)
+                                .ToList();
+
+            return View(searchResults);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

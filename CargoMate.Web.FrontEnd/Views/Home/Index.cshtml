@@ -8,7 +8,7 @@
         .dd-selected-text {
             line-height: 35px;
         }
-    </style>   
+    </style>
 }
 
 <!--banner Section start-->
@@ -17,57 +17,57 @@
         <div class="tab-content">
             <div class="tab-pane active" id="tab1">
                 <h3>Search Vehicles</h3>
-                
-                @using (Ajax.BeginForm("", "", null, new AjaxOptions { HttpMethod = "POST" }, new { @class = "VehicleSearchFilter" }))
+
+                @using (Html.BeginForm("SearchResults", "Home", FormMethod.Post))
                 {
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            @*@Html.LabelFor(model => model.PickUpAddress)*@
-                            <label><i class="icon-globe-1"></i>PickUp Address</label>
-                            @Html.EditorFor(model => model.PickUpAddress, new { htmlAttributes = new { @class = "form-control placePicker", placeholder = "Type your pickup address" } })
-                            @Html.ValidationMessageFor(model => model.PickUpAddress, "", new { @class = "text-danger" })
-                            
-                            @Html.HiddenFor(model => model.PickUpLocation)
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            @*@Html.LabelFor(model => model.DropUpAddress)*@
-                            <label><i class="icon-globe-1"></i>DropUp Address</label>
-                            @Html.EditorFor(model => model.DropUpAddress, new { htmlAttributes = new { @class = "form-control placePicker", placeholder = "Type your dropup address" } })
-                            @Html.ValidationMessageFor(model => model.DropUpAddress, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.PickUpAddress)*@
+                                <label><i class="icon-globe-1"></i>PickUp Address</label>
+                                @Html.EditorFor(model => model.PickUpAddress, new { htmlAttributes = new { @class = "form-control placePicker", placeholder = "Type your pickup address" } })
+                                @Html.ValidationMessageFor(model => model.PickUpAddress, "", new { @class = "text-danger" })
 
-                            @Html.HiddenFor(model => model.DropUpLocation)
+                                @Html.HiddenFor(model => model.PickUpLocation)
+                            </div>
                         </div>
-                    </div>
-                </div><!-- End row -->
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label><i class="icon-calendar-7"></i> Date</label>
-                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control date-pick", placeholder = "M d, D", data_date_format="M d, D" } })
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => model.DropUpAddress)*@
+                                <label><i class="icon-globe-1"></i>DropUp Address</label>
+                                @Html.EditorFor(model => model.DropUpAddress, new { htmlAttributes = new { @class = "form-control placePicker", placeholder = "Type your dropup address" } })
+                                @Html.ValidationMessageFor(model => model.DropUpAddress, "", new { @class = "text-danger" })
+
+                                @Html.HiddenFor(model => model.DropUpLocation)
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group overflow-false">
-                            <label>Pay Load Type</label>
-                            @Html.DropDownListFor(model => model.PayLoadTypeId, new SelectList(Model.PayLoadTypes, "Value", "Text"), "Select PayLoad Type", new { @class = "ddslick" })
+                    </div><!-- End row -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label><i class="icon-calendar-7"></i> Date</label>
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control date-pick", placeholder = "M d, D" } })
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group overflow-false">
-                            <label>Vehicle Type</label>
-                            @Html.DropDownListFor(model => model.VehicleTypeId, new SelectList(Model.VehicleTypes, "Value", "Text"), "Select Vehicle Type", new { @class = "ddslick" })
+                        <div class="col-md-3">
+                            <div class="form-group overflow-false">
+                                <label>Pay Load Type</label>
+                                @Html.DropDownListFor(model => model.PayLoadTypeId, new SelectList(Model.PayLoadTypes, "Value", "Text"), "Select PayLoad Type", new { @class = "ddslick" })
+                            </div>
                         </div>
-                    </div>                  
-                </div><!-- End row -->
-                <hr>
-                <a href="@Url.Action("SearchResults", "Home")" class="btn_1 green"><i class="icon-search"></i>Search now</a>
+                        <div class="col-md-6">
+                            <div class="form-group overflow-false">
+                                <label>Vehicle Type</label>
+                                @Html.DropDownListFor(model => model.VehicleTypeId, new SelectList(Model.VehicleTypes, "Value", "Text"), "Select Vehicle Type", new { @class = "ddslick" })
+                            </div>
+                        </div>
+                    </div><!-- End row -->
+                    <hr>
+                    <button type="submit" class="btn_1 green" name="submit"><i class="icon-search"></i>Search now</button>
                 }
             </div><!-- End rab -->
-            
+
         </div>
     </div>
 </section><!-- End hero -->
