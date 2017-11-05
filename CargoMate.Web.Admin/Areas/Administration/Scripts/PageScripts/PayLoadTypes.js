@@ -94,7 +94,8 @@
             PayLoadTypes.callbacks.EditPayLoadType($this);
         });
 
-        $(PayLoadTypes.selectors.ImageInput + ":not(.bound)").addClass("bound").change(function () {
+
+        $(document).on("change", PayLoadTypes.selectors.ImageInput, function () {
 
             var imageInput = $(this);
 

@@ -106,7 +106,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
         public JsonResult UpdateVehicleType(VehicleTypeViewModel vehicleTypeForm)
         {
 
-            var savedVehicleType = UnitOfWork.VehicleTypes.GetWhere(t => t.Id == vehicleTypeForm.Id).FirstOrDefault();
+            var savedVehicleType = UnitOfWork.VehicleTypes.GetWhere(t => t.Id == vehicleTypeForm.Id, "LocalizedVehicleTypes").FirstOrDefault();
 
             if (savedVehicleType == null)
             {
@@ -213,7 +213,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
         public object UpdateVehicleCapacity(VehicleCapacityViewModel capacityViewModel)
         {
-            var savedCapacity = UnitOfWork.VehicleCapacities.GetWhere(c => c.Id == capacityViewModel.Id).FirstOrDefault();
+            var savedCapacity = UnitOfWork.VehicleCapacities.GetWhere(c => c.Id == capacityViewModel.Id, "LocalizedVehicleCapacities").FirstOrDefault();
 
             if (savedCapacity == null)
             {
@@ -537,7 +537,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
         public JsonResult UpdateVehicleMake(MakeFormModel makeModel)
         {
 
-            var savedMake = UnitOfWork.VehicleMakes.GetWhere(m => m.Id == makeModel.Id).FirstOrDefault();
+            var savedMake = UnitOfWork.VehicleMakes.GetWhere(m => m.Id == makeModel.Id, "LocalizedVehicleMakes").FirstOrDefault();
 
             if (savedMake == null)
             {
@@ -551,8 +551,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             savedMake.CountryId = makeModel.CountryId;
             savedMake.VehicleTypeId = makeModel.VehicleTypeId;
 
-            var localizedMake = UnitOfWork.VehicleMakes.GetWhere(lm => lm.Id == makeModel.Id)
-                               .FirstOrDefault().LocalizedVehicleMakes.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode);
+            var localizedMake = savedMake.LocalizedVehicleMakes.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode);
 
             if (localizedMake != null)
             {
@@ -653,7 +652,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
         public JsonResult UpdateVehiclModel(Models.Vehicle.VehicleModel vehicleModel)
         {
 
-            var savedModel = UnitOfWork.VehicleModels.GetWhere(m => m.Id == vehicleModel.Id).FirstOrDefault();
+            var savedModel = UnitOfWork.VehicleModels.GetWhere(m => m.Id == vehicleModel.Id, "LocalizedVehicleModels").FirstOrDefault();
             if (savedModel == null)
             {
                 return Json(AlertMessages.ModelError);
@@ -918,7 +917,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
         {
 
 
-            var savedModel = UnitOfWork.PayLoadTypes.GetWhere(m => m.Id == payLoadModel.Id).FirstOrDefault();
+            var savedModel = UnitOfWork.PayLoadTypes.GetWhere(m => m.Id == payLoadModel.Id, "LocalizedPayLoadTypes").FirstOrDefault();
             if (savedModel == null)
             {
                 return Json(AlertMessages.ModelError);
@@ -1050,7 +1049,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             {
                 return Json(AlertMessages.ModelError);
             }
-            var localizedWeight = UnitOfWork.WeightUnits.GetWhere(w => w.Id == weightModel.Id)
+            var localizedWeight = UnitOfWork.WeightUnits.GetWhere(w => w.Id == weightModel.Id, "LocalizedWeightUnits")
                                   .FirstOrDefault().LocalizedWeightUnits.FirstOrDefault(lw => lw.CultureCode == SessionHandler.CultureCode);
             if (localizedWeight != null)
             {
@@ -1145,7 +1144,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             {
                 return Json(AlertMessages.ModelError);
             }
-            var localizedLength = UnitOfWork.LengthUnits.GetWhere(l => l.Id == lengthModel.Id)
+            var localizedLength = UnitOfWork.LengthUnits.GetWhere(l => l.Id == lengthModel.Id, "LocalizedLengthUnits")
                                   .FirstOrDefault().LocalizedLengthUnits.FirstOrDefault(l => l.CultureCode == SessionHandler.CultureCode);
             if (localizedLength != null)
             {

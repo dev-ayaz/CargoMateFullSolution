@@ -92,9 +92,9 @@
             var $this = $(this);
             VehicleMake.callbacks.EditVehicleMake($this);
         });
-        
-        $(VehicleMake.selectors.ImageInput + ":not(.bound)").addClass("bound").change(function () {
 
+
+        $(document).on("change", VehicleMake.selectors.ImageInput, function () {
             var imageInput = $(this);
 
             if (this.files && this.files[0]) {

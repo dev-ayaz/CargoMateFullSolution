@@ -94,7 +94,7 @@
             VehicelModelYear.callbacks.EditVehicleModelYear($this);
         });
 
-        $(VehicelModelYear.selectors.ImageInput + ":not(.bound)").addClass("bound").change(function () {
+        $(document).on("change", VehicelModelYear.selectors.ImageInput, function () {
 
             var imageInput = $(this);
 

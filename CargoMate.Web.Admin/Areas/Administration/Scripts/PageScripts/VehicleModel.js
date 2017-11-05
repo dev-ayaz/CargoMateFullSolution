@@ -93,9 +93,8 @@
             VehicleModel.callbacks.editVehicleModel($this);
         });
 
-       
-        $(VehicleModel.selectors.ImageInput + ":not(.bound)").addClass("bound").change(function () {
-
+      
+            $(document).on("change", VehicleModel.selectors.ImageInput, function () {
             var imageInput = $(this);
 
             if (this.files && this.files[0]) {

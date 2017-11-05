@@ -80,7 +80,9 @@
             var $this = $(this);
             VehicleConfigurations.callbacks.editVehicleConfiguration($this);
         });
-        $(VehicleConfigurations.selectors.ImageInput + ":not(.bound)").addClass("bound").change(function () {
+
+
+        $(document).on("change", VehicleConfigurations.selectors.ImageInput, function () {
 
             var imageInput = $(this);
 

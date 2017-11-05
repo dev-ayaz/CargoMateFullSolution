@@ -8,15 +8,15 @@ namespace CargoMate.Web.Admin.Areas.Transpoters
         {
             get 
             {
-                return "Transpoters";
+                return "Transporters";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Transpoters_default",
-                "Transpoters/{controller}/{action}/{id}",
+                "Transporters_default",
+                "Transporters/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

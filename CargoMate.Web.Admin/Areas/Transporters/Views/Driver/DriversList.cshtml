@@ -55,15 +55,13 @@
                                     <table class="table" id="tblDriversList">
                                         <thead>
                                             <tr>
-                                                <th>Driver Id</th>
-                                                <th>Driver Picture</th>
-                                                <th>Driver Name</th>
+                                                <th>Image</th>
+                                                <th>Name</th>
                                                 <th>Legal Name</th>
                                                 <th>Email Address</th>
-                                                <th>Phone Number</th>
-                                                <th>Date Of Birth</th>
+                                                <th>Phone</th>
                                                 <th>Status</th>
-                                                <th>Actions</th>
+                                                <th style="width: 200px">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -104,46 +102,12 @@
 
                     var actions = [
                         {
-                            actionName: " Add Images ",
-                            icon: "fa fa-picture-o",
-                            classes: "btnAddImages",
+                            actionName: " View Profile ",
+                            icon: "fa fa-info-circle",
+                            classes: "btnAViewProfile",
                             dataAttr: ["Id"],
                             hrefParams: [{ Name: "rowId", ValueColumn: "Id" }],
-                            href: "MaintenanceRequestImages?IsPostRepair=false",
-                            target: "_blank"
-                        },
-
-                        {
-                            actionName: " Edit",
-                            icon: "fa fa-pencil-square-o",
-                            classes: "btnEdit",
-                            dataAttr: ["Id"]
-
-                        },
-                        {
-                            actionName: " Chat",
-                            icon: "fa fa-commenting-o",
-                            classes: "btnChat",
-                            dataAttr: ["Id"]
-
-                        },
-
-                        {
-                            actionName: " Details",
-                            icon: "fa fa-info-circle",
-                            classes: "btnDetails",
-                            dataAttr: ["Id"],
-                            hrefParams: [{ Name: "requestId", ValueColumn: "Id" }, { Name: "houseMeterId", ValueColumn: "HouseMeterId" }],
-                            href: "HouseMeterRequest/HouseMeterRequestDetails?HashCode=0099"
-
-                        }
-                        ,
-                        {
-                            actionName: " Assign Worker",
-                            icon: "fa fa fa-tasks",
-                            classes: "btnAssignWorker",
-                            dataAttr: ["TaskId"]
-
+                            href: "#"
                         }
                     ];
 
@@ -170,21 +134,21 @@
                             //    "data": null,
                             //    "defaultContent": ""
                             //},
-                            //{
-                            //    mRender: function (data, type, row) { return "<a href='" + [utilities.getSiteRoot(), HouseMeterRequest.services.controller, "/", HouseMeterRequest.services.actions.Details].join("") + "?requestId=" + row.Id + "'><i class='fa fa-info-circle' aria-hidden='true'></i>  " + row.RequestNumber + "</a>" },
-                            //    "sortable": false
-                            //},
-                            //{
-                            //    mRender: function (data, type, row) { return "<a href='" + houseMeterDetailsUrl + "?id=" + row.HouseMeterId + "'><i class='fa fa-info-circle' aria-hidden='true'></i>  " + row.HouseMeterNumber + "</a>" },
-                            //    "sortable": false
-                            //},
-                            { data: "Id", "sortable": true },
-                            { data: "ImageUrl", "sortable": false },
+               
+                            {
+                                mRender: function (data, type, row) {
+                                    var url = row.ImageUrl;
+
+                                    var imageUrl = url.indexOf("http") > -1 ? url : IAC.ClientAppUrl+"/SystemImages/DriverImages/" + url;
+
+                                    return "<img src='" + imageUrl + "' class='img-circle' style='width: 60px; height: 60px;'>"
+                                },
+                                "sortable": false
+                            },
                             { data: "Name", "sortable": true },
                             { data: "LegalName", "sortable": false },
                             { data: "EmailAddress", "sortable": false },
                             { data: "PhoneNumber", "sortable": false },
-                            { data: "DateOfBirth", "sortable": true },
                             { data: "Status", "sortable": false, defaultContent: "<i>Not set</i>" },
                             {
                                 mRender: function (data, type, row) { return IACdataTable.htmlWrapers.ActionMenu.replace("{li}", IACdataTable.createActionLink(actions, row)); },

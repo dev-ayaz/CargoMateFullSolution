@@ -96,12 +96,13 @@
                
             });
         });
+
         $(VehicleTypes.selectors.btnVehicletypeEdit).click(function () {
             var $this = $(this);
             VehicleTypes.callbacks.editVehicleType($this);
         });
 
-        $(VehicleTypes.selectors.ImageInput + ":not(.bound)").addClass("bound").change(function () {
+        $(document).on("change", VehicleTypes.selectors.ImageInput, function () {
 
             var imageInput = $(this);
 
@@ -112,7 +113,7 @@
 
                     $(imageInput.closest("form").find(VehicleTypes.selectors.ImageUrl)).val(e.target.result);
 
-                    $(VehicleTypes.selectors.ImagePreView).attr("src", e.target.result);
+                    $(imageInput.closest("form").find(VehicleTypes.selectors.ImagePreView)).attr("src", e.target.result);
                 }
 
                 reader.readAsDataURL(this.files[0]);
