@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 
 
-namespace CargoMate.Web.Admin.Areas.Transpoters.Controllers
+namespace CargoMate.Web.Admin.Areas.Transporters.Controllers
 {
     public class BaseController : Controller
     {

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CargoMate.Web.Admin.Areas.Transporters.Models.DriverVehiclesDisplayModel>
+
+<table class="table table-striped table-bordered table-advance table-hover">
+    <thead>
+        <tr>
+            <th>
+                 Vehicle Id
+            </th>
+            <th>
+                Registeration Number
+            </th>
+            <th>
+                Registeration Expiry
+            </th>
+            <th>
+                Plate Number
+            </th>
+            <th>
+                Engine Number
+            </th>
+            <th>
+                Is Active
+            </th>
+            <th>
+                Is Insured
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var V in Model)
+        {
+            <tr>
+                <td>
+                    <a href="javascript:;"> @V.Id </a>
+                </td>
+                <td>@V.RegisterationNumber </td>
+                <td>
+                    @V.RegisterationExpirey
+                </td>
+                <td>
+                    @V.PlateNumber
+                </td>
+                <td>
+                    @V.EngineNumber
+                </td>
+                <td>
+                    <a class="btn btn-sm green-salsa btn-outline" href="javascript:;">
+                        @V.IsActive
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-sm green-salsa btn-outline" href="javascript:;">
+                        @V.IsInsured
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿@model CargoMate.Web.Admin.Areas.Transporters.Models.DriverPersonalInfoDisplayModel
+<div class="col-md-8 profile-info">
+    <h1 class="font-green sbold uppercase">@Model.Name</h1>
+    <p>
+        @Model.LegalName
+    </p>
+    <p>
+        <a href="javascript:;"> @Model.EmailAddress </a>
+    </p>
+    <ul class="list-inline">
+        <li>
+            <i class="fa fa-phone"></i> @Model.PhoneNumber
+        </li>
+        <li>
+            <i class="fa fa-globe"></i> @Model.Country
+        </li>
+        <li>
+            <i class="fa fa-calendar"></i> @Model.DateOfBirth
+        </li>
+        <li>
+            <i class="fa fa-user-md"></i> @Model.Gender
+        </li>
+        <li>
+            <i class="fa fa-star"></i> @Model.Rating
+        </li>
+    </ul>
+</div>

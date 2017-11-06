@@ -217,6 +217,10 @@
     <Compile Include="Areas\Administration\Models\Vehicle\VehicleViewModel.cs" />
     <Compile Include="Areas\Transporters\Controllers\BaseController.cs" />
     <Compile Include="Areas\Transporters\Controllers\DriverController.cs" />
+    <Compile Include="Areas\Transporters\Models\DriverDisplayViewModel.cs" />
+    <Compile Include="Areas\Transporters\Models\DriverLegalDocumentsDisplayModel.cs" />
+    <Compile Include="Areas\Transporters\Models\DriverPersonalInfoDisplayModel.cs" />
+    <Compile Include="Areas\Transporters\Models\DriverVehiclesDisplayModel.cs" />
     <Compile Include="Areas\Transporters\Models\DriverViewModel.cs" />
     <Compile Include="Areas\Transporters\TranspotersAreaRegistration.cs" />
     <Compile Include="Areas\Users\Controllers\BaseController.cs" />
@@ -268,6 +272,7 @@
     <Content Include="Areas\Administration\Scripts\PageScripts\VehicleModel.js" />
     <Content Include="Areas\Administration\Scripts\PageScripts\VehicleTypes.js" />
     <Content Include="Areas\Administration\Scripts\PageScripts\Weight.js" />
+    <Content Include="Areas\Transporters\Scripts\PageScripts\Driver.js" />
     <Content Include="Areas\Users\Scripts\Roles\permissions.js" />
     <Content Include="Areas\Users\Scripts\Roles\Roles.js" />
     <Content Include="Areas\Users\Scripts\Users\Users.js" />
@@ -297,6 +302,7 @@
     <Content Include="assets\global\img\datatable-row-openclose.png" />
     <Content Include="assets\global\img\details_close.png" />
     <Content Include="assets\global\img\details_open.png" />
+    <Content Include="assets\global\img\placeholder.jpg" />
     <Content Include="assets\global\img\flags\ad.png" />
     <Content Include="assets\global\img\flags\ae.png" />
     <Content Include="assets\global\img\flags\af.png" />
@@ -1308,6 +1314,7 @@
     <Content Include="assets\pages\css\details_open.png" />
     <Content Include="assets\pages\css\error.css" />
     <Content Include="assets\pages\css\login-4.css" />
+    <Content Include="assets\pages\css\profile-2.css" />
     <Content Include="assets\pages\css\profile.css" />
     <Content Include="assets\pages\img\bg-white-lock.png" />
     <Content Include="assets\pages\media\bg\1.jpg" />
@@ -1431,6 +1438,10 @@
     <Content Include="Areas\Transporters\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Transporters\Views\Driver\Index.cshtml" />
     <Content Include="Areas\Transporters\Views\Driver\DriversList.cshtml" />
+    <Content Include="Areas\Transporters\Views\Driver\DriverProfile.cshtml" />
+    <Content Include="Areas\Transporters\Views\Driver\Partials\_DriverPersonalInfo.cshtml" />
+    <Content Include="Areas\Transporters\Views\Driver\Partials\_DriverLegalDocuments.cshtml" />
+    <Content Include="Areas\Transporters\Views\Driver\Partials\_DriverVehicles.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\AppCommonScripts\ajax-interceptor.js" />

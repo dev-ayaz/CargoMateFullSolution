@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace CargoMate.Web.Admin.Areas.Transpoters
+namespace CargoMate.Web.Admin.Areas.Transporters
 {
     public class TranspotersAreaRegistration : AreaRegistration 
     {
