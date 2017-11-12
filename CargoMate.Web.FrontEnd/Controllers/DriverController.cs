@@ -129,7 +129,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 UnitOfWork.DriverFareTypes.Delete(ft);
             }
 
-            if (!fairTypes.Any()) return UnitOfWork.Commit();
+            if (fairTypes==null || !fairTypes.Any()) return UnitOfWork.Commit();
 
             foreach (var val in fairTypes)
             {

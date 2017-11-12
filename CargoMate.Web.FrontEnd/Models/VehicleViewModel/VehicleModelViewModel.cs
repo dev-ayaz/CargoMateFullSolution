@@ -11,8 +11,6 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleViewModel
 
         public string Name { get; set; }
 
-        public string Make { get; set; }
-
         public string ImageUrl { get; set; }
     }
 }
