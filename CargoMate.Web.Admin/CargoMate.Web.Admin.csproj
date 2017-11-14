@@ -215,6 +215,11 @@
     <Compile Include="Areas\Administration\Models\Vehicle\VehicleTypesConfigurationViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Vehicle\VehicleTypeViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Vehicle\VehicleViewModel.cs" />
+    <Compile Include="Areas\Customers\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Customers\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Customers\Models\CustomerDisplayViewModel.cs" />
+    <Compile Include="Areas\Customers\CustomersAreaRegistration.cs" />
+    <Compile Include="Areas\Customers\Models\CustomerProfileDisplayViewModel.cs" />
     <Compile Include="Areas\Transporters\Controllers\BaseController.cs" />
     <Compile Include="Areas\Transporters\Controllers\DriverController.cs" />
     <Compile Include="Areas\Transporters\Models\DriverDisplayViewModel.cs" />
@@ -272,6 +277,7 @@
     <Content Include="Areas\Administration\Scripts\PageScripts\VehicleModel.js" />
     <Content Include="Areas\Administration\Scripts\PageScripts\VehicleTypes.js" />
     <Content Include="Areas\Administration\Scripts\PageScripts\Weight.js" />
+    <Content Include="Areas\Customers\Scripts\PageScripts\Customer.js" />
     <Content Include="Areas\Transporters\Scripts\PageScripts\Driver.js" />
     <Content Include="Areas\Users\Scripts\Roles\permissions.js" />
     <Content Include="Areas\Users\Scripts\Roles\Roles.js" />
@@ -1442,6 +1448,10 @@
     <Content Include="Areas\Transporters\Views\Driver\Partials\_DriverPersonalInfo.cshtml" />
     <Content Include="Areas\Transporters\Views\Driver\Partials\_DriverLegalDocuments.cshtml" />
     <Content Include="Areas\Transporters\Views\Driver\Partials\_DriverVehicles.cshtml" />
+    <Content Include="Areas\Customers\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Customers\Views\Customer\CustomersList.cshtml" />
+    <Content Include="Areas\Customers\Views\web.config" />
+    <Content Include="Areas\Customers\Views\Customer\CustomerProfile.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\AppCommonScripts\ajax-interceptor.js" />

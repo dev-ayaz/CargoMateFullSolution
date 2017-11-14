@@ -1,7 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "DriversList";
+    ViewBag.Title = "Customers List";
 }
+
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
@@ -10,18 +11,17 @@
             <div class="col-md-12">
                 <div class="portlet light bordered">
                     <div class="portlet light">
-
                         <div class="portlet-body">
                             <div class="dataTables_wrapper no-footer">
-                                <div class="row" id="tblVehicleModelssList">
-                                    <table class="table" id="tblDriversList">
+                                <div class="row">
+                                    <table class="table" id="tblCustomersList">
                                         <thead>
                                             <tr>
                                                 <th>Image</th>
                                                 <th>Name</th>
-                                                <th>Legal Name</th>
                                                 <th>Email Address</th>
                                                 <th>Phone</th>
+                                                <th>Address</th>
                                                 <th>Status</th>
                                                 <th style="width: 200px">Actions</th>
                                             </tr>
@@ -30,7 +30,6 @@
                                     </table>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -41,5 +40,6 @@
 </div>
 
 @section scripts{
-    <script src="~/Areas/Transporters/Scripts/PageScripts/Driver.js"></script>    
+    <script src="~/Areas/Customers/Scripts/PageScripts/Customer.js"></script>    
 }
+

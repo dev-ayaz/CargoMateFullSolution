@@ -1,21 +1,19 @@
-﻿var DriversTable = {
+﻿var CustomersTable = {
     selectors: {
-        TblDriversList: "#tblDriversList"
+        TblCustomersList: "#tblCustomersList"
     },
     services: {
 
-        controller: "Driver",
+        controller: "Customer",
         actions: {
-            Edit: "EditDriver",
-            Delete: "DeleteDriver",
-            List: "GetDriversList"
+            List: "GetCustomersList"
         }
 
     },
     domConfigurations: {
         initTable: function () {
             var utilities = IAC.Utilities;
-            var listUrl = [utilities.getSiteRoot(), DriversTable.services.controller, "/", DriversTable.services.actions.List].join("");
+            var listUrl = [utilities.getSiteRoot(), CustomersTable.services.controller, "/", CustomersTable.services.actions.List].join("");
 
             var actions = [
                 {
@@ -23,12 +21,12 @@
                     icon: "fa fa-info-circle",
                     classes: "btnAViewProfile",
                     dataAttr: ["Id"],
-                    hrefParams: [{ Name: "driverId", ValueColumn: "Id" }],
-                    href: "DriverProfile?hashcode=09ji78"
+                    hrefParams: [{ Name: "customerId", ValueColumn: "Id" }],
+                    href: "CustomerProfile?hashcode=09ji78"
                 }
             ];
 
-            var dataTable = $(DriversTable.selectors.TblDriversList).DataTable({
+            var dataTable = $(CustomersTable.selectors.TblCustomersList).DataTable({
                 "bServerSide": true,
                 "bSortCellsTop": true,
                 "ajax": {
@@ -52,7 +50,7 @@
 
                             var imageUrl = 'assets/img/placeholder.jpg';
                             if (url != null) {
-                                imageUrl = url.indexOf("http") > -1 ? url : IAC.ClientAppUrl + "/SystemImages/DriverImages/" + url;
+                                imageUrl = url.indexOf("http") > -1 ? url : IAC.ClientAppUrl + "/SystemImages/CustomerImages/" + url;
                             }
 
                             return "<img src='" + imageUrl + "' class='img-circle' style='width: 60px; height: 60px;'>"
@@ -60,9 +58,9 @@
                         "sortable": false
                     },
                     { data: "Name", "sortable": true },
-                    { data: "LegalName", "sortable": false },
                     { data: "EmailAddress", "sortable": false },
                     { data: "PhoneNumber", "sortable": false },
+                    { data: "Address", "sortable": false },
                     { data: "Status", "sortable": false, defaultContent: "<i>Not set</i>" },
                     {
                         mRender: function (data, type, row) { return IACdataTable.htmlWrapers.ActionMenu.replace("{li}", IACdataTable.createActionLink(actions, row)); },
@@ -82,5 +80,5 @@
 };
 
 jQuery(document).ready(function () {
-    DriversTable.domConfigurations.initTable();
+    CustomersTable.domConfigurations.initTable();
 });
