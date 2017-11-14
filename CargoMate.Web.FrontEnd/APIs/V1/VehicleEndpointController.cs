@@ -7,6 +7,7 @@ using System.Web.Http;
 using CargoMate.DataAccess.Contracts;
 using CargoMate.Web.FrontEnd.Models;
 using CargoMate.Web.FrontEnd.Models.VehicleViewModel;
+using CargoMate.Web.FrontEnd.Shared;
 
 namespace CargoMate.Web.FrontEnd.APIs.V1
 {
@@ -18,30 +19,30 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
 
         #region +++++++++++++++++ Capacities Region ++++++++++++++++++++++++++++
-        public List<KeyValuePairViewModel> GetCapacitiesAutoComplete(long vehicleTypeId,string cultureCode="en-US")
+        public List<KeyValuePairViewModel> GetCapacitiesAutoComplete(long vehicleTypeId, string cultureCode = "en-US")
         {
             return UnitOfWork.VehicleCapacities.GetWhere(c => c.VehicleTypeId == vehicleTypeId).Select(c => new KeyValuePairViewModel
             {
                 Id = c.Id,
-                Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc=>lc.CultureCode==cultureCode).Name
+                Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name
             }).ToList();
         }
 
-        public List<CapacityViewModel> GetCapacitiesList(long vehicleTypeId,string cultureCode = "en-US")
+        public List<CapacityViewModel> GetCapacitiesList(long vehicleTypeId, string cultureCode = "en-US")
         {
-            return UnitOfWork.VehicleCapacities.GetWhere(c=>c.VehicleTypeId==vehicleTypeId).Select(c => new CapacityViewModel
+            return UnitOfWork.VehicleCapacities.GetWhere(c => c.VehicleTypeId == vehicleTypeId).Select(c => new CapacityViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                Capacity=c.Capacity,
-                Length=c.Length,
-                PalletNumber=c.PalletNumber
+                Capacity = c.Capacity,
+                Length = c.Length,
+                PalletNumber = c.PalletNumber
             }).ToList();
         }
 
-        public CapacityViewModel GetCapacityById(long capacityId ,string cultureCode = "en-US")
+        public CapacityViewModel GetCapacityById(long capacityId, string cultureCode = "en-US")
         {
-            return UnitOfWork.VehicleCapacities.GetWhere(c=>c.CultureCode==cultureCode).Select(c => new CapacityViewModel
+            return UnitOfWork.VehicleCapacities.GetWhere(c => c.CultureCode == cultureCode).Select(c => new CapacityViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
@@ -70,13 +71,13 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                 Id = c.Id,
                 Name = c.LocalizedVehicleConfigurations.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
                 Description = c.LocalizedVehicleConfigurations.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
-                ImageUrl=c.ImageUrl
+                ImageUrl = c.ImageUrl
             }).ToList();
         }
 
         public ConfigurationsViewModel GetConfigurationById(long configurationId, string cultureCode = "en-US")
         {
-            return UnitOfWork.VehicleConfigurations.GetWhere(c=>c.Id==configurationId).Select(c => new ConfigurationsViewModel
+            return UnitOfWork.VehicleConfigurations.GetWhere(c => c.Id == configurationId).Select(c => new ConfigurationsViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleConfigurations.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
@@ -105,13 +106,13 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                 ShortName = c.LocalizedLengthUnits.FirstOrDefault(lc => lc.CultureCode == cultureCode).ShortName,
                 FullName = c.LocalizedLengthUnits.FirstOrDefault(lc => lc.CultureCode == cultureCode).FullName,
                 IsMetric = c.IsMetric,
-                LengthMultiple=c.LengthMultiple
+                LengthMultiple = c.LengthMultiple
             }).ToList();
         }
 
         public LengthViewModel GetLengthById(long lengthId, string cultureCode = "en-US")
         {
-            return UnitOfWork.LengthUnits.GetWhere(l=>l.Id==lengthId).Select(c => new LengthViewModel
+            return UnitOfWork.LengthUnits.GetWhere(l => l.Id == lengthId).Select(c => new LengthViewModel
             {
                 Id = c.Id,
                 ShortName = c.LocalizedLengthUnits.FirstOrDefault(lc => lc.CultureCode == cultureCode).ShortName,
@@ -135,7 +136,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
         public List<MakeViewModel> GetMakesList(long countryId, string cultureCode = "en-US")
         {
-            return UnitOfWork.VehicleMakes.GetWhere(c => c.CountryId == countryId,includeProperties: "LocalizedVehicleMakes,Country.LocalizedCountries").Select(c => new MakeViewModel
+            return UnitOfWork.VehicleMakes.GetWhere(c => c.CountryId == countryId, includeProperties: "LocalizedVehicleMakes,Country.LocalizedCountries").Select(c => new MakeViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
@@ -158,18 +159,18 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
 
         #region +++++++++++++++++ PayLoad Region ++++++++++++++++++++++++++++
-        public List<KeyValuePairViewModel> GetPayLoadAutoComplete(long vehicleTypeId,string cultureCode = "en-US")
+        public List<KeyValuePairViewModel> GetPayLoadAutoComplete(long vehicleTypeId, string cultureCode = "en-US")
         {
-            return UnitOfWork.PayLoadTypes.GetWhere(c=>c.VehicleTypeId==vehicleTypeId,includeProperties: "LocalizedPayLoadTypes").Select(c => new KeyValuePairViewModel
+            return UnitOfWork.PayLoadTypes.GetWhere(c => c.VehicleTypeId == vehicleTypeId, includeProperties: "LocalizedPayLoadTypes").Select(c => new KeyValuePairViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedPayLoadTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name
             }).ToList();
         }
 
-        public List<PayLoadTypeViewModel> GetPayLoadList(long vehicleTypeId,string cultureCode = "en-US")
+        public List<PayLoadTypeViewModel> GetPayLoadList(long vehicleTypeId, string cultureCode = "en-US")
         {
-            return UnitOfWork.PayLoadTypes.GetWhere(c=>c.VehicleTypeId==vehicleTypeId,includeProperties: "LocalizedPayLoadTypes").Select(c => new PayLoadTypeViewModel
+            return UnitOfWork.PayLoadTypes.GetWhere(c => c.VehicleTypeId == vehicleTypeId, includeProperties: "LocalizedPayLoadTypes").Select(c => new PayLoadTypeViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedPayLoadTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
@@ -179,7 +180,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
         public PayLoadTypeViewModel GetPayLoadTypeById(long payLoadTypeId, string cultureCode = "en-US")
         {
-            return UnitOfWork.PayLoadTypes.GetWhere(p=>p.Id==payLoadTypeId, "LocalizedPayLoadTypes").Select(c => new PayLoadTypeViewModel
+            return UnitOfWork.PayLoadTypes.GetWhere(p => p.Id == payLoadTypeId, "LocalizedPayLoadTypes").Select(c => new PayLoadTypeViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedPayLoadTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
@@ -190,9 +191,9 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
 
         #region +++++++++++++++++ VehicleModels Region ++++++++++++++++++++++++++++
-        public List<KeyValuePairViewModel> GetVehicleModelsAutoComplete(long makeId,string cultureCode = "en-US")
+        public List<KeyValuePairViewModel> GetVehicleModelsAutoComplete(long makeId, string cultureCode = "en-US")
         {
-            return UnitOfWork.VehicleModels.GetWhere(c=>c.VehicleMakeId==makeId,includeProperties: "LocalizedVehicleModels").Select(c => new KeyValuePairViewModel
+            return UnitOfWork.VehicleModels.GetWhere(c => c.VehicleMakeId == makeId, includeProperties: "LocalizedVehicleModels").Select(c => new KeyValuePairViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleModels.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name
@@ -201,23 +202,21 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
         public List<VehicleModelViewModel> GetVehicleModelsList(long makeId, string cultureCode = "en-US")
         {
-            return UnitOfWork.VehicleModels.GetWhere(c=>c.VehicleMakeId==makeId,includeProperties: "LocalizedVehicleModels,VehicleMake.LocalizedVehicleMakes").Select(c => new VehicleModelViewModel
+            return UnitOfWork.VehicleModels.GetWhere(c => c.VehicleMakeId == makeId, includeProperties: "LocalizedVehicleModels,VehicleMake.LocalizedVehicleMakes").Select(c => new VehicleModelViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleModels.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageURL,
-                Make =c.VehicleMake.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name
+                ImageUrl = c.ImageURL
             }).ToList();
         }
 
         public VehicleModelViewModel GetVehicleModelById(long modelId, string cultureCode = "en-US")
         {
-            return UnitOfWork.VehicleModels.GetWhere(c=>c.Id==modelId, includeProperties: "LocalizedVehicleModels,VehicleMake.LocalizedVehicleMakes").Select(c => new VehicleModelViewModel
+            return UnitOfWork.VehicleModels.GetWhere(c => c.Id == modelId, includeProperties: "LocalizedVehicleModels,VehicleMake.LocalizedVehicleMakes").Select(c => new VehicleModelViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleModels.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageURL,
-                Make = c.VehicleMake.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name
+                ImageUrl = c.ImageURL
             }).FirstOrDefault();
         }
         #endregion
@@ -262,21 +261,70 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             return UnitOfWork.VehicleTypes.GetAll().Select(c => new KeyValuePairViewModel
             {
                 Id = c.Id,
-                Name = c.LocalizedVehicleTypes.FirstOrDefault(lc=>lc.CultureCode==cultureCode).Name
+                Name = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name
             }).ToList();
         }
 
-        public List<VehicleTypeViewModel> GetVehicleTypesList(string cultureCode = "en-US")
+        //public List<VehicleTypeViewModel> GetVehicleTypesList(string cultureCode = "en-US")
+        //{
+        //    return UnitOfWork.VehicleTypes.GetAll(includeProperties: "LocalizedVehicleTypes").Select(c => new VehicleTypeViewModel
+        //    {
+        //        Id = c.Id,
+        //        Name = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
+        //        ImageUrl = c.ImageUrl,
+        //        Description = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
+        //        IsEquipment = c.IsEquipment
+        //    }).ToList();
+        //}
+
+        public List<VehicleTypeCompositeViewModel> GetVehicleTypesList(string cultureCode = "en-US", bool tree = true)
         {
-            return UnitOfWork.VehicleTypes.GetAll(includeProperties: "LocalizedVehicleTypes").Select(c => new VehicleTypeViewModel
+
+            if (tree)
             {
-                Id = c.Id,
-                Name = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageUrl,
-                Description=c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
-                IsEquipment=c.IsEquipment
-            }).ToList();
+                return UnitOfWork.VehicleTypes
+                    .GetAll(includeProperties: "LocalizedVehicleTypes,VehicleCapacities.LocalizedVehicleCapacities,VehicleTypeConfigurations.LocalizedVehicleConfigurations")
+                    .Select(c => new VehicleTypeCompositeViewModel
+                    {
+                        Id = c.Id,
+                        Name = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
+                        ImageUrl = c.ImageUrl,
+                        Description = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
+                        IsEquipment = c.IsEquipment,
+                        CapacityViewModel = c.VehicleCapacities.Select(cp => new CapacityViewModel
+                        {
+                            Id = cp.Id,
+                            Capacity = cp.Capacity,
+                            Length = cp.Length,
+                            Name = cp.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
+                            PalletNumber = cp.PalletNumber
+                        }).ToList(),
+
+                        ConfigurationsViewModel = c.VehicleTypeConfigurations.Select(vc => new ConfigurationsViewModel
+                        {
+                            Id = vc.Id,
+                            ImageUrl = vc.ImageUrl,
+                            Name = vc.LocalizedVehicleConfigurations.FirstOrDefault(vlc => vlc.CultureCode == cultureCode).Name,
+                            Description = vc.LocalizedVehicleConfigurations.FirstOrDefault(vlc => vlc.CultureCode == cultureCode).Descreption
+                        }).ToList()
+                    }).ToList();
+            }
+            else
+            {
+                return UnitOfWork.VehicleTypes
+                       .GetAll(includeProperties: "LocalizedVehicleTypes")
+                       .Select(c => new VehicleTypeCompositeViewModel
+                       {
+                           Id = c.Id,
+                           Name = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
+                           ImageUrl = c.ImageUrl,
+                           Description = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
+                           IsEquipment = c.IsEquipment
+                       }).ToList();
+
+            }
         }
+
 
         public VehicleTypeViewModel GetVehicleTypeById(string cultureCode = "en-US")
         {
@@ -316,7 +364,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
         public WeightViewModel GetWeightById(long weightId, string cultureCode = "en-US")
         {
-            return UnitOfWork.WeightUnits.GetWhere(c=>c.Id== weightId).Select(c => new WeightViewModel
+            return UnitOfWork.WeightUnits.GetWhere(c => c.Id == weightId).Select(c => new WeightViewModel
             {
                 Id = c.Id,
                 ShortName = c.LocalizedWeightUnits.FirstOrDefault(lc => lc.CultureCode == cultureCode).ShortName,

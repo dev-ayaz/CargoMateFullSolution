@@ -4,8 +4,8 @@
         signUpWithFacebookButton: "#signUpWithFacebook",
         signUpWithGoogleButton: "#signUpWithGoogle",
         DriverRegistrationForm: "#DriverRegistrationForm",
-        EmailAddress: "#EmailAddress",
-        Password: "#Password"
+        EmailAddress: "#DriverRegistrationForm input[id=Email]",
+        Password: "#DriverRegistrationForm input[id=Password]"
     },
     services: {
         controller: "Driver",
@@ -18,7 +18,7 @@
     callbacks: {
         registerDriver: function (user) {
 
-
+         
             var url = [RequestHandler.getSiteBase(), "/", DriverRegistration.services.controller, "/", DriverRegistration.services.actions.Register].join("");
 
             var userModel = { Id: user.uid, Name: user.displayName , Email: user.email, Phone : user.phoneNumber,ImageUrl:user.photoURL };
@@ -32,7 +32,7 @@
                 data: JSON.stringify(userModel),
                 success: function(data) {
                     CargoMateAlerts.actionAlert(data.MessageHeader, data.Message, data.IsError);
-                    location.href = "/Driver/UpdateDriver?driverId=" + user.uid;
+                    location.href = "/Driver/Edit?userId=" + user.uid;
                 },
                 error: function (data) { console.log(data) }
             });
@@ -58,11 +58,16 @@
         $(DriverRegistration.selectors.DriverRegistrationForm).submit(function (e) {
 
             e.preventDefault();
+           // e.stopImmediatePropagation()
+
             firebaseUtilFunc.createUserWithEmailAndPassword($(DriverRegistration.selectors.EmailAddress).val(), $(DriverRegistration.selectors.Password).val()).then(function (response) {
+
+               
                 if (response.IsError) {
                     CargoMateAlerts.actionAlert("Error", response.result, true);
                 }
                 else {
+                  
                     DriverRegistration.callbacks.registerDriver(response.result);
                 }
             });
@@ -72,3 +77,6 @@
        
     }
 }
+jQuery(document).ready(function () {
+    DriverRegistration.initevents();
+});
