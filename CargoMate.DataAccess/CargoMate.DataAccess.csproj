@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201710191206569_DBReset.Designer.cs">
       <DependentUpon>201710191206569_DBReset.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711271910172_Remove VehicleType &amp; make navigations.cs" />
+    <Compile Include="Migrations\201711271910172_Remove VehicleType &amp; make navigations.Designer.cs">
+      <DependentUpon>201711271910172_Remove VehicleType &amp; make navigations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasicData\Country.cs" />
     <Compile Include="Models\BasicData\CustomerStatus.cs" />
@@ -126,6 +130,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710191206569_DBReset.resx">
       <DependentUpon>201710191206569_DBReset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271910172_Remove VehicleType &amp; make navigations.resx">
+      <DependentUpon>201711271910172_Remove VehicleType &amp; make navigations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

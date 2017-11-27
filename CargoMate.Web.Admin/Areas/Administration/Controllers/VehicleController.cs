@@ -517,17 +517,22 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
         public ActionResult EditVehicleMake(long makeId)
         {
-            var vehicleMake = UnitOfWork.VehicleMakes.GetWhere(m => m.Id == makeId).ToList().Select(m => new MakeFormModel
+            var vehicleMake = UnitOfWork.VehicleMakes.GetWhere(m => m.Id == makeId, "LocalizedVehicleMakes").ToList().Select(m => new MakeFormModel
             {
                 Name = m.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
                 CountryId = m.CountryId.Value,
                 ImageUrl = m.ImageUrl,
                 Id = m.Id,
                 VehicleTypeId = m.VehicleTypeId,
-                Countries = UnitOfWork.Countries.GetWhere(c => c.IsActive == true).Select(c => new SelectListItem
+                VehicleTypes = UnitOfWork.LocalizedVehicleTypes.GetWhere(c => c.CultureCode == SessionHandler.CultureCode).Select(c => new SelectListItem
                 {
-                    Text = c.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
-                    Value = c.Id.ToString()
+                    Text = c.Name,
+                    Value = c.VehicleTypeId.ToString()
+                }).ToList(),
+                Countries = UnitOfWork.LocalizedCountries.GetWhere(c => c.CultureCode==SessionHandler.CultureCode).Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.CountryId.ToString()
                 }).ToList()
             }).FirstOrDefault();
 

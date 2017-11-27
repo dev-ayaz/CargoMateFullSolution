@@ -24,7 +24,7 @@ namespace CargoMate.Web.FrontEnd.Models.CustomerViewModels
 
         public string ImageSrc { get; set; }
 
-        public string DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public bool? Gender { get; set; }
 
@@ -66,7 +66,7 @@ namespace CargoMate.Web.FrontEnd.Models.CustomerViewModels
 
         public string ImageSrc { get; set; }
 
-        public string DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public bool? Gender { get; set; }
 

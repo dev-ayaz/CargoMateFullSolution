@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label class="col-xs-12 px-0"><i class="icon-calendar-7"></i> Registration Expirey</label>
                 <div class="col-xs-12 col-sm-10 px-0">
-                    @Html.EditorFor(model => model.RegistrationExpiry, new { htmlAttributes = new { @class = "form-control", placeholder = "Registration Expiry" } })
+                    @Html.EditorFor(model => model.RegistrationExpiry, new { htmlAttributes = new { @class = "form-control date-pick", placeholder = "M d, D" }})
                     @Html.ValidationMessageFor(model => model.RegistrationExpiry, "", new { @class = "text-danger" })
                 </div>
             </div>

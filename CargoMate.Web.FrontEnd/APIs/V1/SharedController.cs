@@ -40,7 +40,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             }).ToList();
         }
 
-        public CountryViewModel GetCountryById(long countryId, string cultureCode)
+        public CountryViewModel GetCountryById(long countryId, string cultureCode = "en-US")
         {
             return UnitOfWork.Countries.GetWhere(c => c.Id == countryId).Select(c => new CountryViewModel
             {
@@ -56,12 +56,12 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             }).FirstOrDefault();
         }
 
-        public CountryViewModel GetCountryByCountryCode(string countryCode, string cultureCode)
+        public CountryViewModel GetCountryByCountryCode(string countryCode = "SA", string cultureCode = "en-US")
         {
             return UnitOfWork.LocalizedCountries
-                             .GetWhere(c => c.CountryCode == countryCode && c.CultureCode == SessionHandler.CultureCode, "Country")
+                             .GetWhere(c => c.CountryCode == countryCode && c.CultureCode == cultureCode, "Country")
                              .Select(c => new CountryViewModel
-                             {
+                             {   
                                  Id = c.CountryId.Value,
                                  Name = c.Name,
                                  CountryCode = c.CountryCode,

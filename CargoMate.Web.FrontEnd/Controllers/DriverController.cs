@@ -75,8 +75,8 @@ namespace CargoMate.Web.FrontEnd.Controllers
                     PlateNumber = v.PlateNumber,
                     RegistrationExpiry = v.RegistrationExpiry,
                     EngineNumber = v.EngineNumber,
-                    IsActive = v.IsActive.Value,
-                    IsInsured = v.IsInsured.Value
+                    IsActive = v.IsActive,
+                    IsInsured = v.IsInsured
 
                 }).ToList();
 

@@ -21,17 +21,17 @@ namespace CargoMate.Web.Admin.Areas.Customers.Models
 
         public string DateOfBirth { get; set; }
 
-        public string Gender { get; set; }
+        public bool? Gender { get; set; }
 
         public string Address { get; set; }
 
         public string Location { get; set; }
 
-        public string Rating { get; set; }
+        public decimal? Rating { get; set; }
 
         public string CompanyName { get; set; }
 
-        public string IsPhoneVerified { get; set; }
+        public bool? IsPhoneVerified { get; set; }
 
         public string CustomerStatusId { get; set; }
 

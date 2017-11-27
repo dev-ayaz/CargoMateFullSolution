@@ -37,6 +37,7 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
 
         public List<SelectListItem> VehicleTypes { get; set; }
 
+
         public long? VehicleMakeId { get; set; }
 
         public List<SelectListItem> VehicleMakes { get; set; }
@@ -64,6 +65,8 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
         public long?[] PayLoadTypeIds { get; set; }
 
         public MultiSelectList PayLoadTypes { get; set; }
+
+        public string DriverId { get; set; }
 
     }
 
@@ -108,8 +111,8 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
 
         public DateTime? RegistrationExpiry { get; set; }
 
-        public bool IsInsured { get; set; }
+        public bool? IsInsured { get; set; }
 
-         public bool IsActive { get; set; }
+         public bool? IsActive { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
             }
 
             var searchResults = UnitOfWork.Vehicles
-                                .GetWhere(s => s.ModelYearCombination.VehicleModel.VehicleMake.VehicleTypeId == searchModel.VehicleTypeId)
+                                .GetWhere(s => s.VehicleTypeId == searchModel.VehicleTypeId)
                                 .ToList();
 
             return View(searchResults);

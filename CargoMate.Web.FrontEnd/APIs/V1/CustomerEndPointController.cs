@@ -47,7 +47,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             {
                 Name = customerForm.Name,
                 CompanyId = customerForm.CompanyId,
-                DateOfBirth = Convert.ToDateTime(customerForm.DateOfBirth, CultureInfo.InvariantCulture),
+                DateOfBirth = customerForm.DateOfBirth,
                 EmailAddress = customerForm.EmailAddress,
                 Gender = customerForm.Gender,
                 PhoneNumber = customerForm.PhoneNumber,
@@ -69,7 +69,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                         Name = c.Name,
                         Address = c.Address,
                         CustomerId = c.CustomerId,
-                        DateOfBirth = c.DateOfBirth.ToString(),
+                        DateOfBirth = c.DateOfBirth?.Date,
                         EmailAddress = c.EmailAddress,
                         Gender = c.Gender,
                         ImageSrc = c.ImageUrl,

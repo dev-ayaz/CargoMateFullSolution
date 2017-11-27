@@ -178,6 +178,7 @@
     <Compile Include="APIs\V1\DriverEndPointController.cs" />
     <Compile Include="APIs\V1\SharedController.cs" />
     <Compile Include="APIs\V1\VehicleEndpointController.cs" />
+    <Compile Include="APIs\V1\VehicleSearchEndpointController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -200,9 +201,11 @@
     <Compile Include="Models\VehicleViewModel\LengthViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\MakeViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\PayLoadTypeViewModel.cs" />
+    <Compile Include="Models\VehicleViewModel\TripTypesViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\VehicleModelViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\VehicleModelYearViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\VehicleTypeViewModel.cs" />
+    <Compile Include="Models\VehicleViewModel\VehicleviewModels.cs" />
     <Compile Include="Models\VehicleViewModel\WeightViewModel.cs" />
     <Compile Include="Shared\CargoMateImageHandler.cs" />
     <Compile Include="Shared\CargoMateMessages.cs" />

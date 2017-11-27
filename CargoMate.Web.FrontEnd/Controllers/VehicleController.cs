@@ -36,28 +36,24 @@ namespace CargoMate.Web.FrontEnd.Controllers
                             VehicleMakeId = v.ModelYearCombination.VehicleModel.VehicleMakeId,
                             VehicleModelId = v.ModelYearCombination.VehicleModelId,
                             VehicleModelYearId = v.ModelYearCombination.Id,
-                            VehicleTypeId = v.ModelYearCombination.VehicleModel.VehicleMake.VehicleTypeId,
+                            VehicleTypeId = v.VehicleTypeId,
                             VehicleTypes = GetVehicleTypes(),
                             TripTypes = new MultiSelectList(GetVehicleTripTypes(), "TripTypeId", "Name"),
 
-                            VehicleMakes = UnitOfWork.VehicleMakes.GetWhere(m => m.VehicleTypeId == v.ModelYearCombination.VehicleModel.VehicleMake.VehicleTypeId).Select(c => new SelectListItem
-                            {
-                                Value = c.Id.ToString(),
-                                Text = c.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name
-                            }).ToList(),
+                            VehicleMakes = GetVehicleMakes(),
 
-                            PayLoadTypes = new MultiSelectList(UnitOfWork.PayLoadTypes.GetWhere(c => c.VehicleTypeId == v.ModelYearCombination.VehicleModel.VehicleMake.VehicleTypeId).Select(c => new SelectListItem
+                            PayLoadTypes = new MultiSelectList(UnitOfWork.PayLoadTypes.GetWhere(c => c.VehicleTypeId == v.VehicleTypeId).Select(c => new SelectListItem
                             {
                                 Value = c.Id.ToString(),
                                 Text = c.LocalizedPayLoadTypes.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name
                             }).ToList(), "Value", "Text"),
 
-                            VehicleCapacities = UnitOfWork.VehicleCapacities.GetWhere(c => c.VehicleTypeId == v.ModelYearCombination.VehicleModel.VehicleMake.VehicleTypeId).Select(c => new SelectListItem
+                            VehicleCapacities = UnitOfWork.VehicleCapacities.GetWhere(c => c.VehicleTypeId == v.VehicleTypeId).Select(c => new SelectListItem
                             {
                                 Value = c.Id.ToString(),
                                 Text = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name
                             }).ToList(),
-                            VehicleConfigurations = UnitOfWork.VehicleConfigurations.GetWhere(c => c.VehicleTypeId == v.ModelYearCombination.VehicleModel.VehicleMake.VehicleTypeId).Select(c => new SelectListItem
+                            VehicleConfigurations = UnitOfWork.VehicleConfigurations.GetWhere(c => c.VehicleTypeId == v.VehicleTypeId).Select(c => new SelectListItem
                             {
                                 Value = c.Id.ToString(),
                                 Text = c.LocalizedVehicleConfigurations.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name
@@ -104,6 +100,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 BasicInformation = new BasicInformation
                 {
                     VehicleTypes = GetVehicleTypes(),
+                    VehicleMakes= GetVehicleMakes(),
                     TripTypes = new MultiSelectList(GetVehicleTripTypes(), "TripTypeId", "Name")
                 },
                 InsuranceInformation = new InsuranceInformation(),
@@ -118,6 +115,15 @@ namespace CargoMate.Web.FrontEnd.Controllers
             {
                 Value = t.Id.ToString(),
                 Text = t.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name
+            }).ToList();
+        }
+
+        private List<SelectListItem> GetVehicleMakes()
+        {
+            return UnitOfWork.LocalizedVehicleMakes.GetWhere(lt => lt.CultureCode == SessionHandler.CultureCode).Select(t => new SelectListItem
+            {
+                Value = t.MakeId.ToString(),
+                Text = t.Name
             }).ToList();
         }
 
@@ -144,8 +150,9 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 VehiclePayloadTypes = basicInfo.PayLoadTypeIds?.Select(p => new VehiclePayloadType { PayLoadTypeId = p.Value }).ToList(),
                 VehicleTripTypes = basicInfo.TripTypeIds?.Select(p => new VehicleTripType { TripTypeId = p.Value }).ToList()
             });
+            var result = UnitOfWork.Commit();
             SessionHandler.VehicleId = vehicle.Id;
-            return Json(UnitOfWork.Commit() > 0? CargoMateMessages.SuccessResponse: CargoMateMessages.FailureResponse);
+            return Json(result > 0? CargoMateMessages.SuccessResponse: CargoMateMessages.FailureResponse);
 
         }
 
@@ -156,7 +163,8 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 return Json(CargoMateMessages.ModelError);
             }
 
-            var vehicle = UnitOfWork.Vehicles.GetWhere(v => v.Id == vehicleScan.VehicleId).FirstOrDefault();
+            long? VehicleId = vehicleScan.VehicleId > 0 ? vehicleScan.VehicleId : SessionHandler.VehicleId;
+            var vehicle = UnitOfWork.Vehicles.GetWhere(v => v.Id == VehicleId).FirstOrDefault();
 
             if (vehicle == null)
             {
@@ -179,7 +187,8 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 return Json(CargoMateMessages.ModelError);
             }
 
-            var vehicle = UnitOfWork.Vehicles.GetWhere(v => v.Id == insuranceInformation.VehicleId).FirstOrDefault();
+            long? VehicleId = insuranceInformation.VehicleId > 0 ? insuranceInformation.VehicleId : SessionHandler.VehicleId;
+            var vehicle = UnitOfWork.Vehicles.GetWhere(v => v.Id == VehicleId).FirstOrDefault();
 
             if (vehicle == null)
             {
@@ -196,9 +205,9 @@ namespace CargoMate.Web.FrontEnd.Controllers
         }
         
 
-        public JsonResult MakeAutoComplete(long vehicletypeId)
+        public JsonResult MakeAutoComplete()
         {
-            var vehicleMakes = UnitOfWork.VehicleMakes.GetWhere(m => m.VehicleTypeId == vehicletypeId).Select(c => new SelectListItem
+            var vehicleMakes = UnitOfWork.VehicleMakes.GetAll().Select(c => new SelectListItem
             {
                 Value = c.Id.ToString(),
                 Text = c.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name

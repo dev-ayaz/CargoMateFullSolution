@@ -374,5 +374,15 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             }).FirstOrDefault();
         }
         #endregion
+
+
+        public List<TripTypesViewModel> GetVehicleTripeTypes(string cultureCode = "en-US")
+        {
+            return UnitOfWork.TripTypes.GetAll().Select(c => new TripTypesViewModel
+            {
+                Id = c.Id,
+                Name = c.LocalizedTripTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name
+            }).ToList();
+        }
     }
 }

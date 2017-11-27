@@ -12,11 +12,11 @@ firebase.initializeApp(config);
 
 firebase.auth().onAuthStateChanged(function (user) {
 
-    if (user) {
-         $(".login_menu").addClass("hide");
-         $("#logout_menu").removeClass("hide");
-         
-    } else {
+    if (!user) {
+        //     $(".login_menu").addClass("hide");
+        //     $("#logout_menu").removeClass("hide");
+
+        //} else {
         $(".login_menu").removeClass("hide");
         $("#logout_menu").addClass("hide");
     }

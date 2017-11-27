@@ -71,17 +71,17 @@ namespace CargoMate.Web.Admin.Areas.Customers.Controllers
                          .ToList()
                          .Select(c => new CustomerProfileDisplayViewModel
                          {
-                             Id = c.CustomerId.ToString(),
+                             Id = c.CustomerId,
                              Name = c.Name,
                              PhoneNumber = c.PhoneNumber,
                              EmailAddress = c.EmailAddress,
                              ImageUrl = c.ImageUrl,
-                             DateOfBirth = c.DateOfBirth.ToString(),
-                             Gender = c.Gender.ToString(),
+                             DateOfBirth = c.DateOfBirth?.ToShortDateString(),
+                             Gender = c.Gender,
                              Address = c.Address,
-                             Location = c.Location.ToString(),
-                             Rating = c.Rating.ToString(),
-                             IsPhoneVerified = c.IsPhoneVerified.ToString(),
+                             Location = c.Location?.ToString(),
+                             Rating = c.Rating,
+                             IsPhoneVerified = c.IsPhoneVerified,
                              CompanyName = c.Company?.Name,
                              Status = c.CustomerStatus?.LocalizedCustomerStatuses.FirstOrDefault(cs => cs.CultureCode == SessionHandler.CultureCode)?.Name,
 
