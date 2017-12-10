@@ -54,12 +54,12 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
         [HttpGet]
         public DriverPersonalInfoDisplayModel GetDriverByFilter(string driverId="", string emailAddress="", string phoneNumber="",string cultureCode="en-US")
         {
-            return UnitOfWork.DriverPersonalInfos.GetWhere(DriversFilter(driverId, emailAddress, phoneNumber))
-                 .ToList().Select(c => new DriverPersonalInfoDisplayModel
+            return UnitOfWork.DriverPersonalInfos.GetWhere(DriversFilter(driverId, emailAddress, phoneNumber),includeProperties: "Country.LocalizedCountries,DriverStatus.LocalizedDriverStatuses")
+                .Select(c => new DriverPersonalInfoDisplayModel
                  {
                      Id = c.Id,
                      Name = c.Name,
-                     DateOfBirth = c.DateOfBirth.ToString(),
+                     DateOfBirth = c.DateOfBirth,
                      EmailAddress = c.EmailAddress,
                      Gender = c.Gender,
                      ImageUrl = c.ImageUrl,
@@ -68,16 +68,26 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                      CountryName=c.Country.LocalizedCountries.FirstOrDefault(ld=>ld.CultureCode==cultureCode).Name,
                      LegalName=c.LegalName,
                      DriverStatus=c.DriverStatus.LocalizedDriverStatuses.FirstOrDefault(ld => ld.CultureCode == cultureCode).Name,
-                     Location =c.Location.ToString(),
+                     Location =c.Location.Latitude+","+ c.Location.Longitude,
                      Locality = c.Locality,
-                     SubLocality = c.SubLocality
+                     SubLocality = c.SubLocality,
+                     Country= new CountryViewModel
+                     {
+                        Id=c.Country.Id,
+                        PhonCode=c.Country.PhonCode,
+                        CountryCode=c.Country.LocalizedCountries.FirstOrDefault(ld => ld.CultureCode == cultureCode).CountryCode,
+                        CurrencyCode=c.Country.LocalizedCountries.FirstOrDefault(ld => ld.CultureCode == cultureCode).CurrencyCode,
+                        CurrencyLong = c.Country.LocalizedCountries.FirstOrDefault(ld => ld.CultureCode == cultureCode).CurrencyLong,
+                        CurrencySymbol = c.Country.CurrencySymbol,
+                        Flag=c.Country.Flag,
+                        Name=c.Country.LocalizedCountries.FirstOrDefault(ld => ld.CultureCode == cultureCode).Name
+                     }
                  }).FirstOrDefault();
         }
 
         private Expression<Func<DriverPersonalInfo, bool>> DriversFilter(string driverId, string emailAddress, string phoneNumber)
         {
             var predicate = PredicateBuilder.True<DriverPersonalInfo>();
-
 
             if (!string.IsNullOrWhiteSpace(driverId))
             {

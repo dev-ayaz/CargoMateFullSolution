@@ -159,7 +159,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
         public void SetSession(Customer customer)
         {
             SessionHandler.UserId = customer.CustomerId;
-            SessionHandler.UserType = Enums.UserType.Driver;
+            SessionHandler.UserType = Enums.UserType.Customer;
             SessionHandler.UserName = customer.Name;
             SessionHandler.UserImage = customer.ImageUrl;
             SessionHandler.UserEmail = customer.EmailAddress;

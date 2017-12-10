@@ -301,7 +301,7 @@
                 </div>
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    @using (Ajax.BeginForm("UpdateVehicleConfiguration", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "VehicleConfigurations.callbacks.updateSuccess" }, new { id = "UpdateVehicleConfigurationForm" }))
+                    @using (Ajax.BeginForm("UpdateVehicleConfiguration", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "VehicleConfigurations.callbacks.insertSuccess" }, new { id = "UpdateVehicleConfigurationForm" }))
                     {
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-horizontal">

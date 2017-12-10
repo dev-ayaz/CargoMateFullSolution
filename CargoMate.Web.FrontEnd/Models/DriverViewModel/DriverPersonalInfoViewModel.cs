@@ -65,7 +65,7 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
 
         public string LegalName { get; set; }
 
-        public string DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public string PhoneNumber { get; set; }
 
@@ -88,5 +88,7 @@ namespace CargoMate.Web.FrontEnd.Models.DriverViewModel
         public string SubLocality { get; set; }
 
         public string DriverStatus { get; set; }
+
+        public CountryViewModel Country { get; set; }
     }
 }

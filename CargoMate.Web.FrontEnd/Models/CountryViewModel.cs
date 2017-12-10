@@ -7,7 +7,7 @@ namespace CargoMate.Web.FrontEnd.Models
 {
     public class CountryViewModel
     {
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
         public string Name { get; set; }
 

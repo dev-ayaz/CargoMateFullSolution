@@ -73,7 +73,6 @@ namespace CargoMate.Web.FrontEnd.Models.CustomerViewModels
         [Display(Name = "Company Name")]
         public long? CompanyId { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Address")]
         [Display(Name = "Address")]
         public string Address { get; set; }
 

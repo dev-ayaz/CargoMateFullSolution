@@ -31,7 +31,7 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleRegistrationModels
             PayLoadTypes = new MultiSelectList(string.Empty, string.Empty);
         }
 
-        public long VehicleId { get; set; }
+        public long? VehicleId { get; set; }
 
         public long? VehicleTypeId { get; set; }
 

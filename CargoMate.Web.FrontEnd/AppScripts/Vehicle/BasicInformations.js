@@ -184,7 +184,7 @@
             if (modelId) {
 
                 $.getJSON(url, { modelId: modelId }, function (data) {
-
+                    debugger;
                     $.each(data,
                         function (i, item) {
                             options += "<option value='" + item.Value + "'> " + item.Text + "</option>";
@@ -248,7 +248,7 @@
 
         $(Vehicles.Selectors.VehicleTypeDropDown + ":not(.bound)").addClass("bound").change(function () {
 
-            //Vehicles.CallBacks.VehicleMakes($(this));
+            Vehicles.CallBacks.VehicleMakes($(this));
             Vehicles.CallBacks.ConfigurationList($(this));
             Vehicles.CallBacks.CapacityList($(this));
             Vehicles.CallBacks.PayLoadTypesList($(this));

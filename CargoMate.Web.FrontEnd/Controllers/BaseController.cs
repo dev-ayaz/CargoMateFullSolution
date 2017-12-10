@@ -17,5 +17,14 @@ namespace CargoMate.Web.FrontEnd.Controllers
             UnitOfWork = unitOfWork;
         }
 
+        public ActionResult SignOut()
+        {
+            Session.Clear();
+
+            Session.Abandon();
+
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
+
     }
 }

@@ -50,9 +50,9 @@
         deleteVehicleModelYear: function ($this) {
 
             var modelYearId = $this.attr("data-modelyearid");
-
+            debugger;
             var url = [IAC.Utilities.getSiteRoot(), VehicelModelYear.services.controller, "/", VehicelModelYear.services.actions.DeleteVehicelModelYear].join("");
-            IAC.Utilities.postToController(url, IAC.Utilities.formMethods.Get, { modelYearlId: modelYearId }, function (result) {
+            IAC.Utilities.postToController(url, IAC.Utilities.formMethods.Get, { modelYearId: modelYearId }, function (result) {
                 AppAlerts.actionAlert(result);
                 if (!result.IsError) {
                     $this.closest("tr").remove();

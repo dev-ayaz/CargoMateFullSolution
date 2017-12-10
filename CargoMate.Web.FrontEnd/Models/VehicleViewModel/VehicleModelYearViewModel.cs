@@ -7,7 +7,7 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleViewModel
 {
     public class VehicleModelYearViewModel
     {
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
         public string Model { get; set; }
 

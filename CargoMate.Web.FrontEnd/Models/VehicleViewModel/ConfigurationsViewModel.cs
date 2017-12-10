@@ -7,7 +7,7 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleViewModel
 {
     public class ConfigurationsViewModel
     {
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
         public string Name { get; set; }
 

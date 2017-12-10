@@ -42,20 +42,46 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                 return Request.CreateResponse(HttpStatusCode.Ambiguous, ModelState);
             }
 
-
-            UnitOfWork.Customers.Insert(new Customer
+            var customer = new Customer
             {
+                CustomerId = customerForm.CustomerId,
+                Address = customerForm.Address,
                 Name = customerForm.Name,
                 CompanyId = customerForm.CompanyId,
                 DateOfBirth = customerForm.DateOfBirth,
                 EmailAddress = customerForm.EmailAddress,
                 Gender = customerForm.Gender,
                 PhoneNumber = customerForm.PhoneNumber,
-                Location = DbGeography.FromText($"POINT({customerForm.Location})"),
+                // Location = DbGeography.FromText(customerForm.Location),
                 ImageUrl = CargoMateImageHandler.SaveImageFromBase64(customerForm.ImageSrc, GlobalProperties.CustomerImagesFolder)
-            });
+            };
 
-            return Request.CreateResponse(HttpStatusCode.OK, UnitOfWork.Commit());
+            UnitOfWork.Customers.Insert(customer);
+            UnitOfWork.Commit();
+
+         var cust =   UnitOfWork.Customers.GetWhere(c=>c.Id==customer.Id, "Company")
+                  .ToList().Select(c => new CustomerDisplayModel
+                  {
+                      Id = c.Id,
+                      Name = c.Name,
+                      Address = c.Address,
+                      CustomerId = c.CustomerId,
+                      DateOfBirth = c.DateOfBirth?.Date,
+                      EmailAddress = c.EmailAddress,
+                      Gender = c.Gender,
+                      ImageSrc = c.ImageUrl,
+                      PhoneNumber = c.PhoneNumber,
+                      Company = new CompanyShortViewModel
+                      {
+                          Id = c.Company?.Id,
+                          Name = c.Company?.Name,
+                          Location = c.Company?.Location?.ToString(),
+                          Logo = c.Company?.Logo
+                      }
+
+                  }).FirstOrDefault();
+
+            return Request.CreateResponse(HttpStatusCode.OK, cust);
 
         }
 

@@ -19,7 +19,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
         }
 
         // GET: Vehicle
-        public ActionResult Index(long ? vehicleId)
+        public ActionResult Index(long? vehicleId)
         {
             if (vehicleId.HasValue)
             {
@@ -30,7 +30,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                         {
                             VehicleId = v.Id,
                             PayLoadTypeIds = v.VehiclePayloadTypes.Select(p => p.PayLoadTypeId).ToArray(),
-                            TripTypeIds = v.VehicleTripTypes.Select(t=>t.TripTypeId).ToArray(),
+                            TripTypeIds = v.VehicleTripTypes.Select(t => t.TripTypeId).ToArray(),
                             VehicleCapacityId = v.VehicleCapacityId,
                             VehicleConfigurationId = v.VehicleConfigurationId,
                             VehicleMakeId = v.ModelYearCombination.VehicleModel.VehicleMakeId,
@@ -86,7 +86,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                             InsuranceExpirey = v.InsuranceExpirey,
                             PolicyNumber = v.PolicyNumber
                         }
-            }).FirstOrDefault();
+                    }).FirstOrDefault();
 
                 SessionHandler.VehicleId = vehicleId;
 
@@ -100,7 +100,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 BasicInformation = new BasicInformation
                 {
                     VehicleTypes = GetVehicleTypes(),
-                    VehicleMakes= GetVehicleMakes(),
+                    VehicleMakes = GetVehicleMakes(),
                     TripTypes = new MultiSelectList(GetVehicleTripTypes(), "TripTypeId", "Name")
                 },
                 InsuranceInformation = new InsuranceInformation(),
@@ -111,7 +111,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
 
         private List<SelectListItem> GetVehicleTypes()
         {
-           return UnitOfWork.VehicleTypes.GetAll().Select(t => new SelectListItem
+            return UnitOfWork.VehicleTypes.GetAll().Select(t => new SelectListItem
             {
                 Value = t.Id.ToString(),
                 Text = t.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name
@@ -139,7 +139,25 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 return Json(CargoMateMessages.ModelError);
             }
 
-           var vehicle = UnitOfWork.Vehicles.Insert(new Vehicle
+            if (basicInfo.VehicleId.HasValue)
+            {
+                var editVehicle = UnitOfWork.Vehicles.GetWhere(v => v.Id == basicInfo.VehicleId).FirstOrDefault();
+                if (editVehicle != null)
+                {
+                    editVehicle.DriverPersonalInfoId = SessionHandler.UserId;
+                    editVehicle.ModelYearCombinationId = basicInfo.VehicleModelYearId;
+                    editVehicle.VehicleCapacityId = basicInfo.VehicleCapacityId;
+                    editVehicle.VehicleConfigurationId = basicInfo.VehicleConfigurationId;
+                    editVehicle.VehicleTypeId = basicInfo.VehicleTypeId;
+                    editVehicle.VehiclePayloadTypes = basicInfo.PayLoadTypeIds?.Select(p => new VehiclePayloadType { PayLoadTypeId = p.Value }).ToList();
+                    editVehicle.VehicleTripTypes = basicInfo.TripTypeIds?.Select(p => new VehicleTripType { TripTypeId = p.Value }).ToList();
+                }
+
+                UnitOfWork.Vehicles.Update(editVehicle);
+                return Json(UnitOfWork.Commit() > 0 ? CargoMateMessages.SuccessResponse : CargoMateMessages.FailureResponse);
+
+            }
+            var vehicle = UnitOfWork.Vehicles.Insert(new Vehicle
             {
                 DriverPersonalInfoId = SessionHandler.UserId,
                 IsActive = false,
@@ -147,12 +165,13 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 ModelYearCombinationId = basicInfo.VehicleModelYearId,
                 VehicleCapacityId = basicInfo.VehicleCapacityId,
                 VehicleConfigurationId = basicInfo.VehicleConfigurationId,
+                VehicleTypeId = basicInfo.VehicleTypeId,
                 VehiclePayloadTypes = basicInfo.PayLoadTypeIds?.Select(p => new VehiclePayloadType { PayLoadTypeId = p.Value }).ToList(),
                 VehicleTripTypes = basicInfo.TripTypeIds?.Select(p => new VehicleTripType { TripTypeId = p.Value }).ToList()
             });
             var result = UnitOfWork.Commit();
             SessionHandler.VehicleId = vehicle.Id;
-            return Json(result > 0? CargoMateMessages.SuccessResponse: CargoMateMessages.FailureResponse);
+            return Json(result > 0 ? CargoMateMessages.SuccessResponse : CargoMateMessages.FailureResponse);
 
         }
 
@@ -172,7 +191,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
             }
 
             vehicle.RegistrationExpiry = vehicleScan.RegistrationExpiry;
-            vehicle.RegistrationImage = CargoMateImageHandler.SaveImageFromBase64(vehicleScan.RegistrationImage,GlobalProperties.VehicleImagesFolder);
+            vehicle.RegistrationImage = CargoMateImageHandler.SaveImageFromBase64(vehicleScan.RegistrationImage, GlobalProperties.VehicleImagesFolder);
             vehicle.RegistrationNumber = vehicleScan.RegistrationNumber;
             vehicle.EngineNumber = vehicleScan.EngineNumber;
             vehicle.PlateNumber = vehicleScan.PlateNumber;
@@ -203,7 +222,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
             UnitOfWork.Vehicles.Update(vehicle);
             return Json(UnitOfWork.Commit() > 0 ? CargoMateMessages.SuccessResponse : CargoMateMessages.FailureResponse);
         }
-        
+
 
         public JsonResult MakeAutoComplete()
         {
