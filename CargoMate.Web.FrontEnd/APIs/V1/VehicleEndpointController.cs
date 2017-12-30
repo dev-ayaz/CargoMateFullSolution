@@ -71,7 +71,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                 Id = c.Id,
                 Name = c.LocalizedVehicleConfigurations.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
                 Description = c.LocalizedVehicleConfigurations.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
-                ImageUrl = c.ImageUrl
+                ImageUrl =  c.ImageUrl
             }).ToList();
         }
 
@@ -82,7 +82,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                 Id = c.Id,
                 Name = c.LocalizedVehicleConfigurations.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
                 Description = c.LocalizedVehicleConfigurations.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
-                ImageUrl = c.ImageUrl
+                ImageUrl =  c.ImageUrl
             }).FirstOrDefault();
         }
         #endregion
@@ -134,14 +134,29 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             }).ToList();
         }
 
-        public List<MakeViewModel> GetMakesList(long countryId, string cultureCode = "en-US")
+        public List<MakeTreeStructureViewModel> GetMakesList(string cultureCode = "en-US")
         {
-            return UnitOfWork.VehicleMakes.GetWhere(c => c.CountryId == countryId, includeProperties: "LocalizedVehicleMakes,Country.LocalizedCountries").Select(c => new MakeViewModel
+            return UnitOfWork.VehicleMakes.GetWhere(includeProperties: "LocalizedVehicleMakes,Country.LocalizedCountries,VehicleModels.LocalizedVehicleModels,VehicleModels.ModelYearCombinations").Select(c => new MakeTreeStructureViewModel
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                CountryName = c.Country.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageUrl
+                MakeCountry=new MakeCountry
+                {
+                    Id= c.Country.Id,
+                    Flag=c.Country.Flag,
+                    Name= c.Country.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name
+                },
+                Models=c.VehicleModels.Select(m=>new VehicleModelCompositViewModel {
+                    Id=m.Id,
+                    ImageUrl=m.ImageURL,
+                    Name=m.LocalizedVehicleModels.FirstOrDefault(ml=>ml.CultureCode==cultureCode).Name,
+                    Years=m.ModelYearCombinations.Select(mc=>new VehicleModelYearViewModel {
+                         Id=mc.Id,
+                         ImageUrl=mc.ImageUrl,
+                         Year=mc.Year+""
+                    }).ToList()
+                }).ToList(),
+                ImageUrl =  c.ImageUrl
             }).ToList();
         }
 
@@ -152,7 +167,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                 Id = c.Id,
                 Name = c.LocalizedVehicleMakes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
                 CountryName = c.Country.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageUrl
+                ImageUrl =  c.ImageUrl
             }).FirstOrDefault();
         }
         #endregion
@@ -174,7 +189,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             {
                 Id = c.Id,
                 Name = c.LocalizedPayLoadTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageUrl
+                ImageUrl =  c.ImageUrl
             }).ToList();
         }
 
@@ -184,7 +199,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             {
                 Id = c.Id,
                 Name = c.LocalizedPayLoadTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageUrl
+                ImageUrl =  c.ImageUrl
             }).FirstOrDefault();
         }
         #endregion
@@ -206,7 +221,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleModels.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageURL
+                ImageUrl =  c.ImageURL
             }).ToList();
         }
 
@@ -216,7 +231,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleModels.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageURL
+                ImageUrl =  c.ImageURL
             }).FirstOrDefault();
         }
         #endregion
@@ -237,7 +252,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             {
                 Id = c.Id,
                 Model = c.VehicleModel.LocalizedVehicleModels.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageUrl,
+                ImageUrl =  c.ImageUrl,
                 Year = c.Year.ToString()
             }).ToList();
         }
@@ -248,7 +263,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             {
                 Id = c.Id,
                 Model = c.VehicleModel.LocalizedVehicleModels.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageUrl,
+                ImageUrl =  c.ImageUrl,
                 Year = c.Year.ToString()
             }).FirstOrDefault();
         }
@@ -288,7 +303,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                     {
                         Id = c.Id,
                         Name = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                        ImageUrl = c.ImageUrl,
+                        ImageUrl =  c.ImageUrl,
                         Description = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
                         IsEquipment = c.IsEquipment,
                         CapacityViewModel = c.VehicleCapacities.Select(cp => new CapacityViewModel
@@ -303,7 +318,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                         ConfigurationsViewModel = c.VehicleTypeConfigurations.Select(vc => new ConfigurationsViewModel
                         {
                             Id = vc.Id,
-                            ImageUrl = vc.ImageUrl,
+                            ImageUrl =  vc.ImageUrl,
                             Name = vc.LocalizedVehicleConfigurations.FirstOrDefault(vlc => vlc.CultureCode == cultureCode).Name,
                             Description = vc.LocalizedVehicleConfigurations.FirstOrDefault(vlc => vlc.CultureCode == cultureCode).Descreption
                         }).ToList()
@@ -317,7 +332,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                        {
                            Id = c.Id,
                            Name = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                           ImageUrl = c.ImageUrl,
+                           ImageUrl =  c.ImageUrl,
                            Description = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
                            IsEquipment = c.IsEquipment
                        }).ToList();
@@ -332,7 +347,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                ImageUrl = c.ImageUrl,
+                ImageUrl =  c.ImageUrl,
                 Description = c.LocalizedVehicleTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Descreption,
                 IsEquipment = c.IsEquipment
             }).FirstOrDefault();

@@ -16,5 +16,7 @@ namespace CargoMate.Web.FrontEnd.Shared
             }
             return DbGeography.FromText($"POINT({location?.Replace(",", " "),4326 })");
         }
+
+  
     }
 }

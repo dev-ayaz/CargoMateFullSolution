@@ -18,7 +18,7 @@
             <div class="tab-pane active" id="tab1">
                 <h3>Search Vehicles</h3>
 
-                @using (Html.BeginForm("SearchResults", "Home", FormMethod.Post))
+                @using (Html.BeginForm("SearchResults", "Home", FormMethod.Get))
                 {
 
                     <div class="row">
@@ -59,7 +59,8 @@
                         <div class="col-md-6">
                             <div class="form-group overflow-false">
                                 <label>Vehicle Type</label>
-                                @Html.DropDownListFor(model => model.VehicleTypeId, new SelectList(Model.VehicleTypes, "Value", "Text"), "Select Vehicle Type", new { @class = "ddslick" })
+                                @Html.DropDownListFor(model => model.VehicleTypeId, new SelectList(Model.VehicleTypes, "Value", "Text"), "Select Vehicle Type", new { @class = "ddslick",@min=1 })
+                                @Html.ValidationMessageFor(model => model.VehicleTypeId, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div><!-- End row -->

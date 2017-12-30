@@ -14,6 +14,13 @@ namespace CargoMate.Web.FrontEnd.Shared
                 new SelectListItem {Text = @"Arabic", Value = "ar-SA"}
             };
 
+        public static string CustomerImagesPath = "http://cm.ayti.com.pk/SystemImages/CustomerImages/";
+        public static string DriverImagesPath = "http://cm.ayti.com.pk/SystemImages/DriverImages/";
+        public static string DriverDocumentsPath = "http://cm.ayti.com.pk/SystemImages/DriverDocumentsImages/";
+        public static string VehicleImagesPath = "http://cm.ayti.com.pk/SystemImages/VehicleImages/";
+        public static string UserImagesPath = "http://cm.ayti.com.pk/SystemImages/UserImages/";
+        public static string BasicDataImagesPath = "http://ayti.com.pk/";
+
         public static string DriverImagesFolder = $"{HttpContext.Current.Server.MapPath(@"\")}SystemImages/DriverImages";
 
         public static string DriverDocumentsFolder = $"{HttpContext.Current.Server.MapPath(@"\")}SystemImages/DriverDocumentsImages";

@@ -646,7 +646,7 @@ only screen and (min-device-pixel-ratio: 2) and (max-width: 991px) {
 	
 	/* New v1.9 */
 	#map_contact {
-		height: 300px;
+		height: 85vh;
 	}
 	
 	#map_contact.contact_2 {

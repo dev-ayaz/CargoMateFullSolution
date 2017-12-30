@@ -1169,7 +1169,7 @@ ul#cat_nav i {
 /* Map */
 .marker_info {
 	width: 280px;
-	height: 320px;
+	min-height: 320px;
 	border-radius: 3px;
 	text-align: center;
 	background: #FFF;

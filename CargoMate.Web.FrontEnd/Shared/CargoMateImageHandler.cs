@@ -49,8 +49,8 @@ namespace CargoMate.Web.FrontEnd.Shared
                 var imageName = $"{DateTime.Now:yyyyMMddTHHmmss}-{randomNumber}.jpg";
 
                 var imgPath = Path.Combine(folderPath, imageName);
-
-                var imageBytes = Convert.FromBase64String(imgStr.Split(',')[1]);
+                var source = imgStr.Split(',').Count() > 1 ? imgStr.Split(',')[1] : imgStr;
+                var imageBytes = Convert.FromBase64String(source);
 
                 File.WriteAllBytes(imgPath, imageBytes);
 

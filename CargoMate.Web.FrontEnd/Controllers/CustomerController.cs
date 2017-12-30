@@ -117,7 +117,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
 
             UnitOfWork.Customers.Update(new Customer
             {
-                Id = customerForm.Id,
+                Id = customerForm.Id.Value,
                 Address = customerForm.Address,
                 EmailAddress = customerForm.EmailAddress,
                 DateOfBirth = customerForm.DateOfBirth,

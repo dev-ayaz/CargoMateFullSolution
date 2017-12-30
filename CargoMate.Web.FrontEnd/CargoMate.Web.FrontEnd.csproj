@@ -195,6 +195,7 @@
     <Compile Include="Models\GeoAddressViewModel.cs" />
     <Compile Include="Models\KeyValuePairViewModel.cs" />
     <Compile Include="Models\SearchVehicleViewModels\SearchVehicleViewModel.cs" />
+    <Compile Include="Models\SearchVehicleViewModels\VehicleSearchViewModel.cs" />
     <Compile Include="Models\VehicleRegistrationModels\VehicleViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\CapacityViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\ConfigurationsViewModel.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Models\VehicleViewModel\MakeViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\PayLoadTypeViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\TripTypesViewModel.cs" />
+    <Compile Include="Models\VehicleViewModel\VehicleImagesViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\VehicleModelViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\VehicleModelYearViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\VehicleTypeViewModel.cs" />
@@ -479,6 +481,8 @@
     <Content Include="Content\skins\.DS_Store" />
     <Content Include="images\.DS_Store" />
     <Content Include="images\carousel\.DS_Store" />
+    <Content Include="images\pins\Airports1.png" />
+    <Content Include="images\placeholder-image.png" />
     <Content Include="images\products\.DS_Store" />
     <Content Include="images\slider_single_restaurant\.DS_Store" />
     <Content Include="images\slider_single_tour\.DS_Store" />
@@ -941,6 +945,7 @@
     <Content Include="Views\Vehicle\Partials\_VehicleImages.cshtml" />
     <Content Include="Views\Home\SearchResults.cshtml" />
     <Content Include="Views\Driver\Partials\_VehicelList.cshtml" />
+    <Content Include="Views\Home\SearchResultMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

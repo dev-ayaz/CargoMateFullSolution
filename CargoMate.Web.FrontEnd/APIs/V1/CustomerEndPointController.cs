@@ -42,24 +42,72 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                 return Request.CreateResponse(HttpStatusCode.Ambiguous, ModelState);
             }
 
-            var customer = new Customer
+            if (!customerForm.Id.HasValue)
             {
-                CustomerId = customerForm.CustomerId,
-                Address = customerForm.Address,
-                Name = customerForm.Name,
-                CompanyId = customerForm.CompanyId,
-                DateOfBirth = customerForm.DateOfBirth,
-                EmailAddress = customerForm.EmailAddress,
-                Gender = customerForm.Gender,
-                PhoneNumber = customerForm.PhoneNumber,
-                // Location = DbGeography.FromText(customerForm.Location),
-                ImageUrl = CargoMateImageHandler.SaveImageFromBase64(customerForm.ImageSrc, GlobalProperties.CustomerImagesFolder)
-            };
+                var customer = new Customer
+                {
+                    CustomerId = customerForm.CustomerId,
+                    Address = customerForm.Address,
+                    Name = customerForm.Name,
+                    CompanyId = customerForm.CompanyId,
+                    DateOfBirth = customerForm.DateOfBirth,
+                    EmailAddress = customerForm.EmailAddress,
+                    Gender = customerForm.Gender,
+                    PhoneNumber = customerForm.PhoneNumber,
+                   // Location = DbGeography.FromText(customerForm.Location),
+                    ImageUrl = CargoMateImageHandler.SaveImageFromBase64(customerForm.ImageSrc, GlobalProperties.CustomerImagesFolder)
+                };
 
-            UnitOfWork.Customers.Insert(customer);
+                UnitOfWork.Customers.Insert(customer);
+                UnitOfWork.Commit();
+                return Request.CreateResponse(HttpStatusCode.OK, GetCustomerById(customer.Id));
+            }
+
+            var saveCustomer = UnitOfWork.Customers.GetWhere(c => c.Id == customerForm.Id).FirstOrDefault();
+            saveCustomer.Address = customerForm.Address;
+            saveCustomer.CompanyId = customerForm.CompanyId;
+            saveCustomer.DateOfBirth = customerForm.DateOfBirth;
+            saveCustomer.EmailAddress = customerForm.EmailAddress;
+            saveCustomer.Gender = customerForm.Gender;
+            saveCustomer.ImageUrl = CargoMateImageHandler.SaveImageFromBase64(customerForm.ImageSrc, GlobalProperties.CustomerImagesFolder);
+           // saveCustomer.Location = DbGeography.FromText(customerForm.Location);
+            saveCustomer.Name = customerForm.Name;
+            saveCustomer.PhoneNumber = customerForm.PhoneNumber;
+
+            UnitOfWork.Customers.Update(saveCustomer);
             UnitOfWork.Commit();
+            return Request.CreateResponse(HttpStatusCode.OK, GetCustomerById(saveCustomer.Id));
 
-         var cust =   UnitOfWork.Customers.GetWhere(c=>c.Id==customer.Id, "Company")
+        }
+
+        private CustomerDisplayModel GetCustomerById(long? customerId)
+        {
+            return UnitOfWork.Customers.GetWhere(c => c.Id == customerId, "Company")
+                   .ToList().Select(c => new CustomerDisplayModel
+                   {
+                       Id = c.Id,
+                       Name = c.Name,
+                       Address = c.Address,
+                       CustomerId = c.CustomerId,
+                       DateOfBirth = c.DateOfBirth?.Date,
+                       EmailAddress = c.EmailAddress,
+                       Gender = c.Gender,
+                       ImageSrc = c.ImageUrl,
+                       PhoneNumber = c.PhoneNumber,
+                       Company = c.Company==null?null: new CompanyShortViewModel
+                       {
+                           Id = c.Company?.Id,
+                           Name = c.Company?.Name,
+                           Location = c.Company?.Location.ToString(),
+                           Logo =  c.Company?.Logo
+                       }
+
+                   }).FirstOrDefault();
+        }
+        [HttpGet]
+        public CustomerDisplayModel GetCustomerByFilter(string customerId = "", string emailAddress = "", string phoneNumber = "")
+        {
+            return UnitOfWork.Customers.GetWhere(CustomersFilter(customerId, emailAddress, phoneNumber), "Company")
                   .ToList().Select(c => new CustomerDisplayModel
                   {
                       Id = c.Id,
@@ -69,9 +117,9 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                       DateOfBirth = c.DateOfBirth?.Date,
                       EmailAddress = c.EmailAddress,
                       Gender = c.Gender,
-                      ImageSrc = c.ImageUrl,
+                      ImageSrc =  c.ImageUrl,
                       PhoneNumber = c.PhoneNumber,
-                      Company = new CompanyShortViewModel
+                      Company =c.Company==null?null: new CompanyShortViewModel
                       {
                           Id = c.Company?.Id,
                           Name = c.Company?.Name,
@@ -80,35 +128,6 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                       }
 
                   }).FirstOrDefault();
-
-            return Request.CreateResponse(HttpStatusCode.OK, cust);
-
-        }
-
-        [HttpGet]
-        public CustomerDisplayModel GetCustomerByFilter(string customerId="", string emailAddress="", string phoneNumber="")
-        {
-            return UnitOfWork.Customers.GetWhere( CustomersFilter(customerId,emailAddress,phoneNumber), "Company")
-                  .ToList().Select(c => new CustomerDisplayModel
-                    {
-                        Id = c.Id,
-                        Name = c.Name,
-                        Address = c.Address,
-                        CustomerId = c.CustomerId,
-                        DateOfBirth = c.DateOfBirth?.Date,
-                        EmailAddress = c.EmailAddress,
-                        Gender = c.Gender,
-                        ImageSrc = c.ImageUrl,
-                        PhoneNumber = c.PhoneNumber,
-                        Company = new CompanyShortViewModel
-                                  {
-                                       Id = c.Company?.Id,
-                                       Name = c.Company?.Name,
-                                       Location = c.Company?.Location?.ToString(),
-                                       Logo = c.Company?.Logo
-                                   }
-
-                    }).FirstOrDefault();
         }
 
         [HttpPost]
@@ -116,7 +135,7 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
         {
             if (!ModelState.IsValid)
             {
-                return Request.CreateResponse(HttpStatusCode.Ambiguous, ModelState);              
+                return Request.CreateResponse(HttpStatusCode.Ambiguous, ModelState);
             }
 
             UnitOfWork.Companies.Insert(new Company
@@ -124,42 +143,42 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                 Address = companyForm.Address,
                 CountryId = companyForm.CountryId,
                 CrNumber = companyForm.CrNumber,
-                Location = DbGeography.FromText($"POINT({companyForm.Location})"),
-                Logo = companyForm.Logo,
+                Location = DbGeography.FromText(companyForm.Location),
+                Logo = CargoMateImageHandler.SaveImageFromBase64(companyForm.Logo, GlobalProperties.CustomerImagesFolder),
                 Name = companyForm.Name,
                 PhoneNumber = companyForm.PhoneNumber,
-                WebSiteUrl= companyForm.WebSiteUrl
+                WebSiteUrl = companyForm.WebSiteUrl
             });
 
             return Request.CreateResponse(HttpStatusCode.OK, UnitOfWork.Commit());
         }
 
         [HttpGet]
-        public CompanyDisplayModel GetCompanyByFilter(long? companyId,long? crNumber,string phoneNumber,string cultureCode="en-US")
+        public CompanyDisplayModel GetCompanyByFilter(long? companyId, long? crNumber, string phoneNumber, string cultureCode = "en-US")
         {
             return UnitOfWork.Companies.GetWhere(CompaniesFilter(companyId, crNumber, phoneNumber), "Countries.LocalizedCountries")
                    .ToList().Select(c => new CompanyDisplayModel
-                     {
-                        Id=c.Id,
-                        Address=c.Address,
-                        Country = c.Country.LocalizedCountries?.FirstOrDefault(lc=>lc.CultureCode==cultureCode)?.Name,
-                        CrNumber=c.CrNumber,
-                        Location=c.Location.ToString(),
-                        Logo=c.Logo,
-                        Name=c.Name,
-                        PhoneNumber=c.PhoneNumber,
-                        WebSiteUrl=c.WebSiteUrl
-                     }).FirstOrDefault();
+                   {
+                       Id = c.Id,
+                       Address = c.Address,
+                       Country = c.Country.LocalizedCountries?.FirstOrDefault(lc => lc.CultureCode == cultureCode)?.Name,
+                       CrNumber = c.CrNumber,
+                       Location = c.Location.ToString(),
+                       Logo = c.Logo,
+                       Name = c.Name,
+                       PhoneNumber = c.PhoneNumber,
+                       WebSiteUrl = c.WebSiteUrl
+                   }).FirstOrDefault();
         }
 
-        private Expression<Func<Customer, bool>> CustomersFilter(string customerId,string emailAddress,string phoneNumber)
+        private Expression<Func<Customer, bool>> CustomersFilter(string customerId, string emailAddress, string phoneNumber)
         {
             var predicate = PredicateBuilder.True<Customer>();
 
 
             if (!string.IsNullOrWhiteSpace(customerId))
             {
-                predicate = predicate.And(c => c.CustomerId== customerId);
+                predicate = predicate.And(c => c.CustomerId == customerId);
             }
             if (!string.IsNullOrWhiteSpace(emailAddress))
             {
