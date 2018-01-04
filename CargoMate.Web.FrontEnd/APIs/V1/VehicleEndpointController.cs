@@ -396,7 +396,8 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             return UnitOfWork.TripTypes.GetAll().Select(c => new TripTypesViewModel
             {
                 Id = c.Id,
-                Name = c.LocalizedTripTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name
+                Name = c.LocalizedTripTypes.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
+                ImageUrl=c.ImageUrl
             }).ToList();
         }
     }

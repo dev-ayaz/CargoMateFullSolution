@@ -24,12 +24,12 @@ namespace CargoMate.Web.FrontEnd.Models.SearchVehicleViewModels
 
         public DateTime? Date { get; set; }
 
-        public long? PayLoadTypeId { get; set; }
+        public long? CapacityId { get; set; }
 
         [Required(ErrorMessage = "Please Select Vehicle Type")]
         public long? VehicleTypeId { get; set; }
 
-        public List<SelectListItem> PayLoadTypes { get; set; }
+        public List<SelectListItem> VehicleCapacities { get; set; }
 
         public List<SelectListItem> VehicleTypes { get; set; }
     }

@@ -34,7 +34,6 @@ namespace CargoMate.Web.Admin.Areas.Administration.Models.Vehicle
         public MakeFormModel()
         {
             Countries = new List<SelectListItem>();
-            VehicleTypes = new List<SelectListItem>();
         }
 
         public long Id { get; set; }
@@ -48,12 +47,6 @@ namespace CargoMate.Web.Admin.Areas.Administration.Models.Vehicle
         [Required]
         [Display(Name = "Country")]
         public long CountryId { get; set; }
-
-        [Required]
-        [Display(Name = "Vehicle Type")]
-        public long? VehicleTypeId { get; set; }
-
-        public List<SelectListItem> VehicleTypes { get; set; }
 
         public List<SelectListItem> Countries { get; set; }
     }

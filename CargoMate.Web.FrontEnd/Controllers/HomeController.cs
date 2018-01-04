@@ -20,14 +20,13 @@ namespace CargoMate.Web.FrontEnd.Controllers
         {
             var searchModel = new SearchVehicleViewModel()
             {
-                PayLoadTypes = UnitOfWork.LocalizedPayLoadTypes
+                VehicleCapacities = UnitOfWork.LocalizedVehicleCapacities
                                .GetWhere(p => p.CultureCode == SessionHandler.CultureCode)
                                .Select(p => new SelectListItem
                                {
-                                   Value = p.PayLoadTypeId.ToString(),
+                                   Value = p.VehicleCapacityId.ToString(),
                                    Text = p.Name
                                }).ToList(),
-
                 VehicleTypes = UnitOfWork.LocalizedVehicleTypes
                                .GetWhere(p => p.CultureCode == SessionHandler.CultureCode)
                                .Select(p => new SelectListItem
@@ -83,19 +82,26 @@ namespace CargoMate.Web.FrontEnd.Controllers
         [HttpGet]
         public JsonResult GetVehicleById(long? vehicleId)
         {
-            var vehicle = UnitOfWork.Vehicles.GetWhere(v => v.Id == vehicleId, includeProperties: "VehicleType.LocalizedVehicleTypes,DriverPersonalInfo.Country.LocalizedCountries")
+            var vehicle = UnitOfWork.Vehicles
+                        .GetWhere(v => v.Id == vehicleId, includeProperties:
+                        "VehicleType.LocalizedVehicleTypes,DriverPersonalInfo.Country.LocalizedCountries," +
+                        "ModelYearCombination.VehicleModel.VehicleMake.LocalizedVehicleMakes," +
+                        "ModelYearCombination.VehicleModel.LocalizedVehicleModels")
                 .Select(v => new VehiclePopupViewModel
                 {
                     VehicleId = v.Id,
-                    TypeImage =  GlobalProperties.BasicDataImagesPath+v.VehicleType.ImageUrl,
+                    TypeImage = GlobalProperties.BasicDataImagesPath + v.VehicleType.ImageUrl,
                     Type = v.VehicleType.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name,
                     TypeDescreption = v.VehicleType.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Descreption,
                     DriverName = v.DriverPersonalInfo.Name,
                     DriverNationality = v.DriverPersonalInfo.Country.LocalizedCountries.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
-                    DriverPhone = v.DriverPersonalInfo.PhoneNumber
+                    DriverPhone = v.DriverPersonalInfo.PhoneNumber,
+                    Make = v.ModelYearCombination.VehicleModel.VehicleMake.LocalizedVehicleMakes.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode).Name,
+                    Model = v.ModelYearCombination.VehicleModel.LocalizedVehicleModels.FirstOrDefault(lm => lm.CultureCode == SessionHandler.CultureCode).Name,
+                    Year = v.ModelYearCombination.Year.ToString()
                 }).FirstOrDefault();
 
-            return Json(vehicle,JsonRequestBehavior.AllowGet);
+            return Json(vehicle, JsonRequestBehavior.AllowGet);
         }
 
 

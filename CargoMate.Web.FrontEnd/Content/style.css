@@ -1515,7 +1515,7 @@ a#filters_col_bt .icon_set_1_icon-65 {
 
 #map {
 	width: 100%;
-	height: 450px;
+	height: calc(100vh - 105px);
 	border-bottom: 1px solid #ddd;
 	border-top: 1px solid #ddd;
 }

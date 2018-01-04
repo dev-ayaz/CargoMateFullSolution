@@ -60,6 +60,9 @@ $(document).on('ready', function (e) {
                 if (response) {
                     showMarkers({
                         name: response.DriverName + ' (' + response.DriverNationality + ')',
+                        make: response.Make,
+                        model: response.Model,
+                        year:response.Year,
                         location_latitude: location[0],
                         location_longitude: location[1],
                         map_image_url: response.TypeImage,//'../../../images/VehicleTypes/t4.jpg',
@@ -91,7 +94,7 @@ $(document).on('ready', function (e) {
 
 
     var mapOptions = {
-        zoom: 10,
+        zoom: 8,
         center: new google.maps.LatLng(21.2854, 39.2376),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
 
@@ -265,7 +268,10 @@ $(document).on('ready', function (e) {
             '<img src="' + item.map_image_url + '" alt="Image"/>' +
             '<h5>' + item.name + '</h3>' +
             '<h3>' + item.name_point + '</h3>' +
-            '<span>' + item.description_point + '</span>' +
+            //'<span>' + item.description_point + '</span>' +
+            '<div class="marker_tools">' +
+            '<h5> ' + item.make+' ' + item.model + ' (' + item.year +')</h5>' +
+            '</div>' +
             '<div class="marker_tools">' +
             '<form action="http://maps.google.com/maps" method="get" target="_blank" style="display:inline-block""><input name="saddr" value="' + item.get_directions_start_address + '" type="hidden"><input type="hidden" name="daddr" value="' + item.location_latitude + ',' + item.location_longitude + '"><button type="submit" value="Get directions" class="btn_infobox_get_directions">Directions</button></form>' +
             '<a href="tel://' + item.phone + '" class="btn_infobox_phone">' + item.phone + '</a>' +

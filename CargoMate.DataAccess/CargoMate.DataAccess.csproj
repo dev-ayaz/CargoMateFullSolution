@@ -62,6 +62,10 @@
     <Compile Include="Migrations\201711271910172_Remove VehicleType &amp; make navigations.Designer.cs">
       <DependentUpon>201711271910172_Remove VehicleType &amp; make navigations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712301213119_Trip Type ImageUrl Column.cs" />
+    <Compile Include="Migrations\201712301213119_Trip Type ImageUrl Column.Designer.cs">
+      <DependentUpon>201712301213119_Trip Type ImageUrl Column.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasicData\Country.cs" />
     <Compile Include="Models\BasicData\CustomerStatus.cs" />
@@ -133,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711271910172_Remove VehicleType &amp; make navigations.resx">
       <DependentUpon>201711271910172_Remove VehicleType &amp; make navigations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712301213119_Trip Type ImageUrl Column.resx">
+      <DependentUpon>201712301213119_Trip Type ImageUrl Column.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

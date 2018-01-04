@@ -436,12 +436,8 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                     {
                         Text = c.Name,
                         Value = c.CountryId.ToString()
-                    }).ToList(),
-                    VehicleTypes = UnitOfWork.LocalizedVehicleTypes.GetWhere(c => c.CultureCode == SessionHandler.CultureCode).Select(c => new SelectListItem
-                    {
-                        Text = c.Name,
-                        Value = c.VehicleTypeId.ToString()
                     }).ToList()
+                    
 
                 },
                 MakeDisplayModelList = UnitOfWork.VehicleMakes.GetWhere(m => m.IsActive == true).Select(m => new MakeDisplayModel

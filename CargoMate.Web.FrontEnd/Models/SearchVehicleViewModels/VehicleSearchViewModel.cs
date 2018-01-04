@@ -48,6 +48,9 @@ namespace CargoMate.Web.FrontEnd.Models.SearchVehicleViewModels
         public string DriverNationality { get; set; }
         public string DriverPhone { get; set; }
         public string Type { get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public string Year { get; set; }
         public string TypeDescreption { get; set; }
         public string TypeImage { get; set; }
     }

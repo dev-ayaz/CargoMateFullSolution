@@ -5,6 +5,10 @@
 
 @section styles{
     <style>
+        ul.dd-options {
+            height: 270px !important;
+        }
+
         .dd-selected-text {
             line-height: 35px;
         }
@@ -44,25 +48,20 @@
                         </div>
                     </div><!-- End row -->
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label><i class="icon-calendar-7"></i> Date</label>
-                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control date-pick", placeholder = "M d, D" } })
-                            </div>
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group overflow-false">
-                                <label>Pay Load Type</label>
-                                @Html.DropDownListFor(model => model.PayLoadTypeId, new SelectList(Model.PayLoadTypes, "Value", "Text"), "Select PayLoad Type", new { @class = "ddslick" })
+                                <label>Vehicle Type</label>
+                                @Html.DropDownListFor(model => model.VehicleTypeId, new SelectList(Model.VehicleTypes, "Value", "Text"), "Select Vehicle Type", new { @class = "ddslick", @min = 1 })
+                                @Html.ValidationMessageFor(model => model.VehicleTypeId, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group overflow-false">
-                                <label>Vehicle Type</label>
-                                @Html.DropDownListFor(model => model.VehicleTypeId, new SelectList(Model.VehicleTypes, "Value", "Text"), "Select Vehicle Type", new { @class = "ddslick",@min=1 })
-                                @Html.ValidationMessageFor(model => model.VehicleTypeId, "", new { @class = "text-danger" })
+                                <label>Vehicle Capacity</label>
+                                @Html.DropDownListFor(model => model.CapacityId, new SelectList(Model.VehicleCapacities, "Value", "Text"), "Select Vehicle Capacity", new { @class = "ddslick", @min = 1 })
                             </div>
                         </div>
+
                     </div><!-- End row -->
                     <hr>
                     <button type="submit" class="btn_1 green" name="submit"><i class="icon-search"></i>Search now</button>

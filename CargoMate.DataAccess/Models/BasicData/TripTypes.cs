@@ -20,6 +20,8 @@ namespace CargoMate.DataAccess.Models.BasicData
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public bool? IsActive { get; set; }
 
         public virtual ICollection<Localizations.LocalizedTripType> LocalizedTripTypes { get; set; }
