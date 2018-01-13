@@ -7,6 +7,7 @@ using System.Web.Http;
 using CargoMate.DataAccess.Contracts;
 using CargoMate.Web.FrontEnd.Models;
 using CargoMate.Web.FrontEnd.Shared;
+using CargoMate.Web.FrontEnd.Models.VehicleQuery;
 
 namespace CargoMate.Web.FrontEnd.APIs.V1
 {
@@ -72,6 +73,11 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                                  Flag = c.Country.Flag
 
                              }).FirstOrDefault();
+        }
+
+        public VehicleQuery GetVehicleForNomination()
+        {
+            return new VehicleQuery();
         }
 
     }

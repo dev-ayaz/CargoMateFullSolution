@@ -104,6 +104,10 @@ namespace CargoMate.Web.FrontEnd.Controllers
             return Json(vehicle, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult DriverInvoke(long? vehicleI)
+        {
+            return View();
+        }
 
         public ActionResult About()
         {

@@ -196,6 +196,11 @@
     <Compile Include="Models\KeyValuePairViewModel.cs" />
     <Compile Include="Models\SearchVehicleViewModels\SearchVehicleViewModel.cs" />
     <Compile Include="Models\SearchVehicleViewModels\VehicleSearchViewModel.cs" />
+    <Compile Include="Models\VehicleQuery\GeoAddress.cs" />
+    <Compile Include="Models\VehicleQuery\GeoElement.cs" />
+    <Compile Include="Models\VehicleQuery\JobStatusEnums.cs" />
+    <Compile Include="Models\VehicleQuery\VehicleParaPack.cs" />
+    <Compile Include="Models\VehicleQuery\VehicleQuery.cs" />
     <Compile Include="Models\VehicleRegistrationModels\VehicleViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\CapacityViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\ConfigurationsViewModel.cs" />
@@ -309,6 +314,7 @@
     <Content Include="Content\images\openhand.cur" />
     <Content Include="Content\ion.rangeSlider.css" />
     <Content Include="Content\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Content\jquery.switch.css" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\menu-rtl.css" />
     <Content Include="Content\menu.css" />
@@ -946,6 +952,7 @@
     <Content Include="Views\Home\SearchResults.cshtml" />
     <Content Include="Views\Driver\Partials\_VehicelList.cshtml" />
     <Content Include="Views\Home\SearchResultMap.cshtml" />
+    <Content Include="Views\Home\DriverInvoke.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

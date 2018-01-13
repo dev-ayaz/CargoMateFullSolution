@@ -1,0 +1,213 @@
+﻿
+@{
+    ViewBag.Title = "DriverInvoke";
+}
+@section styles{
+    <style>
+        ul.dd-options {
+            height: 270px !important;
+        }
+
+        .dd-selected-text {
+            line-height: 35px;
+        }
+    </style>
+    <link href="~/Content/jquery.switch.css" rel="stylesheet" />
+}
+<div class="container margin_60">
+    <div class="row">
+        <div class="col-md-8 add_bottom_15">
+            <div class="form_title">
+                <h3><strong>1</strong>Jobs Details</h3>
+                <p>
+                    Enter Your Job Details.
+                </p>
+            </div>
+            <div class="step">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Vehicle Configuration</label>
+                            @Html.DropDownList("ConfigurationId", new SelectList(string.Empty, "Value", "Text"), "Select Vehicle Configuration", new { @class = "ddslick", @min = 1 })
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Vehicle Capacity</label>
+                            @Html.DropDownList("CapacityId", new SelectList(string.Empty, "Value", "Text"), "Select Vehicle Capacity", new { @class = "ddslick", @min = 1 })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Cargo Weight</label>
+                            <input type="number" id="email_booking" name="email_booking" class="form-control">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="" style="margin-top:20px">
+                            <button type="submit" class="btn_1 green" name="submit"><i class="icon-search"></i>Check Availability</button>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            </div><!--End step -->
+
+            <div class="form_title">
+                <h3><strong>2</strong>Select Nominees</h3>
+                <p>
+                    Eneter Nominee Information Here.
+                </p>
+            </div>
+            <div class="step">
+                <div class="form_title">
+                    <h4>Nominee Details</h4>
+
+                </div>
+
+                <hr />
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Supplier Name</label>
+                            <input type="number" id="email_booking" name="email_booking" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="number" id="email_booking" name="email_booking" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="number" id="email_booking" name="email_booking" class="form-control">
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <h4>Note</h4>
+                <p>
+                    Driver have no concern about the material or goods provide by supplier.
+                </p>
+            </div><!--End step -->
+
+
+            <div id="policy">
+                <h4>Cancellation policy</h4>
+                <div class="form-group">
+                    <label>
+                        <div class="icheckbox_square-grey" style="position: relative;">
+                            <input type="checkbox" name="policy_terms" id="policy_terms" style="position: absolute; opacity: 0;">
+                            <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                        </div>I accept terms and conditions and general policy.
+                    </label>
+                </div>
+                <a href="confirmation.html" class="btn_1 green medium">Book now</a>
+            </div>
+        </div>
+
+        <aside class="col-md-4">
+            <div class="box_style_1">
+                <h3 class="inner">- Summary -</h3>
+                <table class="table table_summary">
+                    <tbody>
+                        <tr>
+                            <td>
+                                Vehicle Type
+                            </td>
+                            <td class="text-right">
+                                Truck
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Vehicle Make
+                            </td>
+                            <td class="text-right">
+                                Toyota
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Model
+                            </td>
+                            <td class="text-right">
+                                T12 (2017)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Capacity
+                            </td>
+                            <td class="text-right">
+                                40 TONS
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Configurations
+                            </td>
+                            <td class="text-right">
+                                Truck+Traller
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Driver Name
+                            </td>
+                            <td class="text-right">
+                                Muhammad Ayaz(KSA)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Time Estimated
+                            </td>
+                            <td class="text-right">
+                                12 Hourse 10 Minuts
+                            </td>
+
+
+                        </tr>
+                        <tr class="total">
+                            <td>
+                                Distannce
+                            </td>
+                            <td class="text-right">
+                                900(KM)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a class="btn_full_outline" href="single_hotel.html"><i class="icon-right"></i> Modify your search</a>
+            </div>
+            <div class="box_style_4">
+                <i class="icon_set_1_icon-57"></i>
+                <h4>Need <span>Help?</span></h4>
+                <a href="tel://004542344599" class="phone">+45 423 445 99</a>
+                <small>Monday to Friday 9.00am - 7.30pm</small>
+            </div>
+        </aside>
+
+    </div><!--End row -->
+</div>
+
+@section scripts{
+
+    <script>
+
+    </script>
+
+}
