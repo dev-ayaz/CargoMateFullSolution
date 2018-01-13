@@ -152,5 +152,20 @@ namespace CargoMate.Web.FrontEnd.Controllers
         {
             return View();
         }
+
+        public ActionResult Contactus()
+        {
+            return View();
+        }
+
+        public ActionResult Aboutus()
+        {
+            return View();
+        }
+
+        public ActionResult HowItWorks()
+        {
+            return View();
+        }
     }
 }
