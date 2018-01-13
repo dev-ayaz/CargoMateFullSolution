@@ -514,7 +514,6 @@ $(document).on('ready', function (e) {
 });
 
 function gotoInvokingPage(vehicleId) {
-    alert(RequestHandler.getQueryString("VehicleTypeId"));
     if (window.UserId) {
 
         window.location = RequestHandler.getSiteRoot() + "/DriverInvoke?vehicleId=" + vehicleId + "&VehicleTypeId=" + RequestHandler.getQueryString("VehicleTypeId") + "&CapacityId=" + RequestHandler.getQueryString("CapacityId") 

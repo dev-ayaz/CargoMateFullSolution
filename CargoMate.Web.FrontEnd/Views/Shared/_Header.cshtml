@@ -56,7 +56,7 @@
                         <li id="logout_menu" class="logout_menu">
                             <div class="dropdown dropdown-access">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="@(!string.IsNullOrEmpty(SessionHandler.UserImage) ? (SessionHandler.UserImage.Contains("http") ? SessionHandler.UserImage : "../SystemImages/UserImages/" + SessionHandler.UserImage) : "../images/avatar3.jpg")" class="profile_avatar" style="width:30px;height:30px;" />
+                                    <img src="@(!string.IsNullOrEmpty(SessionHandler.UserImage) ? (SessionHandler.UserImage.Contains("http") ? SessionHandler.UserImage : "../../../SystemImages/UserImages/" + SessionHandler.UserImage) : "../../../images/avatar3.jpg")" class="profile_avatar" style="width:30px;height:30px;" />
                                     @SessionHandler.UserName
                                 </a>
                                 <div class="dropdown-menu px-0">
@@ -64,7 +64,7 @@
                                         <div class="col-xs-12">
                                             <div class="col-xs-12 col-sm-4 px-0">
                                                 <div class="menu-profile-img">
-                                                    <img src="@(!string.IsNullOrEmpty(SessionHandler.UserImage) ? (SessionHandler.UserImage.Contains("http") ? SessionHandler.UserImage : "../SystemImages/UserImages/" + SessionHandler.UserImage) : "../images/avatar3.jpg")" />
+                                                    <img src="@(!string.IsNullOrEmpty(SessionHandler.UserImage) ? (SessionHandler.UserImage.Contains("http") ? SessionHandler.UserImage : "../.../../SystemImages/UserImages/" + SessionHandler.UserImage) : "./../../images/avatar3.jpg")" />
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-8">

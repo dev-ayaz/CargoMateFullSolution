@@ -10,11 +10,11 @@ namespace CargoMate.Web.FrontEnd.Models.SearchVehicleViewModels
 
     public class SearchVehicleViewModel
     {
-       // [Required(ErrorMessage = "Please Enter PickUp Address")]
+        [Required(ErrorMessage = "Please Enter PickUp Address")]
         [Display(Name = "PickUp Address")]
         public string PickUpAddress { get; set; }
 
-        //[Required(ErrorMessage = "Please Enter DropUp Address")]
+        [Required(ErrorMessage = "Please Enter DropUp Address")]
         [Display(Name = "DropUp Address")]
         public string DropUpAddress { get; set; }
 
