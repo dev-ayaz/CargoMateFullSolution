@@ -436,6 +436,7 @@
     <Content Include="Content\skins\square\_all.css" />
     <Content Include="Content\style-rtl.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\timeline.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -888,6 +889,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\map_contact.js" />
     <Content Include="Scripts\map_full_page.js" />
     <Content Include="Scripts\map_transfer.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -913,6 +915,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\tabs.js" />
+    <Content Include="Scripts\validate.js" />
     <Content Include="SystemImages\placeholder.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -925,8 +928,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\AccountDetails.cshtml" />
@@ -953,6 +954,9 @@
     <Content Include="Views\Driver\Partials\_VehicelList.cshtml" />
     <Content Include="Views\Home\SearchResultMap.cshtml" />
     <Content Include="Views\Home\DriverInvoke.cshtml" />
+    <Content Include="Views\Home\Contactus.cshtml" />
+    <Content Include="Views\Home\Aboutus.cshtml" />
+    <Content Include="Views\Home\HowItWorks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
