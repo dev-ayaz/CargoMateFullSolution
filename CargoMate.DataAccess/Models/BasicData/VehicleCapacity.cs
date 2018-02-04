@@ -21,21 +21,33 @@ namespace CargoMate.DataAccess.Models.BasicData
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        public long? Capacity { get; set; }
+        public decimal? Weight { get; set; }
 
-        public long? Length { get; set; }
+        public decimal? Length { get; set; }
 
-        public long? PalletNumber { get; set; }
+        public long? MaximumQuantity { get; set; }
 
-        [StringLength(10)]
-        public string CultureCode { get; set; }
+        public decimal? Breadth { get; set; }
+
+        public decimal? Height { get; set; }
+
+        public decimal? MaxQuantity { get; set; }
 
         public long? VehicleTypeId { get; set; }
 
-        [StringLength(250)]
-        public string Source { get; set; }
+        public long? WeightUnitId { get; set; }
+
+        public long? LengthUnitId { get; set; }
+
+        public long? UOMId { get; set; }
 
         public bool? IsActive { get; set; }
+
+        public virtual UOM UOM { get; set; }
+
+        public virtual WeightUnit WeightUnit { get; set; }
+
+        public virtual LengthUnit LengthUnit { get; set; }
 
         public virtual VehicleType VehicleType { get; set; }
 

@@ -7,7 +7,7 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleViewModel
 {
     public class LengthViewModel
     {
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
         public bool? IsMetric { get; set; }
 

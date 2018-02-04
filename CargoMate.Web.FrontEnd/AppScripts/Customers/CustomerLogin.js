@@ -7,13 +7,13 @@
         EmailAddress: "input[id=Email]",
         Password: "input[id=Password]",
         logoutMenu: "#logout_menu",
-        loginMenu:".login_menu"
+        loginMenu: ".login_menu"
     },
     services: {
         controller: "Customer",
         actions: {
             CheckCustomer: "IsCustomerExists",
-            Register:"Register"
+            Register: "Register"
 
         }
     },
@@ -62,6 +62,8 @@
 
                 if (response.RedirectUrl && response.IsExists) {
 
+                    CustomerLogin.callbacks.AddCustomerToVehicleQuery(response.Customer);
+
                     window.location.href = response.RedirectUrl;
                 }
                 else if (!response.IsExists) {
@@ -69,10 +71,32 @@
                 }
                 else {
 
+                   
+                    CustomerLogin.callbacks.AddCustomerToVehicleQuery(response.Customer);
+
                     CargoMateAlerts.actionAlert("Success", "Successfully login !", false);
                     window.location.reload();
                 }
             });
+        },
+        AddCustomerToVehicleQuery: function (customer)
+        {
+            var VehicleQuery = JSON.parse(sessionStorage.getItem("VehicleQuery"));
+
+            var customer = {
+                customerId: customer.CustomerId,
+                id: customer.Id,
+                dateOfBirth: null,
+                email: customer.EmailAddress,
+                gender: customer.Gender,
+                imageUrl: customer.ImageSrc,
+                name: customer.Name,
+                phoneNumber: customer.PhoneNumber
+            }
+
+            VehicleQuery.customer = customer;
+
+            sessionStorage.setItem("VehicleQuery", JSON.stringify(VehicleQuery));
         }
 
 

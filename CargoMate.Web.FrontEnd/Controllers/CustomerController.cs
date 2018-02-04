@@ -37,14 +37,39 @@ namespace CargoMate.Web.FrontEnd.Controllers
             if (string.IsNullOrEmpty(customer.Address) || string.IsNullOrEmpty(customer.Name) ||
                                    string.IsNullOrEmpty(customer.PhoneNumber))
             {
-                return Json(new { IsExists = true, RedirectUrl = Url.Action("EditCustomer", "Customer", new { userId = userId }) }, JsonRequestBehavior.AllowGet);
+                return Json(new { IsExists = true, Customer = GetCustomerById(customer.Id), RedirectUrl = Url.Action("EditCustomer", "Customer", new { userId = userId }) }, JsonRequestBehavior.AllowGet);
             }
 
             SetSession(customer);
 
-            return Json(new { IsExists = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { IsExists = true,Customer= GetCustomerById(customer.Id) }, JsonRequestBehavior.AllowGet);
         }
 
+
+        private CustomerDisplayModel GetCustomerById(long? customerId)
+        {
+            return UnitOfWork.Customers.GetWhere(c => c.Id == customerId, "Company")
+                   .ToList().Select(c => new CustomerDisplayModel
+                   {
+                       Id = c.Id,
+                       Name = c.Name,
+                       Address = c.Address,
+                       CustomerId = c.CustomerId,
+                       DateOfBirth = c.DateOfBirth?.Date,
+                       EmailAddress = c.EmailAddress,
+                       Gender = c.Gender,
+                       ImageSrc = c.ImageUrl,
+                       PhoneNumber = c.PhoneNumber,
+                       Company = c.Company == null ? null : new CompanyShortViewModel
+                       {
+                           Id = c.Company?.Id,
+                           Name = c.Company?.Name,
+                           Location = c.Company?.Location.ToString(),
+                           Logo = c.Company?.Logo
+                       }
+
+                   }).FirstOrDefault();
+        }
         public ActionResult Register()
         {
             return View();

@@ -5,16 +5,16 @@ using System.Web;
 
 namespace CargoMate.Web.FrontEnd.Models.VehicleViewModel
 {
-    public class WeightViewModel
+    public class UOMViewModel
     {
         public long? Id { get; set; }
 
-        public bool? IsMetric { get; set; }
+        public double? Factor { get; set; }
 
-        public decimal? WeightMultiple { get; set; }
+        public string Name { get; set; }
 
         public string ShortName { get; set; }
 
-        public string FullName { get; set; }
+        public string Description { get; set; }
     }
 }

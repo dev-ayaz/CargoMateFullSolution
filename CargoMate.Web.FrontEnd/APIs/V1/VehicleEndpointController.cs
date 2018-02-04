@@ -34,21 +34,75 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
             {
                 Id = c.Id,
                 Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                Capacity = c.Capacity,
+                Weight = c.Weight,
                 Length = c.Length,
-                PalletNumber = c.PalletNumber
+                Breadth = c.Breadth,
+                Height = c.Height,
+                BaseUOM = c.UOM == null ? null : new UOMViewModel
+                {
+                    Id = c.UOMId,
+                    Description = c.UOM.LocalizedUOMs.FirstOrDefault(u => u.CultureCode == cultureCode).Description,
+                    Factor = c.UOM.Factor,
+                    Name = c.UOM.LocalizedUOMs.FirstOrDefault(u => u.CultureCode == cultureCode).Name,
+                    ShortName = c.UOM.LocalizedUOMs.FirstOrDefault(u => u.CultureCode == cultureCode).ShortName
+                },
+                LengthUnit = c.LengthUnit == null ? null : new LengthViewModel
+                {
+                    Id = c.LengthUnitId,
+                    IsMetric = c.LengthUnit.IsMetric,
+                    LengthMultiple = c.LengthUnit.LengthMultiple,
+                    ShortName = c.LengthUnit.LocalizedLengthUnits.FirstOrDefault(lu => lu.CultureCode == cultureCode).ShortName,
+                    FullName = c.LengthUnit.LocalizedLengthUnits.FirstOrDefault(lu => lu.CultureCode == cultureCode).FullName
+                },
+
+                WeightUnit = c.WeightUnit == null ? null : new WeightViewModel
+                {
+                    Id = c.WeightUnitId,
+                    IsMetric = c.LengthUnit.IsMetric,
+                    WeightMultiple = c.WeightUnit.WeightMultiple,
+                    ShortName = c.WeightUnit.LocalizedWeightUnits.FirstOrDefault(lu => lu.CultureCode == cultureCode).ShortName,
+                    FullName = c.WeightUnit.LocalizedWeightUnits.FirstOrDefault(lu => lu.CultureCode == cultureCode).FullName
+                },
+                MaximumQuantity = c.MaximumQuantity
             }).ToList();
         }
 
         public CapacityViewModel GetCapacityById(long capacityId, string cultureCode = "en-US")
         {
-            return UnitOfWork.VehicleCapacities.GetWhere(c => c.CultureCode == cultureCode).Select(c => new CapacityViewModel
+            return UnitOfWork.VehicleCapacities.GetWhere(c => c.Id==capacityId).Select(c => new CapacityViewModel
             {
                 Id = c.Id,
-                Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                Capacity = c.Capacity,
+                Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc=>lc.CultureCode==cultureCode).Name,
+                Weight = c.Weight,
                 Length = c.Length,
-                PalletNumber = c.PalletNumber
+                Breadth= c.Breadth,
+                Height = c.Height,
+                BaseUOM = c.UOM==null?null: new UOMViewModel
+                {
+                    Id=c.UOMId,
+                    Description=c.UOM.LocalizedUOMs.FirstOrDefault(u=>u.CultureCode==cultureCode).Description,
+                    Factor=c.UOM.Factor,
+                    Name = c.UOM.LocalizedUOMs.FirstOrDefault(u => u.CultureCode == cultureCode).Name,
+                    ShortName = c.UOM.LocalizedUOMs.FirstOrDefault(u => u.CultureCode == cultureCode).ShortName
+                },
+                LengthUnit = c.LengthUnit==null?null: new LengthViewModel
+                {
+                    Id=c.LengthUnitId,
+                    IsMetric=c.LengthUnit.IsMetric,
+                    LengthMultiple = c.LengthUnit.LengthMultiple,
+                    ShortName = c.LengthUnit.LocalizedLengthUnits.FirstOrDefault(lu => lu.CultureCode==cultureCode).ShortName,
+                    FullName = c.LengthUnit.LocalizedLengthUnits.FirstOrDefault(lu => lu.CultureCode == cultureCode).FullName
+                },
+
+                WeightUnit = c.WeightUnit == null?null: new WeightViewModel
+                {
+                    Id = c.WeightUnitId,
+                    IsMetric = c.LengthUnit.IsMetric,
+                    WeightMultiple = c.WeightUnit.WeightMultiple,
+                    ShortName = c.WeightUnit.LocalizedWeightUnits.FirstOrDefault(lu => lu.CultureCode == cultureCode).ShortName,
+                    FullName = c.WeightUnit.LocalizedWeightUnits.FirstOrDefault(lu => lu.CultureCode == cultureCode).FullName
+                },
+                MaximumQuantity = c.MaximumQuantity
             }).FirstOrDefault();
         }
         #endregion
@@ -309,10 +363,10 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
                         CapacityViewModel = c.VehicleCapacities.Select(cp => new CapacityViewModel
                         {
                             Id = cp.Id,
-                            Capacity = cp.Capacity,
+                            Weight = cp.Weight,
                             Length = cp.Length,
                             Name = cp.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == cultureCode).Name,
-                            PalletNumber = cp.PalletNumber
+                            MaximumQuantity = cp.MaximumQuantity
                         }).ToList(),
 
                         ConfigurationsViewModel = c.VehicleTypeConfigurations.Select(vc => new ConfigurationsViewModel

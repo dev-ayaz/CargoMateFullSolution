@@ -44,6 +44,7 @@ namespace CargoMate.DataAccess.Providers
         public IRepository<VehicleModel> VehicleModels => GetStandardRepository<VehicleModel>();
         public IRepository<VehicleType> VehicleTypes => GetStandardRepository<VehicleType>();
         public IRepository<WeightUnit> WeightUnits => GetStandardRepository<WeightUnit>();
+        public IRepository<UOM> UOMs => GetStandardRepository<UOM>();
         public IRepository<FareType> FareTypes => GetStandardRepository<FareType>();
 
 
@@ -59,6 +60,7 @@ namespace CargoMate.DataAccess.Providers
         public IRepository<LocalizedVehicleModel> LocalizedVehicleModels => GetStandardRepository<LocalizedVehicleModel>();
         public IRepository<LocalizedVehicleType> LocalizedVehicleTypes => GetStandardRepository<LocalizedVehicleType>();
         public IRepository<LocalizedWeightUnit> LocalizedWeightUnits => GetStandardRepository<LocalizedWeightUnit>();
+        public IRepository<LocalizedUOM> LocalizedUOMs => GetStandardRepository<LocalizedUOM>();
         public IRepository<LocalizedFareType> LocalizedFareTypes => GetStandardRepository<LocalizedFareType>();
         //************************** Basic Data  END************************************************
 

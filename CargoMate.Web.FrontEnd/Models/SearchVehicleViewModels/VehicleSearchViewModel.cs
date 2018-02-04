@@ -44,6 +44,7 @@ namespace CargoMate.Web.FrontEnd.Models.SearchVehicleViewModels
     public class VehiclePopupViewModel
     {
         public long? VehicleId { get; set; }
+        public string DriverId { get; set; }
         public string DriverName { get; set; }
         public string DriverNationality { get; set; }
         public string DriverPhone { get; set; }

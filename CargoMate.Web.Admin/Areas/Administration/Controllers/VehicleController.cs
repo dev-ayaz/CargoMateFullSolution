@@ -26,13 +26,13 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                 {
                     Id = c.Id,
                     Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
-                    Capacity = c.Capacity.Value,
-                    Length = c.Length.Value,
-                    PalletNumber = c.PalletNumber.Value,
+                    Weight = c.Weight,
+                    Length = c.Length,
+                    MaximumQuantity = c.MaximumQuantity,
                     VehicleType = c.VehicleType.LocalizedVehicleTypes.FirstOrDefault(t => t.CultureCode == SessionHandler.CultureCode).Name
                 }).ToList(),
 
-                VehicleTypesList = UnitOfWork.LocalizedVehicleTypes.GetWhere(lvt=>lvt.CultureCode==SessionHandler.CultureCode, includeProperties: "VehicleType").Select(t => new VehicleTypeViewModel
+                VehicleTypesList = UnitOfWork.LocalizedVehicleTypes.GetWhere(lvt => lvt.CultureCode == SessionHandler.CultureCode, includeProperties: "VehicleType").Select(t => new VehicleTypeViewModel
                 {
                     Id = t.VehicleTypeId.Value,
                     Name = t.Name,
@@ -55,7 +55,31 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                     {
                         Text = t.Name,
                         Value = t.VehicleTypeId.ToString()
-                    }).ToList()
+                    }).ToList(),
+                    WeightUnitsListItems = UnitOfWork.LocalizedWeightUnits
+                                                 .GetWhere(w => w.CultureCode == SessionHandler.CultureCode)
+                                                 .Select(t => new SelectListItem()
+                                                 {
+                                                     Text = t.FullName,
+                                                     Value = t.WeightUnitId.ToString()
+                                                 }).ToList(),
+
+                    LengthUnitsListItems = UnitOfWork.LocalizedLengthUnits
+                                                 .GetWhere(w => w.CultureCode == SessionHandler.CultureCode)
+                                                 .Select(t => new SelectListItem()
+                                                 {
+                                                     Text = t.FullName,
+                                                     Value = t.LengthUnitId.ToString()
+                                                 }).ToList(),
+
+                    UOMListItems = UnitOfWork.LocalizedUOMs
+                                                 .GetWhere(w => w.CultureCode == SessionHandler.CultureCode)
+                                                 .Select(t => new SelectListItem()
+                                                 {
+                                                     Text = t.Name,
+                                                     Value = t.UOMId.ToString()
+                                                 }).ToList()
+
                 },
                 ConfigurationViewModel = new VehicleTypeConfigurationsViewModel
                 {
@@ -193,9 +217,15 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             var capacityModel = new VehicleCapacity
             {
                 Length = capacityViewModel.Length,
-                PalletNumber = capacityViewModel.PalletNumber,
+                MaximumQuantity = capacityViewModel.MaximumQuantity,
                 VehicleTypeId = capacityViewModel.VehicleTypeId,
-                Capacity = capacityViewModel.Capacity,
+                Weight = capacityViewModel.Weight,
+                LengthUnitId = capacityViewModel.LengthUnitId,
+                UOMId = capacityViewModel.UOMId,
+                Height = capacityViewModel.Height,
+                Breadth = capacityViewModel.Breadth,
+                WeightUnitId = capacityViewModel.WeightUnitId,
+                IsActive = true,
                 LocalizedVehicleCapacities = new List<LocalizedVehicleCapacity>
                 {
                    new LocalizedVehicleCapacity {
@@ -211,18 +241,24 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
         }
 
-        public object UpdateVehicleCapacity(VehicleCapacityViewModel capacityViewModel)
+        public JsonResult UpdateVehicleCapacity(VehicleCapacityViewModel capacityViewModel)
         {
             var savedCapacity = UnitOfWork.VehicleCapacities.GetWhere(c => c.Id == capacityViewModel.Id, "LocalizedVehicleCapacities").FirstOrDefault();
 
             if (savedCapacity == null)
             {
-                return AlertMessages.ModelError;
+                return Json( AlertMessages.ModelError,JsonRequestBehavior.AllowGet);
             }
 
-            savedCapacity.Capacity = capacityViewModel.Capacity;
+            savedCapacity.Weight = capacityViewModel.Weight;
             savedCapacity.Length = capacityViewModel.Length;
-            savedCapacity.PalletNumber = capacityViewModel.PalletNumber;
+            savedCapacity.MaximumQuantity = capacityViewModel.MaximumQuantity;
+            savedCapacity.Height = capacityViewModel.Height;
+            savedCapacity.Breadth = capacityViewModel.Breadth;
+            savedCapacity.LengthUnitId = capacityViewModel.LengthUnitId;
+            savedCapacity.WeightUnitId = capacityViewModel.WeightUnitId;
+            savedCapacity.UOMId = capacityViewModel.UOMId;
+
             var localizedCapacity = savedCapacity.LocalizedVehicleCapacities.FirstOrDefault(c => c.CultureCode == SessionHandler.CultureCode);
 
             if (localizedCapacity != null)
@@ -234,7 +270,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
             UnitOfWork.VehicleCapacities.Update(savedCapacity);
 
-            return (UnitOfWork.Commit() > 0 ? AlertMessages.SuccessResponse : AlertMessages.FailureResponse);
+            return Json(UnitOfWork.Commit() > 0 ? AlertMessages.SuccessResponse : AlertMessages.FailureResponse);
 
         }
 
@@ -243,11 +279,16 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
             var capacityModel = UnitOfWork.VehicleCapacities.GetWhere(c => c.Id == capacityId, "LocalizedCapacities").Select(c => new VehicleCapacityViewModel
             {
                 Id = c.Id,
-                Capacity = c.Capacity.Value,
+                Weight = c.Weight,
                 Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
-                VehicleTypeId = c.VehicleTypeId.Value,
-                PalletNumber = c.PalletNumber.Value,
-                Length = c.Length.Value
+                VehicleTypeId = c.VehicleTypeId,
+                MaximumQuantity = c.MaximumQuantity,
+                Length = c.Length,
+                Breadth = c.Breadth,
+                Height = c.Height,
+                LengthUnitId = c.LengthUnitId,
+                UOMId = c.UOMId,
+                WeightUnitId = c.WeightUnitId
 
             }).FirstOrDefault();
 
@@ -264,6 +305,32 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                                                      Value = t.Id.ToString()
                                                  }).ToList();
 
+            capacityModel.WeightUnitsListItems = UnitOfWork.LocalizedWeightUnits
+                                                 .GetWhere(w => w.CultureCode == SessionHandler.CultureCode)
+                                                 .Select(t => new SelectListItem()
+                                                 {
+                                                     Text = t.FullName,
+                                                     Value = t.WeightUnitId.ToString()
+                                                 }).ToList();
+
+            capacityModel.LengthUnitsListItems = UnitOfWork.LocalizedLengthUnits
+                                                 .GetWhere(w => w.CultureCode == SessionHandler.CultureCode)
+                                                 .Select(t => new SelectListItem()
+                                                 {
+                                                     Text = t.FullName,
+                                                     Value = t.LengthUnitId.ToString()
+                                                 }).ToList();
+
+            capacityModel.UOMListItems = UnitOfWork.LocalizedUOMs
+                                                 .GetWhere(w => w.CultureCode == SessionHandler.CultureCode)
+                                                 .Select(t => new SelectListItem()
+                                                 {
+                                                     Text = t.Name,
+                                                     Value = t.UOMId.ToString()
+                                                 }).ToList();
+
+
+
             return View("Partials/_AddVehicleCapicity", capacityModel);
 
         }
@@ -276,9 +343,9 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                                        {
                                            Id = c.Id,
                                            Name = c.LocalizedVehicleCapacities.FirstOrDefault(lc => lc.CultureCode == SessionHandler.CultureCode).Name,
-                                           Capacity = c.Capacity.Value,
+                                           Weight = c.Weight.Value,
                                            Length = c.Length.Value,
-                                           PalletNumber = c.PalletNumber.Value,
+                                           MaximumQuantity = c.MaximumQuantity.Value,
                                            VehicleType = c.VehicleType.LocalizedVehicleTypes
                                                         .FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name
                                        }).ToList();
@@ -437,7 +504,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                         Text = c.Name,
                         Value = c.CountryId.ToString()
                     }).ToList()
-                    
+
 
                 },
                 MakeDisplayModelList = UnitOfWork.VehicleMakes.GetWhere(m => m.IsActive == true).Select(m => new MakeDisplayModel
@@ -516,7 +583,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
                 CountryId = m.CountryId.Value,
                 ImageUrl = m.ImageUrl,
                 Id = m.Id,
-                Countries = UnitOfWork.LocalizedCountries.GetWhere(c => c.CultureCode==SessionHandler.CultureCode).Select(c => new SelectListItem
+                Countries = UnitOfWork.LocalizedCountries.GetWhere(c => c.CultureCode == SessionHandler.CultureCode).Select(c => new SelectListItem
                 {
                     Text = c.Name,
                     Value = c.CountryId.ToString()
@@ -923,7 +990,7 @@ namespace CargoMate.Web.Admin.Areas.Administration.Controllers
 
             savedModel.VehicleTypeId = payLoadModel.TypeId;
 
-            var localizedModel = savedModel.LocalizedPayLoadTypes.FirstOrDefault(lpt => lpt.CultureCode==SessionHandler.CultureCode);
+            var localizedModel = savedModel.LocalizedPayLoadTypes.FirstOrDefault(lpt => lpt.CultureCode == SessionHandler.CultureCode);
             if (localizedModel != null)
             {
                 localizedModel.Name = payLoadModel.Name;

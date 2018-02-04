@@ -39,6 +39,8 @@ namespace CargoMate.DataAccess.Models.Transporters
 
         public bool? IsActive { get; set; }
 
+        public virtual BasicData.Country Country { get; set; }
+
         public virtual ICollection<Localization.LocalizedInsuranceCompany> LocalizedInsuranceCompanies { get; set; }
     }
 }

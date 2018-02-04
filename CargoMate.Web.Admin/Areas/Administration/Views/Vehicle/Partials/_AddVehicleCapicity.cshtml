@@ -20,10 +20,41 @@
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "control-label col-md-3" })
+    @Html.LabelFor(model => model.WeightUnitId, htmlAttributes: new { @class = "control-label col-md-3" })
     <div class="col-md-9">
-        @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+        @Html.DropDownListFor(model => model.WeightUnitId, new SelectList(Model.WeightUnitsListItems, "Value", "Text", @Model.WeightUnitId), "Select Weight Unit", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.WeightUnitId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Height, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Breadth, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.EditorFor(model => model.Breadth, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Breadth, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(model => model.LengthUnitId, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.DropDownListFor(model => model.LengthUnitId, new SelectList(Model.LengthUnitsListItems, "Value", "Text", @Model.LengthUnitId), "Select Length Unit", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.LengthUnitId, "", new { @class = "text-danger" })
     </div>
 </div>
 
@@ -36,10 +67,17 @@
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.PalletNumber, htmlAttributes: new { @class = "control-label col-md-3" })
+    @Html.LabelFor(model => model.MaximumQuantity, htmlAttributes: new { @class = "control-label col-md-3" })
     <div class="col-md-9">
-        @Html.EditorFor(model => model.PalletNumber, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.PalletNumber, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.MaximumQuantity, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.MaximumQuantity, "", new { @class = "text-danger" })
     </div>
 </div>
 
+<div class="form-group">
+    @Html.LabelFor(model => model.UOMId, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-9">
+        @Html.DropDownListFor(model => model.UOMId, new SelectList(Model.UOMListItems, "Value", "Text", @Model.UOMId), "Select UOM", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UOMId, "", new { @class = "text-danger" })
+    </div>
+</div>

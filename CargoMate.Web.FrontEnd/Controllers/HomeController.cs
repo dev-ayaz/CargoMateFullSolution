@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using CargoMate.DataAccess.Contracts;
 using CargoMate.Web.FrontEnd.Shared;
+using CargoMate.Web.FrontEnd.Models.DriverInvoke;
 
 namespace CargoMate.Web.FrontEnd.Controllers
 {
@@ -90,6 +91,7 @@ namespace CargoMate.Web.FrontEnd.Controllers
                 .Select(v => new VehiclePopupViewModel
                 {
                     VehicleId = v.Id,
+                    DriverId = v.DriverPersonalInfoId,
                     TypeImage = GlobalProperties.BasicDataImagesPath + v.VehicleType.ImageUrl,
                     Type = v.VehicleType.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Name,
                     TypeDescreption = v.VehicleType.LocalizedVehicleTypes.FirstOrDefault(lt => lt.CultureCode == SessionHandler.CultureCode).Descreption,
@@ -104,9 +106,32 @@ namespace CargoMate.Web.FrontEnd.Controllers
             return Json(vehicle, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DriverInvoke(long? vehicleI)
+        public ActionResult DriverInvoke(long? vehicleId)
         {
-            return View();
+
+            var vehicle = UnitOfWork.Vehicles.GetWhere(v => v.Id == vehicleId).FirstOrDefault();
+
+            if (vehicle!=null)
+            {
+                var jobDetailsViewModel = new JobDetailsViewModel
+                {
+
+                    VehicleCapacities = UnitOfWork.LocalizedVehicleCapacities.
+                       GetWhere(c => c.VehicleCapacity.VehicleTypeId == vehicle.VehicleTypeId && c.CultureCode == SessionHandler.CultureCode)
+                       .Select(c => new SelectListItem { Value = c.VehicleCapacityId.Value.ToString(), Text = c.Name }).ToList(),
+
+                    VehicleConfigurations = UnitOfWork.LocalizedVehicleConfigurations.GetWhere(c => c.VehicleConfiguration.VehicleTypeId == vehicle.VehicleTypeId && c.CultureCode == SessionHandler.CultureCode)
+                                              .Select(c => new SelectListItem { Text = c.Name, Value = c.VehicleConfigurationId.ToString() }).ToList(),
+
+                    WeightUnits = UnitOfWork.LocalizedWeightUnits
+                                       .GetWhere(u => u.CultureCode == SessionHandler.CultureCode)
+                                       .Select(u => new SelectListItem { Text = u.FullName, Value = u.WeightUnitId.ToString() })
+                                       .ToList()
+                };
+
+                return View(jobDetailsViewModel);
+            }
+            return View(new JobDetailsViewModel());
         }
 
         public ActionResult About()

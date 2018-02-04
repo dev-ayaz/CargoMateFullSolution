@@ -19,7 +19,7 @@ namespace CargoMate.DataAccess.Models.Vehicles
         public long VehicleId { get; set; }
 
         public long? PayLoadTypeId { get; set; }
-
+ 
         public virtual Vehicle Vehicle { get; set; }
 
         public virtual PayLoadType PayLoadType { get; set; }

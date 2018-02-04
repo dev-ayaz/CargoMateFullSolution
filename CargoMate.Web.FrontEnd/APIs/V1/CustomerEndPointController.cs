@@ -199,15 +199,15 @@ namespace CargoMate.Web.FrontEnd.APIs.V1
 
             if (companyId.HasValue)
             {
-                predicate = predicate.And(c => c.Id == companyId);
+                predicate = predicate.Or(c => c.Id == companyId);
             }
             if (crNumber.HasValue)
             {
-                predicate = predicate.And(c => c.CrNumber == crNumber);
+                predicate = predicate.Or(c => c.CrNumber == crNumber);
             }
             if (!string.IsNullOrWhiteSpace(phoneNumber))
             {
-                predicate = predicate.And(c => c.PhoneNumber == phoneNumber);
+                predicate = predicate.Or(c => c.PhoneNumber == phoneNumber);
             }
 
             return predicate;

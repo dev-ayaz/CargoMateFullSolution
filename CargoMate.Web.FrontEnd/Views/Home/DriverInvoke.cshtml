@@ -1,4 +1,4 @@
-﻿
+﻿@model CargoMate.Web.FrontEnd.Models.DriverInvoke.JobDetailsViewModel
 @{
     ViewBag.Title = "DriverInvoke";
 }
@@ -12,13 +12,36 @@
         .dd-selected-text {
             line-height: 35px;
         }
+
+
+        .loader {
+            border: 10px solid #f3f3f3; /* Light grey */
+            border-top: 10px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
+
+        @@keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
+
     <link href="~/Content/jquery.switch.css" rel="stylesheet" />
 }
 <div class="container margin_60">
+
     <div class="row">
         <div class="col-md-8 add_bottom_15">
             <div class="form_title">
+
                 <h3><strong>1</strong>Jobs Details</h3>
                 <p>
                     Enter Your Job Details.
@@ -27,23 +50,29 @@
             <div class="step">
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
+                        <div class="form-group overflow-false">
                             <label>Vehicle Configuration</label>
-                            @Html.DropDownList("ConfigurationId", new SelectList(string.Empty, "Value", "Text"), "Select Vehicle Configuration", new { @class = "ddslick", @min = 1 })
+                            @Html.DropDownList("ConfigurationId", new SelectList(Model.VehicleConfigurations, "Value", "Text"), "Select Vehicle Configuration", new { @class = "ddslick" })
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
+                        <div class="form-group overflow-false">
                             <label>Vehicle Capacity</label>
-                            @Html.DropDownList("CapacityId", new SelectList(string.Empty, "Value", "Text"), "Select Vehicle Capacity", new { @class = "ddslick", @min = 1 })
+                            @Html.DropDownList("CapacityId", new SelectList(Model.VehicleCapacities, "Value", "Text"), "Select Vehicle Capacity", new { @class = "ddslick" })
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
+                        <div class="form-group ">
                             <label>Cargo Weight</label>
-                            <input type="number" id="email_booking" name="email_booking" class="form-control">
+                            <input type="number" id="CargoWeight" name="email_booking" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group overflow-false">
+                            <label>Cargo Weight Unit</label>
+                            @Html.DropDownList("WeightUnitId", new SelectList(Model.WeightUnits, "Text", "Text"), "Select Weight unit", new { @class = "ddslick" })
                         </div>
                     </div>
 
@@ -52,7 +81,7 @@
 
                     <div class="col-md-6 col-sm-6">
                         <div class="" style="margin-top:20px">
-                            <button type="submit" class="btn_1 green" name="submit"><i class="icon-search"></i>Check Availability</button>
+                            <button type="button" class="btn_1 green" name="btnCheckAvailability" id="btnCheckAvailability"><i class="icon-search"></i>Check Availability</button>
                         </div>
                     </div>
                 </div>
@@ -75,14 +104,14 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
-                            <label>Supplier Name</label>
-                            <input type="number" id="email_booking" name="email_booking" class="form-control">
+                            <label> Name</label>
+                            <input type="text" id="NomineeName" name="NomineeName" class="form-control nomineeFromInputs">
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input type="number" id="email_booking" name="email_booking" class="form-control">
+                            <input type="email" id="NomineeEmailAddress" name="NomineeEmailAddress" class="form-control nomineeFromInputs">
                         </div>
                     </div>
                 </div>
@@ -90,13 +119,21 @@
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input type="number" id="email_booking" name="email_booking" class="form-control">
+                            <input type="tel" id="NomineePhoneNumber" name="NomineePhoneNumber" class="form-control nomineeFromInputs">
                         </div>
                     </div>
 
                 </div>
 
-                <hr>
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="" style="margin-top:20px">
+                            <button type="button" class="btn_1 green" name="btnAssignNominee" id="btnAssignNominee"><i class="icon-search"></i>Add Nominee</button>
+                        </div>
+                    </div>
+                </div>
+                <hr />
 
                 <h4>Note</h4>
                 <p>
@@ -115,7 +152,7 @@
                         </div>I accept terms and conditions and general policy.
                     </label>
                 </div>
-                <a href="confirmation.html" class="btn_1 green medium">Book now</a>
+                <input type="button" class="btn_1 green medium nomineeFromInputs" value="Book now">
             </div>
         </div>
 
@@ -205,14 +242,157 @@
     </div><!--End row -->
 </div>
 
+<div id="myModal" class="modal fade" role="dialog" style="margin-top:100px;">
+    <div class="modal-dialog modal-sm">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body" style="height:100px;">
+
+                <div class="row">
+
+                    <div class="col-sm-8 ">
+                        <h5 style="padding-top:10px; " id="ProgressBarMessage">Please wait while driver review your request...</h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="loader"></div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
 @section scripts{
 
     <script>
+
+
+        function invokeRequest() {
+            // increment the counter
+            firebase.database().ref('searchIdCounter').transaction(function (currentValue) {
+                return (currentValue || 0) + 1
+            }, function (err, committed, ss) {
+                if (err) {
+                    console.log(err);
+                }
+                else if (committed) {
+                    // if counter update succeeds, then create record
+                    // probably want a recourse for failures too
+                    sendQuery(ss.val());
+                }
+            });
+        }
+
+        function sendQuery(requestId) {
+
+            var VehicleQuery = JSON.parse(sessionStorage.getItem("VehicleQuery"));
+
+            VehicleQuery.queryId = requestId;
+            VehicleQuery.payloadWeight = $("#CargoWeight").val() || 0;
+            VehicleQuery.payloadWeightUnit = null;// $("[name=WeightUnitId]").val();
+            VehicleQuery.jobStatus = "JOB_INVOKE_DRIVER";
+
+            sessionStorage.setItem("VehicleQuery", JSON.stringify(VehicleQuery));
+
+            firebase.database().ref('jobVehicle/' + requestId).set(VehicleQuery).then(function () {
+
+                firebase.database().ref('jobUserMap/' + VehicleQuery.customer.customerId).set([requestId]);
+
+            });
+
+
+            firebase.database().ref('orderVehicle/' + requestId + "/driverJobAccessed").on("value", function (snapshot) {
+                if (snapshot.val()) {
+                    $("#ProgressBarMessage").text("Wait driver start viewing your request..");
+
+                    $('#myModal').modal('toggle');
+
+                    CargoMateAlerts.actionAlert("Success", "Driver Accept your request, Now you can add nominee", false);
+                    $(".nomineeFromInputs").prop("disabled", false);
+                }
+                console.log(snapshot.val());
+            });
+
+            setTimeout(function () {
+                firebase.database().ref('orderVehicle/' + requestId + "/driverJobAccessed").set("true");
+                console.log('value chnged call');
+            }, 3000);
+
+            console.log(VehicleQuery);
+
+            $("#myModal").modal();
+        }
         jQuery(document).ready(function () {
-            alert(RequestHandler.getQueryString("vehicleId"));
-            $.getJSON("../../api/v1/VehicleSearchEndpoint/VehicleSearchResult?vehicleId=" + RequestHandler.getQueryString("vehicleId")+"&cultureCode=@(SessionHandler.CultureCode)", function (result) {
-            console.log(result);
-        });
+
+
+            $(".nomineeFromInputs").prop("disabled", true);
+
+            $("#btnCheckAvailability").click(function () {
+                invokeRequest();
+
+            });
+
+            $("#btnAssignNominee").click(function () {
+
+                var VehicleQuery = JSON.parse(sessionStorage.getItem("VehicleQuery"));
+
+                var url = [RequestHandler.getSiteBase(), "/api/v1/CustomerEndPoint/GetCustomerByFilter"].join("");
+
+                RequestHandler.postToController(url, RequestHandler.formMethods.Get,
+                    { emailAddress: $("#NomineeEmailAddress").val(), phoneNumber: $("#NomineePhoneNumber").val() },
+                    function (customer) {
+
+                        console.log(customer);
+
+                        if (customer) {
+
+                            var nominee = {
+                                customerId: customer.customerId,
+                                id: customer.id,
+                                dateOfBirth: null,
+                                email: customer.emailAddress,
+                                gender: customer.gender,
+                                imageUrl: customer.imageSrc,
+                                name: customer.name,
+                                phoneNumber: customer.phoneNumber
+                            }
+
+
+
+                            firebase.database().ref('nomineeOrdersMap/' + customer.customerId).set([VehicleQuery.queryId]);
+
+                            VehicleQuery.nominee = nominee;
+                            firebase.database().ref('jobVehicle/' + VehicleQuery.queryId).set(VehicleQuery).then(function () {
+                                CargoMateAlerts.actionAlert("Success", "Nominee Sucessfully added", false);
+                            });
+                        }
+
+                        else {
+                            VehicleQuery.nominee = {
+                                name: $("#NomineeName").val(),
+                                email: $("#NomineeEmailAddress").val(),
+                                phoneNumber: $("#NomineePhoneNumber").val()
+                            }
+                            firebase.database().ref('jobVehicle/' + VehicleQuery.queryId).set(VehicleQuery).then(function () {
+                                CargoMateAlerts.actionAlert("Success", "Nominee Sucessfully added", false);
+                            });
+                        }
+
+                    });
+
+
+                sessionStorage.setItem("VehicleQuery", JSON.stringify(VehicleQuery));
+
+
+            });
+
+
         });
 
     </script>

@@ -29,6 +29,7 @@ namespace CargoMate.DataAccess.Contracts
         IRepository<VehicleModel> VehicleModels { get; }
         IRepository<VehicleType> VehicleTypes { get; }
         IRepository<WeightUnit> WeightUnits { get; }
+        IRepository<UOM> UOMs { get; }
         IRepository<FareType> FareTypes { get; }
 
 
@@ -44,6 +45,7 @@ namespace CargoMate.DataAccess.Contracts
         IRepository<LocalizedVehicleModel> LocalizedVehicleModels { get; }
         IRepository<LocalizedVehicleType> LocalizedVehicleTypes { get; }
         IRepository<LocalizedWeightUnit> LocalizedWeightUnits { get; }
+        IRepository<LocalizedUOM> LocalizedUOMs { get; }
         IRepository<LocalizedFareType> LocalizedFareTypes { get; }
         //************************** Basic Data  END************************************************
 

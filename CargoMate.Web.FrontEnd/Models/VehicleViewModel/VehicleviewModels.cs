@@ -24,7 +24,7 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleViewModel
         public List<TripTypesViewModel> TripTypes { get; set; }
         public bool? isInsured { get; set; }
         public decimal? InsuranceAmount { get; set; }
-        public string InsuranceCompany { get; set; }
+        public InsuranceCompanyViewModel InsuranceCompany { get; set; }
         public DateTime? InsuranceExpiry { get; set; }
         public string InsurancePolicyNo { get; set; }
 
@@ -49,6 +49,11 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleViewModel
 
         public List<PayLoadTypeViewModel> PayloadTypes { get; set; }
     }
+
+    public class InsuranceViewModel
+    {
+
+    }
     public class VehicleSearchResultShort
     {
         public long? VehicleId { get; set; }
@@ -63,7 +68,7 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleViewModel
         public List<TripTypesViewModel> TripTypes { get; set; }
         public bool? isInsured { get; set; }
         public decimal? InsuranceAmount { get; set; }
-        public string InsuranceCompany { get; set; }
+        public InsuranceCompanyViewModel InsuranceCompany { get; set; }
         public DateTime? InsuranceExpiry { get; set; }
         public string InsurancePolicyNo { get; set; }
 

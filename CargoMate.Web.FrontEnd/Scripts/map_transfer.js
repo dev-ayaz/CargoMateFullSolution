@@ -1,218 +1,7 @@
 $(document).on('ready', function (e) {
 
 
-    //firebase.database().ref('jobVehicle/' + 99).set({
-    //    "queryId": 1,
-    //    "customer": {},
-    //    "selectedVehicle": {
-    //        "pickUpAddress": "sample string 1",
-    //        "dropUpAddress": "sample string 2",
-    //        "pickUpLocation": "sample string 3",
-    //        "dropUpLocation": "sample string 4",
-    //        "date": "2018-01-08T00:25:24.3393713+03:00",
-    //        "capacityId": 1,
-    //        "vehicleTypeId": 1,
-    //        "vehicleCapacities": [
-    //            {
-    //                "disabled": true,
-    //                "group": {
-    //                    "disabled": true,
-    //                    "name": "sample string 2"
-    //                },
-    //                "selected": true,
-    //                "text": "sample string 3",
-    //                "value": "sample string 4"
-    //            },
-    //            {
-    //                "disabled": true,
-    //                "group": {
-    //                    "disabled": true,
-    //                    "name": "sample string 2"
-    //                },
-    //                "selected": true,
-    //                "text": "sample string 3",
-    //                "value": "sample string 4"
-    //            }
-    //        ],
-    //        "vehicleTypes": [
-    //            {
-    //                "disabled": true,
-    //                "group": {
-    //                    "disabled": true,
-    //                    "name": "sample string 2"
-    //                },
-    //                "selected": true,
-    //                "text": "sample string 3",
-    //                "value": "sample string 4"
-    //            },
-    //            {
-    //                "disabled": true,
-    //                "group": {
-    //                    "disabled": true,
-    //                    "name": "sample string 2"
-    //                },
-    //                "selected": true,
-    //                "text": "sample string 3",
-    //                "value": "sample string 4"
-    //            }
-    //        ]
-    //    },
-    //    "selectedVehicleLocation": "sample string 2",
-    //    "vehicleParaPack": {
-    //        "vehicleType": {
-    //            "id": 1,
-    //            "name": "sample string 1",
-    //            "description": "sample string 2",
-    //            "imageUrl": "sample string 3",
-    //            "isEquipment": true
-    //        },
-    //        "vehicleConfig": {
-    //            "id": 1,
-    //            "name": "sample string 1",
-    //            "description": "sample string 2",
-    //            "imageUrl": "sample string 3"
-    //        },
-    //        "vehicleCapacity": {
-    //            "id": 1,
-    //            "name": "sample string 1",
-    //            "capacity": 1,
-    //            "length": 1,
-    //            "palletNumber": 1
-    //        }
-    //    },
-    //    "pickupAddress": {
-    //        "addressElements": [
-    //            {
-    //                "name": "sample string 1",
-    //                "types": [
-    //                    "sample string 1",
-    //                    "sample string 2"
-    //                ]
-    //            },
-    //            {
-    //                "name": "sample string 1",
-    //                "types": [
-    //                    "sample string 1",
-    //                    "sample string 2"
-    //                ]
-    //            }
-    //        ],
-    //        "subLocality": null,
-    //        "locality": null,
-    //        "country": null,
-    //        "fullAddress": "sample string 1, sample string 1",
-    //        "shortAddress": "sample string 1, sample string 1",
-    //        "basePath": "sample string 1/sample string 1/"
-    //    },
-    //    "dropoffAddress": {
-    //        "addressElements": [
-    //            {
-    //                "name": "sample string 1",
-    //                "types": [
-    //                    "sample string 1",
-    //                    "sample string 2"
-    //                ]
-    //            },
-    //            {
-    //                "name": "sample string 1",
-    //                "types": [
-    //                    "sample string 1",
-    //                    "sample string 2"
-    //                ]
-    //            }
-    //        ],
-    //        "subLocality": null,
-    //        "locality": null,
-    //        "country": null,
-    //        "fullAddress": "sample string 1, sample string 1",
-    //        "shortAddress": "sample string 1, sample string 1",
-    //        "basePath": "sample string 1/sample string 1/"
-    //    },
-    //    "searchAddress": {
-    //        "addressElements": [
-    //            {
-    //                "name": "sample string 1",
-    //                "types": [
-    //                    "sample string 1",
-    //                    "sample string 2"
-    //                ]
-    //            },
-    //            {
-    //                "name": "sample string 1",
-    //                "types": [
-    //                    "sample string 1",
-    //                    "sample string 2"
-    //                ]
-    //            }
-    //        ],
-    //        "subLocality": null,
-    //        "locality": null,
-    //        "country": null,
-    //        "fullAddress": "sample string 1, sample string 1",
-    //        "shortAddress": "sample string 1, sample string 1",
-    //        "basePath": "sample string 1/sample string 1/"
-    //    },
-    //    "pickupLocation": "sample string 3",
-    //    "dropoffLocation": "sample string 4",
-    //    "distance": 5.1,
-    //    "time": 6.1,
-    //    "jobWorth": 7.1,
-    //    "priceSurge": 8.1,
-    //    "insuredNeeded": true,
-    //    "fixedRate": true,
-    //    "driverJobAccessed": true,
-    //    "insuranceAmount": 12.1,
-    //    "payloadTypeList": [
-    //        {
-    //            "id": 1,
-    //            "name": "sample string 1",
-    //            "imageUrl": "sample string 2"
-    //        },
-    //        {
-    //            "id": 1,
-    //            "name": "sample string 1",
-    //            "imageUrl": "sample string 2"
-    //        }
-    //    ],
-    //    "tripType": {
-    //        "id": 1,
-    //        "name": "sample string 1",
-    //        "imageUrl": "sample string 2"
-    //    },
-    //    "payloadWeight": 13.1,
-    //    "payloadWeightUnit": "sample string 14",
-    //    "payloadQty": 15,
-    //    "payloadQtyUnit": "sample string 16",
-    //    "recipientName": "sample string 17",
-    //    "recipientPhone": "sample string 18",
-    //    "recipientId": "sample string 19",
-    //    "recipientNotified": true,
-    //    "jobStatusMap": {
-    //        "sample string 1": 2,
-    //        "sample string 3": 4
-    //    },
-    //    "jobStatus": 1,
-    //    "nationalityPref": {
-    //        "id": 1,
-    //        "name": "sample string 1",
-    //        "countryCode": "sample string 2",
-    //        "currencyLong": "sample string 3",
-    //        "currencyCode": "sample string 4",
-    //        "currencySymbol": "sample string 5",
-    //        "phonCode": "sample string 6",
-    //        "flag": "sample string 7"
-    //    },
-    //    "codeQRCustomer": "sample string 21",
-    //    "codeQRRecipient": "sample string 22",
-    //    "payloadSealCode": "sample string 23",
-    //    "payloadSealed": true,
-    //    "codeQRCustomerVerified": true,
-    //    "codeQRRecipientVerified": true,
-    //    "driverDocVerified": true,
-    //    "vehicleDocVerified": true,
-    //    "payloadConditionRating": 29.1,
-    //    "payloadConditionRemarks": "sample string 30"
-    //});
+    //firebase.database().ref('jobVehicle/' + 99).set();
 
     //(function (A) {
 
@@ -224,6 +13,8 @@ $(document).on('ready', function (e) {
     //        };
 
     //})(Array.prototype);
+
+    getDistance();
     markersData = [];
 
     var userLocation;
@@ -275,6 +66,7 @@ $(document).on('ready', function (e) {
 
                 if (response) {
                     showMarkers({
+                        driverId:response.DriverId,
                         vehicleId: key,
                         name: response.DriverName + ' (' + response.DriverNationality + ')',
                         make: response.Make,
@@ -479,6 +271,7 @@ $(document).on('ready', function (e) {
     };
 
     function getInfoBox(item) {
+        console.log(item);
         return new InfoBox({
             content:
             '<div class="marker_info" id="marker_info" style="padding:10px;">' +
@@ -494,7 +287,7 @@ $(document).on('ready', function (e) {
             '<a href="tel://' + item.phone + '" class="btn_infobox_phone">' + item.phone + '</a>' +
             '</div>' +
             '<a href="' + item.url_point + '" class="btn_infobox"  style="margin-right:5px">Details</a>' +
-            '<button onclick="gotoInvokingPage(' + item.vehicleId + ')"  class="btn_infobox" >Invoke</button>' +
+            '<button onclick="gotoInvokingPage(' + item.vehicleId+",\'"+item.driverId + '\')"  class="btn_infobox" >Invoke</button>' +
             '</div>',
             disableAutoPan: false,
             maxWidth: 0,
@@ -513,12 +306,95 @@ $(document).on('ready', function (e) {
 
 });
 
-function gotoInvokingPage(vehicleId) {
+
+
+function getDistance() {
+    //Find the distance
+
+    var VehicleQuery = JSON.parse(sessionStorage.getItem("VehicleQuery"));
+
+    var distanceService = new google.maps.DistanceMatrixService();
+    distanceService.getDistanceMatrix({
+        origins: [VehicleQuery.pickupAddress.fullAddress], 
+        destinations: [VehicleQuery.dropoffAddress.fullAddress],
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        durationInTraffic: true,
+        avoidHighways: false,
+        avoidTolls: false
+    },
+        function (response, status) {
+            if (status !== google.maps.DistanceMatrixStatus.OK) {
+                console.log('Error:', status);
+            } else {
+                console.log(response);
+                VehicleQuery.distance = response.rows[0].elements[0].distance.value;
+                VehicleQuery.time = response.rows[0].elements[0].duration.value;
+                sessionStorage.setItem("VehicleQuery", JSON.stringify(VehicleQuery));
+            }
+        });
+}
+
+
+function gotoInvokingPage(vehicleId,driverId) {
     if (window.UserId) {
+
+        var VehicleQuery = JSON.parse(sessionStorage.getItem("VehicleQuery"));
+        vehicleModel.currentDriver.driverId =  driverId;
+        vehicleModel.id = vehicleId;
+        VehicleQuery.selectedVehicle = vehicleModel;
+
+        sessionStorage.setItem("VehicleQuery", JSON.stringify(VehicleQuery));
 
         window.location = RequestHandler.getSiteRoot() + "/DriverInvoke?vehicleId=" + vehicleId + "&VehicleTypeId=" + RequestHandler.getQueryString("VehicleTypeId") + "&CapacityId=" + RequestHandler.getQueryString("CapacityId") 
     }
     else {
-        alert("login is require to invoke driver");
+        CargoMateAlerts.actionAlert("Error","login is require to invoke driver",true);
     }
+}
+
+
+var vehicleModel = {
+    //id: null,
+    //plateNumber: null,
+    //registrationNumber: null,
+    //engineNumber: null,
+    //registrationExpiry: null,
+    //registrationImage: null,
+    // vehicleImages: [],
+    //isActive: true,
+    //validated: true,
+    // tripTypes: {},
+    //isInsured: true,
+    //insuranceAmount: null,
+    //insuranceCompany: null,
+    //insuranceExpiry: null,
+    //insurancePolicyNo: null,
+    currentDriver: {
+        driverId: 1
+        //name: null,
+        //legalName: null,
+        //dateOfBirth: null,
+        //phoneNumber: null,
+        //emailAddress: null,
+        //imageUrl: null,
+        //countryName: null,
+        //gender: true,
+        //fixedRate: true,
+        //address: null,
+        //location: null,
+        //locality: null,
+        //subLocality: null,
+        //driverStatus: {},
+        //country: {}
+    }
+    //driverLegalDocuments: {},
+    //make: {},
+    //model: {},
+    //year: {},
+    //vehicleType: {},
+    //capacity: {},
+    //configurations: {},
+    //payloadTypes: {}
+
 }

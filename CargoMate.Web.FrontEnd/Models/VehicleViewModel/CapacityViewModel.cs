@@ -11,10 +11,20 @@ namespace CargoMate.Web.FrontEnd.Models.VehicleViewModel
 
         public string Name { get; set; }
 
-        public long? Capacity { get; set; }
+        public decimal? Weight { get; set; }
 
-        public long? Length { get; set; }
+        public decimal? Length { get; set; }
 
-        public long? PalletNumber { get; set; }
+        public decimal? Height { get; set; }
+
+        public decimal? Breadth { get; set; }
+
+        public long? MaximumQuantity { get; set; }
+
+        public UOMViewModel BaseUOM { get; set; }
+
+        public LengthViewModel LengthUnit { get; set; }
+
+        public WeightViewModel WeightUnit { get; set; }
     }
 }

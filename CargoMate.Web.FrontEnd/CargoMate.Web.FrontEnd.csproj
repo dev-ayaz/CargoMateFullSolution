@@ -188,6 +188,7 @@
     <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\CustomerViewModels\CompanyViewModel.cs" />
     <Compile Include="Models\CustomerViewModels\CustomerSearchFilter.cs" />
+    <Compile Include="Models\DriverInvoke\JobDetailsViewModel.cs" />
     <Compile Include="Models\DriverViewModel\DriverLegalDocumentsViewModel.cs" />
     <Compile Include="Models\DriverViewModel\DriverPersonalInfoViewModel.cs" />
     <Compile Include="Models\DriverViewModel\DriverSearchFilter.cs" />
@@ -204,10 +205,12 @@
     <Compile Include="Models\VehicleRegistrationModels\VehicleViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\CapacityViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\ConfigurationsViewModel.cs" />
+    <Compile Include="Models\VehicleViewModel\InsuranceCompanyViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\LengthViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\MakeViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\PayLoadTypeViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\TripTypesViewModel.cs" />
+    <Compile Include="Models\VehicleViewModel\UOMViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\VehicleImagesViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\VehicleModelViewModel.cs" />
     <Compile Include="Models\VehicleViewModel\VehicleModelYearViewModel.cs" />
@@ -281,6 +284,7 @@
     <Content Include="AppScripts\Drivers\Register.js" />
     <Content Include="AppScripts\FireBase\Configurations.js" />
     <Content Include="AppScripts\Home\Home.js" />
+    <Content Include="AppScripts\Models\VehicleJsModel.js" />
     <Content Include="AppScripts\Vehicle\BasicInformations.js" />
     <Content Include="AppScripts\Vehicle\VehicleImages.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

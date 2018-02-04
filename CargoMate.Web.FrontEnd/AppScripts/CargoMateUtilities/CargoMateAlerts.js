@@ -5,7 +5,7 @@
         swal({
             title: title,
             text: msg,
-            timer: 2000,
+            timer: 20000,
             type: "success",
             showConfirmButton: false
         });

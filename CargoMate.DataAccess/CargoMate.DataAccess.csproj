@@ -66,6 +66,30 @@
     <Compile Include="Migrations\201712301213119_Trip Type ImageUrl Column.Designer.cs">
       <DependentUpon>201712301213119_Trip Type ImageUrl Column.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801161930108_InsuranceTableUpdate.cs" />
+    <Compile Include="Migrations\201801161930108_InsuranceTableUpdate.Designer.cs">
+      <DependentUpon>201801161930108_InsuranceTableUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801271324073_payload Types modified.cs" />
+    <Compile Include="Migrations\201801271324073_payload Types modified.Designer.cs">
+      <DependentUpon>201801271324073_payload Types modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801271350238_payload Types modified1.cs" />
+    <Compile Include="Migrations\201801271350238_payload Types modified1.Designer.cs">
+      <DependentUpon>201801271350238_payload Types modified1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801271413502_payload Types modified2.cs" />
+    <Compile Include="Migrations\201801271413502_payload Types modified2.Designer.cs">
+      <DependentUpon>201801271413502_payload Types modified2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801281905377_Capacity Table Modified.cs" />
+    <Compile Include="Migrations\201801281905377_Capacity Table Modified.Designer.cs">
+      <DependentUpon>201801281905377_Capacity Table Modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801291804069_Capacity Model Modified.cs" />
+    <Compile Include="Migrations\201801291804069_Capacity Model Modified.Designer.cs">
+      <DependentUpon>201801291804069_Capacity Model Modified.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasicData\Country.cs" />
     <Compile Include="Models\BasicData\CustomerStatus.cs" />
@@ -78,6 +102,7 @@
     <Compile Include="Models\BasicData\Localizations\LocalizedPairType.cs" />
     <Compile Include="Models\BasicData\Localizations\LocalizedPayLoadType.cs" />
     <Compile Include="Models\BasicData\Localizations\LocalizedTripType.cs" />
+    <Compile Include="Models\BasicData\Localizations\LocalizedUOM.cs" />
     <Compile Include="Models\BasicData\Localizations\LocalizedVehicleCapacity.cs" />
     <Compile Include="Models\BasicData\Localizations\LocalizedVehicleConfiguration.cs" />
     <Compile Include="Models\BasicData\Localizations\LocalizedVehicleMake.cs" />
@@ -88,6 +113,7 @@
     <Compile Include="Models\BasicData\FareTypes.cs" />
     <Compile Include="Models\BasicData\PayLoadType.cs" />
     <Compile Include="Models\BasicData\TripTypes.cs" />
+    <Compile Include="Models\BasicData\UOM.cs" />
     <Compile Include="Models\BasicData\VehicleCapacity.cs" />
     <Compile Include="Models\BasicData\VehicleMake.cs" />
     <Compile Include="Models\BasicData\VehicleModel.cs" />
@@ -140,6 +166,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712301213119_Trip Type ImageUrl Column.resx">
       <DependentUpon>201712301213119_Trip Type ImageUrl Column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801161930108_InsuranceTableUpdate.resx">
+      <DependentUpon>201801161930108_InsuranceTableUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801271324073_payload Types modified.resx">
+      <DependentUpon>201801271324073_payload Types modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801271350238_payload Types modified1.resx">
+      <DependentUpon>201801271350238_payload Types modified1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801271413502_payload Types modified2.resx">
+      <DependentUpon>201801271413502_payload Types modified2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801281905377_Capacity Table Modified.resx">
+      <DependentUpon>201801281905377_Capacity Table Modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801291804069_Capacity Model Modified.resx">
+      <DependentUpon>201801291804069_Capacity Model Modified.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

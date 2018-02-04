@@ -13,10 +13,10 @@
             geoAddress.country = "";
             $.map(place.address_components, function (elem) {
                 var geoElement = {};
-                geoElement.Name = elem.long_name;
-                geoElement.Types = [];
+                geoElement.name = elem.long_name;
+                geoElement.types = [];
                 $.map(elem.types, function (type) {
-                    geoElement.Types.push(type);
+                    geoElement.types.push(type);
                     if (type == "locality") {
                         geoAddress.locality = elem.long_name;
                     }
@@ -41,10 +41,16 @@
         // pickup address google placepicker
         $(Home.Selectors.PickUpAddress).placepicker({
             placeChanged: function (place) {
-
-                sessionStorage.setItem("PickUpAddress", Home.Callbacks.getGeoAddress(place));
                 var location = this.getLocation();
+                var VehicleQuery = JSON.parse(sessionStorage.getItem("VehicleQuery"));
+                VehicleQuery.pickupAddress = Home.Callbacks.getGeoAddress(place);
+                VehicleQuery.pickupLocation = "POINT(" + location.latitude + " " + location.longitude + ")"
+                console.log(VehicleQuery);
+                sessionStorage.setItem("VehicleQuery", JSON.stringify(VehicleQuery));
+
+
                 $(Home.Selectors.PickUpLocation).val(location.latitude + "," + location.longitude);
+
             }
         }).data("placepicker");
 
@@ -52,16 +58,75 @@
         $(Home.Selectors.DropUpAddress).placepicker({
 
             placeChanged: function (place) {
-                sessionStorage.setItem("DropUpAddress", Home.Callbacks.getGeoAddress(place));
+
                 var location = this.getLocation();
+                var VehicleQuery = JSON.parse(sessionStorage.getItem("VehicleQuery"));
+                VehicleQuery.dropoffAddress = Home.Callbacks.getGeoAddress(place);
+                VehicleQuery.dropoffLocation = "POINT(" + location.latitude + " " + location.longitude + ")"
+                console.log(VehicleQuery);
+                sessionStorage.setItem("VehicleQuery", JSON.stringify(VehicleQuery));
+
                 $(Home.Selectors.DropUpLocation).val(location.latitude + "," + location.longitude);
+
+
             }
         }).data("placepicker");
     }
 };
 
 jQuery(function () {
-    sessionStorage.setItem("DropUpAddress", null);
-    sessionStorage.setItem("PickUpAddress", null);
+
+    var Vquery = {
+        queryId: 1,
+        customer: {},
+        selectedVehicle: {},
+        // selectedVehicleLocation: null,
+        //vehicleParaPack: {
+        //    vehicleType: {},
+        //    vehicleConfig: {},
+        //    vehicleCapacity: {}
+        //},
+        pickupAddress: {},
+        dropoffAddress: {},
+        //searchAddress: {},
+        pickupLocation: null,
+        dropoffLocation: null,
+        distance: 5.1,
+        time: 6.1,
+        jobWorth: 7.1,
+        priceSurge: 8.1,
+        insuredNeeded: false,
+        fixedRate: false,
+        driverJobAccessed: false,
+        insuranceAmount: 12.1,
+        payloadTypeList: [{ image: "", name: "container, dry goods,boxes",typeId:5}],
+        tripType: {id:1,name:'Local'},
+        payloadWeight: 13.1,
+        payloadWeightUnit: null,
+        //payloadQty: 15,
+        //payloadQtyUnit: 0,
+        // recipientName: null,
+        //recipientPhone: null,
+        //recipientId: null,
+        recipientNotified: false,
+        //jobStatusMap: {},
+        jobStatus: "JOB_INVOKE_DRIVER",
+        nationalityPref: {},
+        codeQRReceiver: null,
+        codeQRSupplier: null,
+        payloadSealCode: null,
+        payloadSealed: false,
+        codeQRReceiverVerified: false,
+        codeQRSupplierVerified: false,
+        driverDocVerified: false,
+        vehicleDocVerified: false,
+        payloadConditionRating: 29.1,
+        // payloadConditionRemarks: null
+    };
+
+    if (!sessionStorage.getItem("VehicleQuery"))
+    {
+        sessionStorage.setItem("VehicleQuery", JSON.stringify(Vquery));
+    }
     Home.InitEvents();
 });
